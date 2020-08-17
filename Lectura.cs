@@ -18,16 +18,16 @@ namespace minij
             this.ruta = ruta;
         }
 
-        public void LeerComentarios() { }
+        public void LeerComentarios(string ruta) { }
         
-        public void LeerEspacios() { }
+        public void LeerEspacios(string ruta) { }
         
-        public void LeerIdentificadores() { }
+        public void LeerIdentificadores(string ruta) { }
 
-        public void LeerConstantes() { }
+        public void LeerConstantes(string ruta) { }
 
-        public void LeerOperadores() { }
+        public void LeerOperadores(string ruta) { }
 
-        public void LeerCaracteres() { }
+        public void LeerCaracteres(string ruta) { }
     }
 }

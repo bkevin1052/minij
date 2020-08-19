@@ -49,7 +49,7 @@ namespace minij
                 archivoLectura.AddTokenRule(@"(true|false)\b", "CONSTANTE_BOOLEANA");
                 archivoLectura.AddTokenRule(@"\b[_$a-zA-Z][\w$]*\b", "IDENTIFICADOR");
                 archivoLectura.AddTokenRule("\".*?\"", "CADENA");
-                //archivoLectura.AddTokenRule(@"'\\.'|'[^\\]'", "CARACTER");
+                archivoLectura.AddTokenRule(@"'\\.'|'[^\\]'", "CARACTER");
                 archivoLectura.AddTokenRule("//[^\r\n]*", "COMENTARIO1");
                 archivoLectura.AddTokenRule("/[*](.*?|\n|\r)*[*]/", "COMENTARIO2");
                 archivoLectura.AddTokenRule(@"\d*\.?\d+", "NUMERO");

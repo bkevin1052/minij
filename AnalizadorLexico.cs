@@ -120,7 +120,7 @@ namespace minij
                 {
                     rex = new Regex(patron.ToString(), options);
 
-                    GNumbers = new int[TNames.Count];
+                        GNumbers = new int[TNames.Count];
                     string[] gn = rex.GetGroupNames();
 
                     for (int i = 0, idx = 0; i < gn.Length; i++)

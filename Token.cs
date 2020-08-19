@@ -9,7 +9,7 @@ namespace minij
     public class Token
     {
 
-        public string Name { get; set; }
+        public string Nombre { get; set; }
         public string Lexema { get; private set; }
 
         public int Index { get; private set; }
@@ -18,9 +18,9 @@ namespace minij
         public int Lenght { get { return Lexema.Length; } }
 
 
-        public Token(string name, string lexema, int index, int linea, int columna)
+        public Token(string nombre, string lexema, int index, int linea, int columna)
         {
-            Name = name;
+            Nombre = nombre;
             Lexema = lexema;
             Index = index;
             Linea = linea;

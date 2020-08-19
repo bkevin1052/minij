@@ -8,3 +8,13 @@ C:\Users\kevin\Desktop\COMPILADORES\minij\obj\Debug\minij.csproj.GenerateResourc
 C:\Users\kevin\Desktop\COMPILADORES\minij\obj\Debug\minij.csproj.CoreCompileInputs.cache
 C:\Users\kevin\Desktop\COMPILADORES\minij\obj\Debug\minij.exe
 C:\Users\kevin\Desktop\COMPILADORES\minij\obj\Debug\minij.pdb
+C:\Users\angel\Desktop\Proyecto_Compis\minij\bin\Debug\minij.exe.config
+C:\Users\angel\Desktop\Proyecto_Compis\minij\bin\Debug\minij.exe
+C:\Users\angel\Desktop\Proyecto_Compis\minij\bin\Debug\minij.pdb
+C:\Users\angel\Desktop\Proyecto_Compis\minij\obj\Debug\minij.csprojAssemblyReference.cache
+C:\Users\angel\Desktop\Proyecto_Compis\minij\obj\Debug\minij.Form1.resources
+C:\Users\angel\Desktop\Proyecto_Compis\minij\obj\Debug\minij.Properties.Resources.resources
+C:\Users\angel\Desktop\Proyecto_Compis\minij\obj\Debug\minij.csproj.GenerateResource.cache
+C:\Users\angel\Desktop\Proyecto_Compis\minij\obj\Debug\minij.csproj.CoreCompileInputs.cache
+C:\Users\angel\Desktop\Proyecto_Compis\minij\obj\Debug\minij.exe
+C:\Users\angel\Desktop\Proyecto_Compis\minij\obj\Debug\minij.pdb

@@ -69,14 +69,14 @@ namespace minij
 
             foreach (var tk in archivoLectura.GetTokens(texto))
             {
-                if (tk.Name == "ERROR") e++;
+                if (tk.Nombre == "ERROR") e++;
 
-                if (tk.Name == "IDENTIFICADOR")
+                if (tk.Nombre == "IDENTIFICADOR")
                     if (palabrasReservadas.Contains(tk.Lexema))
-                        tk.Name = "RESERVADO";
+                        tk.Nombre = "RESERVADO";
 
                 ListViewItem lvi = new ListViewItem();
-                string[] row = { tk.Name, tk.Lexema, tk.Linea.ToString(), tk.Columna.ToString(), tk.Index.ToString()};
+                string[] row = { tk.Nombre, tk.Lexema, tk.Linea.ToString(), tk.Columna.ToString(), tk.Index.ToString()};
                 var listViewItem = new ListViewItem(row);
                 lvToken.Items.Add(listViewItem);
                 n++;

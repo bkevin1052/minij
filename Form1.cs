@@ -52,6 +52,7 @@ namespace minij
                 archivoLectura.AddTokenRule("//[^\r\n]*", "COMENTARIO1");
                 archivoLectura.AddTokenRule("/[*](.*?|\n|\r)*[*]/", "COMENTARIO2");
                 archivoLectura.AddTokenRule(@"\d+\b", "CONSTANTE_ENTERA_DECIMAL");
+                archivoLectura.AddTokenRule(@"(0x|0X)[\da-fA-F]+\b", "CONSTANTE_ENTERA_HEXADECIMAL");
                 archivoLectura.AddTokenRule(@"'\\.'|'[^\\]'", "CARACTER");
                 archivoLectura.AddTokenRule(@"[\(\)\{\}\[\];,]", "DELIMITADOR");
                 archivoLectura.AddTokenRule(@"[\.=\+\-/*%]", "OPERADOR");

@@ -46,6 +46,7 @@ namespace minij
                 //tbxCode.Text = sr.ReadToEnd();
 
                 archivoLectura.AddTokenRule(@"\s+", "ESPACIO", true);
+                archivoLectura.AddTokenRule(@"\b(public|void)\b", "PALABRA_RESERVADA");
                 archivoLectura.AddTokenRule(@"\b[_a-zA-Z][\w]*\b", "IDENTIFICADOR");
                 archivoLectura.AddTokenRule("\".*?\"", "CADENA");
                 archivoLectura.AddTokenRule(@"'\\.'|'[^\\]'", "CARACTER");
@@ -55,6 +56,7 @@ namespace minij
                 archivoLectura.AddTokenRule(@"[\(\)\{\}\[\];,]", "DELIMITADOR");
                 archivoLectura.AddTokenRule(@"[\.=\+\-/*%]", "OPERADOR");
                 archivoLectura.AddTokenRule(@">|<|==|>=|<=|!", "COMPARADOR");
+                
 
                 palabrasReservadas = new List<string>() { "void","int","double","boolean","string",
                 "class","const","interface","null","null","this","extends","implements","for","while",

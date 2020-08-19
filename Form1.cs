@@ -45,14 +45,14 @@ namespace minij
                 //tbxCode.Text = sr.ReadToEnd();
 
                 archivoLectura.AddTokenRule(@"\s+", "ESPACIO", true);
-                archivoLectura.AddTokenRule(@"\b(void|int|double|boolean|string|class|const|interface|null|this|extends|implements|for|while|if|else|return|break|New|System|out|println)\b", "PALABRA_RESERVADA");
+                archivoLectura.AddTokenRule(@"(void|int|double|boolean|string|class|const|interface|null|this|extends|implements|for|while|if|else|return|break|New|System|out|println)\b", "PALABRA_RESERVADA");
                 archivoLectura.AddTokenRule(@"(true|false)\b", "CONSTANTE_BOOLEANA");
                 archivoLectura.AddTokenRule(@"\b[_$a-zA-Z][\w$]*\b", "IDENTIFICADOR");
                 archivoLectura.AddTokenRule("\".*?\"", "CADENA");
-                archivoLectura.AddTokenRule(@"'\\.'|'[^\\]'", "CARACTER");
                 archivoLectura.AddTokenRule("//[^\r\n]*", "COMENTARIO1");
                 archivoLectura.AddTokenRule("/[*](.*?|\n|\r)*[*]/", "COMENTARIO2");
-                archivoLectura.AddTokenRule(@"\d*\.?\d+", "NUMERO");
+                archivoLectura.AddTokenRule(@"\d+\b", "CONSTANTE_ENTERA_DECIMAL");
+                archivoLectura.AddTokenRule(@"'\\.'|'[^\\]'", "CARACTER");
                 archivoLectura.AddTokenRule(@"[\(\)\{\}\[\];,]", "DELIMITADOR");
                 archivoLectura.AddTokenRule(@"[\.=\+\-/*%]", "OPERADOR");
                 archivoLectura.AddTokenRule(@">|<|==|>=|<=|!", "COMPARADOR");

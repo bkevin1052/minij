@@ -17,7 +17,6 @@ namespace minij
         String texto;
         OpenFileDialog open;
         AnalizadorLexico archivoLectura;
-        List<string> palabrasReservadas;
 
         public Form1()
         {
@@ -46,7 +45,7 @@ namespace minij
                 //tbxCode.Text = sr.ReadToEnd();
 
                 archivoLectura.AddTokenRule(@"\s+", "ESPACIO", true);
-                archivoLectura.AddTokenRule(@"\b(public|void)\b", "PALABRA_RESERVADA");
+                archivoLectura.AddTokenRule(@"\b(void|int|double|boolean|string|class|const|interface|null|this|extends|implements|for|while|if|else|return|break|New|System|out|println)\b", "PALABRA_RESERVADA");
                 archivoLectura.AddTokenRule(@"\b[_a-zA-Z][\w]*\b", "IDENTIFICADOR");
                 archivoLectura.AddTokenRule("\".*?\"", "CADENA");
                 archivoLectura.AddTokenRule(@"'\\.'|'[^\\]'", "CARACTER");
@@ -56,11 +55,6 @@ namespace minij
                 archivoLectura.AddTokenRule(@"[\(\)\{\}\[\];,]", "DELIMITADOR");
                 archivoLectura.AddTokenRule(@"[\.=\+\-/*%]", "OPERADOR");
                 archivoLectura.AddTokenRule(@">|<|==|>=|<=|!", "COMPARADOR");
-                
-
-                palabrasReservadas = new List<string>() { "void","int","double","boolean","string",
-                "class","const","interface","null","null","this","extends","implements","for","while",
-                "if","else","return","New","System","out","println"};
 
                 archivoLectura.Compile(RegexOptions.Compiled | RegexOptions.Singleline | RegexOptions.ExplicitCapture);
             }
@@ -72,10 +66,6 @@ namespace minij
             foreach (var tk in archivoLectura.GetTokens(texto))
             {
                 if (tk.Nombre == "ERROR") e++;
-
-                if (tk.Nombre == "IDENTIFICADOR")
-                    if (palabrasReservadas.Contains(tk.Lexema))
-                        tk.Nombre = "RESERVADO";
 
                 ListViewItem lvi = new ListViewItem();
                 string[] row = { tk.Nombre, tk.Lexema, tk.Linea.ToString(), tk.Columna.ToString(), tk.Index.ToString()};

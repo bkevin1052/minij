@@ -47,11 +47,11 @@ namespace minij
                 archivoLectura.AddTokenRule(@"\s+", "ESPACIO", true);
                 archivoLectura.AddTokenRule(@"(void|int|double|boolean|string|class|const|interface|null|this|extends|implements|for|while|if|else|return|break|New|System|out|println)\b", "PALABRA_RESERVADA");
                 archivoLectura.AddTokenRule(@"(true|false)\b", "CONSTANTE_BOOLEANA");
-                archivoLectura.AddTokenRule(@"\b[_$a-zA-Z][\w$]*\b", "IDENTIFICADOR");
+                archivoLectura.AddTokenRule(@"\b[_$a-zA-Z][_$a-zA-Z0-9]*\b", "IDENTIFICADOR");
                 archivoLectura.AddTokenRule("\".*?\"", "CADENA");
                 archivoLectura.AddTokenRule("//[^\r\n]*", "COMENTARIO1");
                 archivoLectura.AddTokenRule("/[*](.*?|\n|\r)*[*]/", "COMENTARIO2");
-                archivoLectura.AddTokenRule(@"(\d+/.\d*\b)", "CONSTANTE_DOUBLE");
+                archivoLectura.AddTokenRule(@"(\d+\.\d*\s)", "CONSTANTE_DOUBLE");
                 archivoLectura.AddTokenRule(@"\d+\b", "CONSTANTE_ENTERA_DECIMAL");
                 archivoLectura.AddTokenRule(@"(0x|0X)[\da-fA-F]+\b", "CONSTANTE_ENTERA_HEXADECIMAL");
                 archivoLectura.AddTokenRule(@"'\\.'|'[^\\]'", "CARACTER");

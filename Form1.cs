@@ -17,7 +17,8 @@ namespace minij
         String texto;
         OpenFileDialog open;
         AnalizadorLexico archivoLectura;
-
+        StreamWriter file;
+        string rutaEscritura;
         public Form1()
         {
             InitializeComponent();
@@ -33,8 +34,34 @@ namespace minij
                 txtRuta.Text = open.FileName;
                 archivoLectura = new AnalizadorLexico();
                 texto = File.ReadAllText(open.FileName);
+                rutaEscritura = Environment.CurrentDirectory + @"\" + Path.GetFileNameWithoutExtension(open.FileName) + ".out";
                 AnalizarCodigo(open.FileName);
+                EscribirArchivo(rutaEscritura);
             }
+        }
+
+
+        private void EscribirArchivo(string ruta) {
+            file = new StreamWriter(ruta);
+            StringBuilder sb;
+            try {
+                foreach (ListViewItem lvi in lvToken.Items)
+                {
+                    sb = new StringBuilder();
+
+                    foreach (ListViewItem.ListViewSubItem listViewSubItem in lvi.SubItems)
+                    {
+                        sb.Append(string.Format("{0}\t", listViewSubItem.Text));
+                    }
+                    file.WriteLine(sb.ToString());
+                }
+                file.WriteLine();
+                file.Close();
+            } catch(Exception e) {
+                file.WriteLine(e.Message);
+                file.Close();
+            }
+            
         }
 
         private void AnalizarCodigo(string ruta)
@@ -68,7 +95,10 @@ namespace minij
 
             foreach (var tk in archivoLectura.GetTokens(texto))
             {
-                if (tk.Nombre == "ERROR") e++;
+                if (tk.Nombre == "ERROR")
+                {
+                    e++;
+                }
 
                 ListViewItem lvi = new ListViewItem();
                 string[] row = { tk.Nombre, tk.Lexema, tk.Linea.ToString(), tk.Columna.ToString(), tk.Index.ToString()};

@@ -115,6 +115,7 @@
             this.Controls.Add(this.lblError);
             this.Controls.Add(this.btnCargarArchivo);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.ResumeLayout(false);
             this.PerformLayout();

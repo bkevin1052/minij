@@ -81,9 +81,9 @@ namespace minij
                 archivoLectura.AddTokenRule(@"(\d+\.\d*([eE][\+\-]?\d*)?\s)", "CONSTANTE_DOUBLE");
                 archivoLectura.AddTokenRule(@"\d+\b", "CONSTANTE_ENTERA_DECIMAL");
                 archivoLectura.AddTokenRule(@"(0x|0X)[\da-fA-F]+\b", "CONSTANTE_ENTERA_HEXADECIMAL");
-                archivoLectura.AddTokenRule(@"'\\.'|'[^\\]'", "CARACTER");
+                //archivoLectura.AddTokenRule(@"'\\.'|'[^\\]'", "CARACTER");
                 archivoLectura.AddTokenRule(@"[\(\)\{\}\[\];,]", "DELIMITADOR");
-                archivoLectura.AddTokenRule(@"[\.=\+\-/*%]", "OPERADOR");
+                archivoLectura.AddTokenRule(@"[\+\-\=/*%]", "OPERADOR");
                 archivoLectura.AddTokenRule(@">|<|==|>=|<=|!", "COMPARADOR");
 
                 archivoLectura.Compile(RegexOptions.Compiled | RegexOptions.Singleline | RegexOptions.ExplicitCapture);

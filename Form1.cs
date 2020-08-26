@@ -75,11 +75,11 @@ namespace minij
                 archivoLectura.AddTokenRule(@"(void|int|double|boolean|string|class|const|interface|null|this|extends|implements|for|while|if|else|return|break|New|System|out|println)\b", "PALABRA_RESERVADA");
                 archivoLectura.AddTokenRule(@"(true|false)\b", "CONSTANTE_BOOLEANA");
                 archivoLectura.AddTokenRule(@"\b[_$a-zA-Z][_$a-zA-Z0-9]{0,30}\b", "IDENTIFICADOR");
-                archivoLectura.AddTokenRule("\".*?\"", "CADENA");
+                archivoLectura.AddTokenRule("\".*?[^\n]\"", "CADENA");
                 archivoLectura.AddTokenRule("//[^\r\n]*", "COMENTARIO1",true);
                 archivoLectura.AddTokenRule("/[*](.*?|\n|\r)*[*]/", "COMENTARIO2",true);
                 archivoLectura.AddTokenRule(@"/[*]|[*]/", "EOF_EN_COMENTARIO");
-                archivoLectura.AddTokenRule("\"", "EOF_EN_CADENA");
+                archivoLectura.AddTokenRule("\".*?\n", "EOF_EN_CADENA");
                 archivoLectura.AddTokenRule(@"(\d+\.\d*([eE][\+\-]?\d*)?\s)", "CONSTANTE_DOUBLE");
                 archivoLectura.AddTokenRule(@"\d+\b", "CONSTANTE_ENTERA_DECIMAL");
                 archivoLectura.AddTokenRule(@"(0x|0X)[\da-fA-F]+\b", "CONSTANTE_ENTERA_HEXADECIMAL");

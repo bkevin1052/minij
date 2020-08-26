@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 EOF_EN_CADENA	"all done! // A pretty string
 	16	1	254	
 EOF_EN_COMENTARIO	*/	17	1	284	
@@ -11,4 +12,29 @@ EOF_EN_CADENA	" jdlafsd
 	18	1	315	
 ERROR	_012345678901234567890123456789dabcd	19	1	325	
 IDENTIFICADOR	hola	19	38	362	
+=======
+	Token: COMENTARIO1                     Lexema: // this file should not generate any output except for the end                              Linea: 1  Columna: 1          Indice: 0           
+	Token: COMENTARIO1                     Lexema: // here is a comment                                                                        Linea: 2  Columna: 1          Indice: 63          
+	Token: COMENTARIO2                     Lexema: /* here is a simple comment */                                                              Linea: 3  Columna: 1          Indice: 84          
+	Token: COMENTARIO2                     Lexema: /* here 
+is 
+a 
+multi-line
+comment
+*/                                                       Linea: 4  Columna: 1          Indice: 115         
+	Token: COMENTARIO2                     Lexema: /* here are some nasty comments: */                                                         Linea: 11 Columna: 1          Indice: 154         
+	Token: COMENTARIO2                     Lexema: /* ///// /// */                                                                             Linea: 12 Columna: 1          Indice: 190         
+	Token: COMENTARIO2                     Lexema: /*******/                                                                                   Linea: 13 Columna: 1          Indice: 206         
+	Token: COMENTARIO2                     Lexema: /*    /* an almost-nested comment */                                                        Linea: 15 Columna: 1          Indice: 217         
+	Token: CADENA                          Lexema: "all done!"                                                                                 Linea: 16 Columna: 1          Indice: 254         
+	Token: COMENTARIO1                     Lexema: // A pretty string                                                                          Linea: 16 Columna: 13         Indice: 266         
+	Token: OPERADOR                        Lexema: /                                                                                           Linea: 17 Columna: 1          Indice: 285         
+	Token: OPERADOR                        Lexema: *                                                                                           Linea: 17 Columna: 2          Indice: 286         
+	Token: IDENTIFICADOR                   Lexema: unfinished                                                                                  Linea: 17 Columna: 4          Indice: 288         
+	Token: IDENTIFICADOR                   Lexema: comment                                                                                     Linea: 17 Columna: 15         Indice: 299         
+	Token: IDENTIFICADOR                   Lexema: ERROR                                                                                       Linea: 17 Columna: 23         Indice: 307         
+	Token: COMPARADOR                      Lexema: !                                                                                           Linea: 17 Columna: 28         Indice: 312         
+	Token: COMPARADOR                      Lexema: !                                                                                           Linea: 17 Columna: 29         Indice: 313         
+	Token: COMPARADOR                      Lexema: !                                                                                           Linea: 17 Columna: 30         Indice: 314         
+>>>>>>> master
 

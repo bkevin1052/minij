@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace minij
@@ -44,14 +38,34 @@ namespace minij
         private void EscribirArchivo(string ruta) {
             file = new StreamWriter(ruta);
             StringBuilder sb;
+            int contador;
             try {
                 foreach (ListViewItem lvi in lvToken.Items)
                 {
                     sb = new StringBuilder();
-
+                    contador = 0;
                     foreach (ListViewItem.ListViewSubItem listViewSubItem in lvi.SubItems)
                     {
-                        sb.Append(string.Format("{0}\t", listViewSubItem.Text));
+                        if (contador == 0)
+                        {
+                            sb.Append(("\tToken: " + listViewSubItem.Text).PadRight(40));
+                        }
+                        else if (contador == 1)
+                        {
+                            sb.Append(("Lexema: " + listViewSubItem.Text).PadRight(100));
+                        }
+                        else if (contador == 2)
+                        {
+                            sb.Append(("Linea: " + listViewSubItem.Text).PadRight(10));
+                        }
+                        else if (contador == 3)
+                        {
+                            sb.Append(("Columna: " + listViewSubItem.Text).PadRight(20));
+                        }
+                        else if (contador == 4) {
+                            sb.Append(("Indice: " + listViewSubItem.Text).PadRight(20));
+                        }
+                        contador++;
                     }
                     file.WriteLine(sb.ToString());
                 }

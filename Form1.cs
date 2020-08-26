@@ -76,8 +76,8 @@ namespace minij
                 archivoLectura.AddTokenRule(@"(true|false)\b", "CONSTANTE_BOOLEANA");
                 archivoLectura.AddTokenRule(@"\b[_$a-zA-Z][_$a-zA-Z0-9]{0,30}\b", "IDENTIFICADOR");
                 archivoLectura.AddTokenRule("\".*?\"", "CADENA");
-                archivoLectura.AddTokenRule("//[^\r\n]*", "COMENTARIO1");
-                archivoLectura.AddTokenRule("/[*](.*?|\n|\r)*[*]/", "COMENTARIO2");
+                archivoLectura.AddTokenRule("//[^\r\n]*", "COMENTARIO1",true);
+                archivoLectura.AddTokenRule("/[*](.*?|\n|\r)*[*]/", "COMENTARIO2",true);
                 archivoLectura.AddTokenRule(@"/[*]|[*]/", "EOF_EN_COMENTARIO");
                 archivoLectura.AddTokenRule("\"", "EOF_EN_CADENA");
                 archivoLectura.AddTokenRule(@"(\d+\.\d*([eE][\+\-]?\d*)?\s)", "CONSTANTE_DOUBLE");

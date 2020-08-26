@@ -1,18 +1,4 @@
-COMENTARIO1	// this file should not generate any output except for the end	1	1	0	
-COMENTARIO1	// here is a comment	2	1	63	
-COMENTARIO2	/* here is a simple COMMENT */	3	1	84	
-COMENTARIO2	/* here 
-is 
-a 
-multi-line
-comment
-*/	4	1	115	
-COMENTARIO2	/* here are some nasty comments: */	11	1	154	
-COMENTARIO2	/* ///// /// */	12	1	190	
-COMENTARIO2	/*******/	13	1	206	
-COMENTARIO2	/*    /* an almost-nested comment */	15	1	217	
 CADENA	"all done!"	16	1	254	
-COMENTARIO1	// A pretty string	16	13	266	
 EOF_EN_COMENTARIO	*/	17	1	285	
 IDENTIFICADOR	unfinished	17	4	288	
 IDENTIFICADOR	comment	17	15	299	

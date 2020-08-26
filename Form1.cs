@@ -78,13 +78,16 @@ namespace minij
                 archivoLectura.AddTokenRule("\".*?\"", "CADENA");
                 archivoLectura.AddTokenRule("//[^\r\n]*", "COMENTARIO1");
                 archivoLectura.AddTokenRule("/[*](.*?|\n|\r)*[*]/", "COMENTARIO2");
+                archivoLectura.AddTokenRule(@"/[*]|[*]/", "ERROR");
                 archivoLectura.AddTokenRule(@"(\d+\.\d*([eE][\+\-]?\d*)?\s)", "CONSTANTE_DOUBLE");
                 archivoLectura.AddTokenRule(@"\d+\b", "CONSTANTE_ENTERA_DECIMAL");
                 archivoLectura.AddTokenRule(@"(0x|0X)[\da-fA-F]+\b", "CONSTANTE_ENTERA_HEXADECIMAL");
                 //archivoLectura.AddTokenRule(@"'\\.'|'[^\\]'", "CARACTER");
-                archivoLectura.AddTokenRule(@"[\(\)\{\}\[\];,]", "DELIMITADOR");
+                archivoLectura.AddTokenRule(@"(\[\]|\{\}|\(\))", "DELIMITADOR_VACIO");
+                archivoLectura.AddTokenRule(@"[\(\)\{\}\[\];,\.]", "DELIMITADOR");
+                archivoLectura.AddTokenRule(@"(<|<=|>|>=|==|!|!=|&&|\|\|)(\w|\s)", "COMPARADOR");
                 archivoLectura.AddTokenRule(@"[\+\-\=/*%]", "OPERADOR");
-                archivoLectura.AddTokenRule(@">|<|==|>=|<=|!", "COMPARADOR");
+                
 
                 archivoLectura.Compile(RegexOptions.Compiled | RegexOptions.Singleline | RegexOptions.ExplicitCapture);
             }

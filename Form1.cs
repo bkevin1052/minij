@@ -21,8 +21,8 @@ namespace minij
 
         private void btnCargarArchivo_Click(object sender, EventArgs e)
         {
-            open.DefaultExt = ".java";
-            open.Filter = "Java Files (*.java)|*.java|All files (*.*)|*.*";
+            //open.DefaultExt = ".java";
+            //open.Filter = "Java Files (*.java)|*.java|All files (*.*)|*.*";
             if (open.ShowDialog() == DialogResult.OK)
             {
                 txtRuta.Text = open.FileName;

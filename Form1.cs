@@ -85,23 +85,23 @@ namespace minij
             {
                 //tbxCode.Text = sr.ReadToEnd();
 
-                archivoLectura.AddTokenRule(@"\s+", "ESPACIO", true);
-                archivoLectura.AddTokenRule(@"(void|int|double|boolean|string|class|const|interface|null|this|extends|implements|for|while|if|else|return|break|New|System|out|println)\b", "PALABRA_RESERVADA");
-                archivoLectura.AddTokenRule(@"(true|false)\b", "CONSTANTE_BOOLEANA");
-                archivoLectura.AddTokenRule(@"\b[_$a-zA-Z][_$a-zA-Z0-9]{0,30}\b", "IDENTIFICADOR");
-                archivoLectura.AddTokenRule("\".*?[^\n]\"", "CADENA");
-                archivoLectura.AddTokenRule("//[^\r\n]*", "COMENTARIO1",true);
-                archivoLectura.AddTokenRule("/[*](.*?|\n|\r)*[*]/", "COMENTARIO2",true);
-                archivoLectura.AddTokenRule(@"/[*]|[*]/", "EOF_EN_COMENTARIO");
-                archivoLectura.AddTokenRule("\".*?\n", "EOF_EN_CADENA");
-                archivoLectura.AddTokenRule(@"(\d+\.\d*([eE][\+\-]?\d*)?\s)", "CONSTANTE_DOUBLE");
-                archivoLectura.AddTokenRule(@"\d+\b", "CONSTANTE_ENTERA_DECIMAL");
-                archivoLectura.AddTokenRule(@"(0x|0X)[\da-fA-F]+\b", "CONSTANTE_ENTERA_HEXADECIMAL");
-                //archivoLectura.AddTokenRule(@"'\\.'|'[^\\]'", "CARACTER");
-                archivoLectura.AddTokenRule(@"(\[\]|\{\}|\(\))", "DELIMITADOR_VACIO");
-                archivoLectura.AddTokenRule(@"[\(\)\{\}\[\];,\.]", "DELIMITADOR");
-                archivoLectura.AddTokenRule(@"(<|<=|>|>=|==|!|!=|&&|\|\|)(\w|\s)", "COMPARADOR");
-                archivoLectura.AddTokenRule(@"[\+\-\=/*%]", "OPERADOR");
+                archivoLectura.agregarToken(@"\s+", "ESPACIO", true);
+                archivoLectura.agregarToken(@"(void|int|double|boolean|string|class|const|interface|null|this|extends|implements|for|while|if|else|return|break|New|System|out|println)\b", "PALABRA_RESERVADA");
+                archivoLectura.agregarToken(@"(true|false)\b", "CONSTANTE_BOOLEANA");
+                archivoLectura.agregarToken(@"\b[_$a-zA-Z][_$a-zA-Z0-9]{0,30}\b", "IDENTIFICADOR");
+                archivoLectura.agregarToken("\".*?[^\n]\"", "CADENA");
+                archivoLectura.agregarToken("//[^\r\n]*", "COMENTARIO1",true);
+                archivoLectura.agregarToken("/[*](.*?|\n|\r)*[*]/", "COMENTARIO2",true);
+                archivoLectura.agregarToken(@"/[*]|[*]/", "EOF_EN_COMENTARIO");
+                archivoLectura.agregarToken("\".*?\n", "EOF_EN_CADENA");
+                archivoLectura.agregarToken(@"(\d+\.\d*([eE][\+\-]?\d*)?\s)", "CONSTANTE_DOUBLE");
+                archivoLectura.agregarToken(@"\d+\b", "CONSTANTE_ENTERA_DECIMAL");
+                archivoLectura.agregarToken(@"(0x|0X)[\da-fA-F]+\b", "CONSTANTE_ENTERA_HEXADECIMAL");
+                //archivoLectura.agregarToken(@"'\\.'|'[^\\]'", "CARACTER");
+                archivoLectura.agregarToken(@"(\[\]|\{\}|\(\))", "DELIMITADOR_VACIO");
+                archivoLectura.agregarToken(@"[\(\)\{\}\[\];,\.]", "DELIMITADOR");
+                archivoLectura.agregarToken(@"(<|<=|>|>=|==|!|!=|&&|\|\|)(\w|\s)", "COMPARADOR");
+                archivoLectura.agregarToken(@"[\+\-\=/*%]", "OPERADOR");
                 
 
                 archivoLectura.Compile(RegexOptions.Compiled | RegexOptions.Singleline | RegexOptions.ExplicitCapture);
@@ -111,7 +111,7 @@ namespace minij
 
             int n = 0, e = 0;
 
-            foreach (var tk in archivoLectura.GetTokens(texto))
+            foreach (var tk in archivoLectura.obtenerTokens(texto))
             {
                 if (tk.Nombre == "ERROR")
                 {

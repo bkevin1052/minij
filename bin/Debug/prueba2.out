@@ -3,9 +3,7 @@
 	Token: IDENTIFICADOR                   Lexema: unfinished                                                                                  Linea: 17 Columna: 4          Indice: 288         
 	Token: IDENTIFICADOR                   Lexema: comment                                                                                     Linea: 17 Columna: 15         Indice: 299         
 	Token: IDENTIFICADOR                   Lexema: ERROR                                                                                       Linea: 17 Columna: 23         Indice: 307         
-	Token: ERROR                           Lexema: !!                                                                                          Linea: 17 Columna: 28         Indice: 312         
-	Token: COMPARADOR                      Lexema: !
-                                                                                          Linea: 17 Columna: 30         Indice: 314         
+	Token: ERROR                           Lexema: !!!                                                                                         Linea: 17 Columna: 28         Indice: 312         
 	Token: EOF_EN_CADENA                   Lexema: " jdlafsd
                                                                                   Linea: 18 Columna: 1          Indice: 316         
 	Token: ERROR                           Lexema: _012345678901234567890123456789dabcd                                                        Linea: 19 Columna: 1          Indice: 326         

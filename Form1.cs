@@ -10,7 +10,7 @@ namespace minij
     {
         String texto;
         OpenFileDialog open;
-        AnalizadorLexico archivoLectura;
+        AnalizadorLexico analizador;
         StreamWriter file;
         string rutaEscritura;
         public Form1()
@@ -26,7 +26,7 @@ namespace minij
             if (open.ShowDialog() == DialogResult.OK)
             {
                 txtRuta.Text = open.FileName;
-                archivoLectura = new AnalizadorLexico();
+                analizador = new AnalizadorLexico();
                 texto = File.ReadAllText(open.FileName);
                 rutaEscritura = Environment.CurrentDirectory + @"\" + Path.GetFileNameWithoutExtension(open.FileName) + ".out";
                 AnalizarCodigo(open.FileName);
@@ -81,48 +81,38 @@ namespace minij
         private void AnalizarCodigo(string ruta)
         {
             lvToken.View = View.Details;
-            using (StreamReader sr = new StreamReader(ruta))
-            {
-                //tbxCode.Text = sr.ReadToEnd();
+            
 
-                archivoLectura.agregarToken(@"\s+", "ESPACIO", true);
-                archivoLectura.agregarToken(@"(void|int|double|boolean|string|class|const|interface|null|this|extends|implements|for|while|if|else|return|break|New|System|out|println)\b", "PALABRA_RESERVADA");
-                archivoLectura.agregarToken(@"(true|false)\b", "CONSTANTE_BOOLEANA");
-                archivoLectura.agregarToken(@"\b[_$a-zA-Z][_$a-zA-Z0-9]{0,30}\b", "IDENTIFICADOR");
-                archivoLectura.agregarToken("\".*?[^\n]\"", "CADENA");
-                archivoLectura.agregarToken("//[^\r\n]*", "COMENTARIO1",true);
-                archivoLectura.agregarToken("/[*](.*?|\n|\r)*[*]/", "COMENTARIO2",true);
-                archivoLectura.agregarToken(@"/[*]|[*]/", "EOF_EN_COMENTARIO");
-                archivoLectura.agregarToken("\".*?\n", "EOF_EN_CADENA");
-                archivoLectura.agregarToken(@"(\d+\.\d*([eE][\+\-]?\d*)?\s)", "CONSTANTE_DOUBLE");
-                archivoLectura.agregarToken(@"\d+\b", "CONSTANTE_ENTERA_DECIMAL");
-                archivoLectura.agregarToken(@"(0x|0X)[\da-fA-F]+\b", "CONSTANTE_ENTERA_HEXADECIMAL");
-                //archivoLectura.agregarToken(@"'\\.'|'[^\\]'", "CARACTER");
-                archivoLectura.agregarToken(@"(\[\]|\{\}|\(\))", "DELIMITADOR_VACIO");
-                archivoLectura.agregarToken(@"[\(\)\{\}\[\];,\.]", "DELIMITADOR");
-                archivoLectura.agregarToken(@"(<|<=|>|>=|==|!|!=|&&|\|\|)(\w|\s)", "COMPARADOR");
-                archivoLectura.agregarToken(@"[\+\-\=/*%]", "OPERADOR");
-                
-
-                archivoLectura.cargarExpresionesRegulares(RegexOptions.Compiled | RegexOptions.Singleline | RegexOptions.ExplicitCapture);
-            }
+            analizador.agregarToken(@"\s+", "ESPACIO", true);
+            analizador.agregarToken(@"(void|int|double|boolean|string|class|const|interface|null|this|extends|implements|for|while|if|else|return|break|New|System|out|println)\b", "PALABRA_RESERVADA");
+            analizador.agregarToken(@"(true|false)\b", "CONSTANTE_BOOLEANA");
+            analizador.agregarToken(@"\b[_$a-zA-Z][_$a-zA-Z0-9]{0,30}\b", "IDENTIFICADOR");
+            analizador.agregarToken("\".*?[^\n]\"", "CADENA");
+            analizador.agregarToken("//[^\r\n]*", "COMENTARIO1",true);
+            analizador.agregarToken("/[*](.*?|\n|\r)*[*]/", "COMENTARIO2",true);
+            analizador.agregarToken(@"/[*]|[*]/", "EOF_EN_COMENTARIO");
+            analizador.agregarToken("\".*?\n", "EOF_EN_CADENA");
+            analizador.agregarToken(@"(\d+\.\d*([eE][\+\-]?\d*)?\s)", "CONSTANTE_DOUBLE");
+            analizador.agregarToken(@"\d+\b", "CONSTANTE_ENTERA_DECIMAL");
+            analizador.agregarToken(@"(0x|0X)[\da-fA-F]+\b", "CONSTANTE_ENTERA_HEXADECIMAL");
+            //analizador.agregarToken(@"'\\.'|'[^\\]'", "CARACTER");
+            analizador.agregarToken(@"(\[\]|\{\}|\(\))", "DELIMITADOR_VACIO");
+            analizador.agregarToken(@"[\(\)\{\}\[\];,\.]", "DELIMITADOR");
+            analizador.agregarToken(@"(<|<=|>|>=|==|!|!=|&&|\|\|)(\w)", "COMPARADOR");
+            analizador.agregarToken(@"[\+\-\=/*%]", "OPERADOR");
+            
+            analizador.cargarExpresionesRegulares(RegexOptions.Compiled | RegexOptions.Singleline | RegexOptions.ExplicitCapture);
+           
 
             lvToken.Items.Clear();
 
-            int n = 0, e = 0;
 
-            foreach (var tk in archivoLectura.obtenerTokens(texto))
+            foreach (var tk in analizador.obtenerTokens(texto))
             {
-                if (tk.Nombre == "ERROR")
-                {
-                    e++;
-                }
-
                 ListViewItem lvi = new ListViewItem();
                 string[] row = { tk.Nombre, tk.Lexema, tk.Linea.ToString(), tk.Columna.ToString(), tk.Index.ToString()};
                 var listViewItem = new ListViewItem(row);
                 lvToken.Items.Add(listViewItem);
-                n++;
             }
         }
     }

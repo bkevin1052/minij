@@ -52,3 +52,15 @@ La data que hizo match con la estructura regex entra en un ciclo donde se determ
 
 Luego de generar todos los tokens de salida se genera el archivo ".out", el cual contiene cada token valido y de error que se detectaron en el archivo. De igual forma los tokens de salida se presentan en pantalla por medio de la interfaz gráfica.
 
+
+## Desarrollo 📌
+
+El proyecto fue desarrollado en Visual Studio 2019 en el lenguaje C#.
+
+
+## Autores ✒️
+
+_Este proyecto fue realizado por:_
+
+* **Kevin Barrientos**
+* **Angel Jimenez**

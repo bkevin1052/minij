@@ -13,6 +13,10 @@ namespace minij
         AnalizadorLexico analizador;
         StreamWriter file;
         string rutaEscritura;
+
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>
         public Form1()
         {
             InitializeComponent();
@@ -34,7 +38,10 @@ namespace minij
             }
         }
 
-
+        /// <summary>
+        /// Crea un archivo de salida .out en donde se coloca cada token identificado y errores
+        /// </summary>
+        /// <param name="ruta">Ruta para crear o sobreescribir el archivo</param>
         private void EscribirArchivo(string ruta) {
             file = new StreamWriter(ruta);
             StringBuilder sb;
@@ -78,6 +85,10 @@ namespace minij
             
         }
 
+        /// <summary>
+        /// Realiza un analisis lexico del texto ingresado, desde el archivo selecionado
+        /// </summary>
+        /// <param name="ruta">Ruta del archivo a analizar</param>
         private void AnalizarCodigo(string ruta)
         {
             lvToken.View = View.Details;

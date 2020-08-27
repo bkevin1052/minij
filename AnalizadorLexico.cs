@@ -14,7 +14,7 @@ namespace minij
         StringBuilder patron;
         bool requiereCompilar;
         List<string> expresionesValidas;
-        int[] GNumbers;
+        int[] indiceTokenValido;
 
         public AnalizadorLexico()
         {
@@ -73,11 +73,11 @@ namespace minij
                     linea += contarLineas(token, indice, ref inicio);
                 }
 
-                for (int i = 0; i < GNumbers.Length; i++)
+                for (int i = 0; i < indiceTokenValido.Length; i++)
                 {
-                    if (match.Groups[GNumbers[i]].Success)
+                    if (match.Groups[indiceTokenValido[i]].Success)
                     {
-                        string name = rex.GroupNameFromNumber(GNumbers[i]);
+                        string name = rex.GroupNameFromNumber(indiceTokenValido[i]);
 
                         yield return new Token(name, match.Value, match.Index, linea, (match.Index - inicio) + 1);
 
@@ -109,14 +109,15 @@ namespace minij
                 {
                     rex = new Regex(patron.ToString(), options);
 
-                        GNumbers = new int[expresionesValidas.Count];
-                    string[] gn = rex.GetGroupNames();
+                        indiceTokenValido = new int[expresionesValidas.Count];
+                    string[] lexico = rex.GetGroupNames();
 
-                    for (int i = 0, idx = 0; i < gn.Length; i++)
+                    for (int i = 0, idx = 0; i < lexico.Length; i++)
                     {
-                        if (expresionesValidas.Contains(gn[i]))
+                        if (expresionesValidas.Contains(lexico[i]))
                         {
-                            GNumbers[idx++] = rex.GroupNumberFromName(gn[i]);
+                            indiceTokenValido[idx] = rex.GroupNumberFromName(lexico[i]);
+                            idx++;
                         }
                     }
 

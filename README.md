@@ -35,6 +35,11 @@ _Esta función es la más importante ya que se encarga de generar el *Match* ent
 ```
 public IEnumerable<Token> obtenerTokens(string texto)
 ```
+_Esta función debe ser IEnumerable ya que se utiliza la expresión "yiel return"_
+```
+yield return new Token(name, match.Value, match.Index, linea, (match.Index - inicio) + 1);
+```
+_Esta expresión retorna un valor y luego de retornarlo, regresa al ciclo donde se encontraba. Esto nos permite poder retornar cada token encontrado y luego continuar analizando el texto desde donde se encontro el token anterior._
 
 
 ## Lógica del Proyecto ⌨️

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.btnCargarArchivo = new System.Windows.Forms.Button();
             this.lblError = new System.Windows.Forms.Label();
             this.txtRuta = new System.Windows.Forms.TextBox();
@@ -114,9 +115,10 @@
             this.Controls.Add(this.txtRuta);
             this.Controls.Add(this.lblError);
             this.Controls.Add(this.btnCargarArchivo);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "MiniJ";
             this.ResumeLayout(false);
             this.PerformLayout();
 

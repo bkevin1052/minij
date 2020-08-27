@@ -16,3 +16,15 @@ _Esta función se encarga de evaluar un token de entrada y verificar si existe u
 ```
 private int contarLineas(string token, int indice, ref int inicioDeLinea)
 ```
+
+### agregarToken
+_Este método se encarga de generar el patron del analizador por medio de *expresiones regulares*, cada expresión regular que ingresa la concatena a la anterior y al mismo tiempo, guarda una lista con las expresiones regulares que debe omitir durante el análisis._
+```
+public void agregarToken(string expresion_regular, string nombre_token, bool ignorar = false)
+```
+
+### cargarExpresionesRegulares
+_Este método se encarga de cargar el patron a una estructura *Regex* y de almacenar en una lista el indice de las expresiones regulares que debe tomar en cuenta al analizar. Además, solicita las opciones adicionales para generar la estructura Regex_
+```
+public void cargarExpresionesRegulares(RegexOptions options)
+```

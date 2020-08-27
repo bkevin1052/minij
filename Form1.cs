@@ -104,7 +104,7 @@ namespace minij
                 archivoLectura.agregarToken(@"[\+\-\=/*%]", "OPERADOR");
                 
 
-                archivoLectura.Compile(RegexOptions.Compiled | RegexOptions.Singleline | RegexOptions.ExplicitCapture);
+                archivoLectura.cargarExpresionesRegulares(RegexOptions.Compiled | RegexOptions.Singleline | RegexOptions.ExplicitCapture);
             }
 
             lvToken.Items.Clear();

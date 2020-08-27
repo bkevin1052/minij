@@ -13,21 +13,21 @@ namespace minij
         Regex rex;
         StringBuilder patron;
         bool requiereCompilar;
-        List<string> TNames;
+        List<string> expresionesValidas;
         int[] GNumbers;
 
         public AnalizadorLexico()
         {
             requiereCompilar = true;
-            TNames = new List<string>();
+            expresionesValidas = new List<string>();
         }
 
         /// <summary>
-        /// Agrega una nueva regla para reconocer token
+        /// Agrega un nuevo token que contiene una expresion regular
         /// </summary>
-        /// <param name="expresion_regular">patrón en el que debe encajar</param>
-        /// <param name="nombre_token">id único para este patrón</param>
-        /// <param name="ignorar">true para no devolver este token</param>
+        /// <param name="expresion_regular">expresión regular con la que debe coincidir</param>
+        /// <param name="nombre_token">id único para esta expresión regular</param>
+        /// <param name="ignorar">true para omitir la expresión regular</param>
         public void agregarToken(string expresion_regular, string nombre_token, bool ignorar = false)
         {
             if (string.IsNullOrWhiteSpace(nombre_token))
@@ -42,35 +42,35 @@ namespace minij
                 patron.Append(string.Format("|(?<{0}>{1})", nombre_token, expresion_regular));
 
             if (!ignorar)
-                TNames.Add(nombre_token);
+                expresionesValidas.Add(nombre_token);
 
             requiereCompilar = true;
         }
 
 
         /// <summary>
-        /// Analisa una entrada en busca de tokens validos y errores
+        /// Analiza una entrada en busca de tokens validos y errores
         /// </summary>
         /// <param name="texto">entrada a analizar</param>
         public IEnumerable<Token> obtenerTokens(string texto)
         {
-            if (requiereCompilar) throw new Exception("Compilación Requerida, llame al método Compile(options).");
+            if (requiereCompilar) throw new Exception("Necesita cargar las ER, llame al método cargarExpresionesRegulares(options).");
 
             Match match = rex.Match(texto);
 
             if (!match.Success) yield break;
 
-            int line = 1, start = 0, index = 0;
+            int linea = 1, inicio = 0, indice = 0;
 
             while (match.Success)
             {
-                if (match.Index > index)
+                if (match.Index > indice)
                 {
-                    string token = texto.Substring(index, match.Index - index);
+                    string token = texto.Substring(indice, match.Index - indice);
 
-                    yield return new Token("ERROR", token, index, line, (index - start) + 1);
+                    yield return new Token("ERROR", token, indice, linea, (indice - inicio) + 1);
 
-                    line += CountNewLines(token, index, ref start);
+                    linea += contarLineas(token, indice, ref inicio);
                 }
 
                 for (int i = 0; i < GNumbers.Length; i++)
@@ -79,29 +79,29 @@ namespace minij
                     {
                         string name = rex.GroupNameFromNumber(GNumbers[i]);
 
-                        yield return new Token(name, match.Value, match.Index, line, (match.Index - start) + 1);
+                        yield return new Token(name, match.Value, match.Index, linea, (match.Index - inicio) + 1);
 
                         break;
                     }
                 }
 
-                line += CountNewLines(match.Value, match.Index, ref start);
-                index = match.Index + match.Length;
+                linea += contarLineas(match.Value, match.Index, ref inicio);
+                indice = match.Index + match.Length;
                 match = match.NextMatch();
             }
 
-            if (texto.Length > index)
+            if (texto.Length > indice)
             {
-                yield return new Token("ERROR", texto.Substring(index), index, line, (index - start) + 1);
+                yield return new Token("ERROR", texto.Substring(indice), indice, linea, (indice - inicio) + 1);
             }
         }
 
         /// <summary>
-        /// Crea el AFN con los patrones establecidos 
+        /// Crea el Automáta finito no determinista con las expresiones regulares establecidas 
         /// </summary>
-        public void Compile(RegexOptions options)
+        public void cargarExpresionesRegulares(RegexOptions options)
         {
-            if (patron == null) throw new Exception("Agrege uno o más patrones, llame al método AddTokenRule(pattern, token_name).");
+            if (patron == null) throw new Exception("Agrege una o más ER, llame al método agregarToken(expresion_regular, nombre_token).");
 
             if (requiereCompilar)
             {
@@ -109,12 +109,12 @@ namespace minij
                 {
                     rex = new Regex(patron.ToString(), options);
 
-                        GNumbers = new int[TNames.Count];
+                        GNumbers = new int[expresionesValidas.Count];
                     string[] gn = rex.GetGroupNames();
 
                     for (int i = 0, idx = 0; i < gn.Length; i++)
                     {
-                        if (TNames.Contains(gn[i]))
+                        if (expresionesValidas.Contains(gn[i]))
                         {
                             GNumbers[idx++] = rex.GroupNumberFromName(gn[i]);
                         }
@@ -129,18 +129,18 @@ namespace minij
         /// <summary>
         /// Cuenta la cantidad de lineas presentes en un token, establece el inicio de linea.
         /// </summary>
-        private int CountNewLines(string token, int index, ref int line_start)
+        private int contarLineas(string token, int indice, ref int inicioDeLinea)
         {
-            int line = 0;
+            int linea = 0;
 
             for (int i = 0; i < token.Length; i++)
                 if (token[i] == '\n')
                 {
-                    line++;
-                    line_start = index + i + 1;
+                    linea++;
+                    inicioDeLinea = indice + i + 1;
                 }
 
-            return line;
+            return linea;
         }
     }
 }

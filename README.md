@@ -12,7 +12,7 @@ La tercera clase es "AnalizadorLexico.cs", la cual contiene los métodos y funci
 Esta clase está conformada por 4 métodos, los cuales se encargan de generar las reglas del lenguaje y con ellas analizar el texto, estos métodos son:
 
 ###contarLineas
-_Esta función se encarga de evaluar un token de entrada y verificar si existe un salto de línea, para así sumar 1 al contador de líneas y actualizar la posición de lectura._
+ _Esta función se encarga de evaluar un token de entrada y verificar si existe un salto de línea, para así sumar 1 al contador de líneas y actualizar la posición de lectura._
 ```
 private int contarLineas(string token, int indice, ref int inicioDeLinea)
 ```

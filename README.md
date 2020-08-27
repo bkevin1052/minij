@@ -2,6 +2,7 @@
 
 El repositorio corresponte a la fase #1 del proyecto de la clase de compiladores. Dicha fase consta de la creación de un analizador léxico para el lenguaje Java.
 
+
 ## Elementos del Proyecto 📋
 
 El proyecto consta de 3 clases fundamentales. La primera clase es "Form1.cs", la cual se encarga de extraer el texto del archivo seleccionado, crear el archivo de salido con los tokens y errores, además, presentar cada uno de ellos de forma visual en pantalla.
@@ -24,7 +25,16 @@ public void agregarToken(string expresion_regular, string nombre_token, bool ign
 ```
 
 ### cargarExpresionesRegulares
-_Este método se encarga de cargar el patron a una estructura *Regex* y de almacenar en una lista el indice de las expresiones regulares que debe tomar en cuenta al analizar. Además, solicita las opciones adicionales para generar la estructura Regex_
+_Este método se encarga de cargar el patron a una estructura *Regex* y de almacenar en una lista el indice de las expresiones regulares que debe tomar en cuenta al analizar. Además, solicita las opciones adicionales para generar la estructura Regex._
 ```
 public void cargarExpresionesRegulares(RegexOptions options)
 ```
+
+### obtenerTokens
+_Esta función es la más importante ya que se encarga de generar el *Match* entre el texto y la estructura Regex. La función retorna un *Token de Salida* con cada análisis realizado, siendo un token "ERROR" si no hace match con la estructura Regex o un token valido si hace match con alguna regla de la estructura Regex._
+```
+public IEnumerable<Token> obtenerTokens(string texto)
+```
+
+
+## Lógica del Proyecto ⌨️

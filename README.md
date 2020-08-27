@@ -40,5 +40,10 @@ public IEnumerable<Token> obtenerTokens(string texto)
 ## Lógica del Proyecto ⌨️
 
 Al inicio se debe cargar un archivo (La interfaz gráfica del programa permite acceder al explorador de archivos y seleccionar uno) para obtener el contenido que se desea analizar. Luego el programa carga las expresiones regulares a la estructura Regex para generar las reglas de análisis.
+
 Al momento de tener lista la estructura Regex se hace el primer match con el texto y se obtiene el indice del token de entrada con quien hizo match. Si el indice obtenido es mayor al indice actual del analizador, significa que existe data previa que no hizo match con la estructura Regex, esa data se cataloga como ERROR, se genera un token de salida (Detallando la data, la linea, la columna y el indice de ERROR) y se actualiza el indice actual del programa.
+
 La data que hizo match con la estructura regex entra en un ciclo donde se determina la expresión regular con la que hizo match y se obtiene el nombre de la misma, para así generar un token de salida (Detallando la data, nombre de la expresión regular con la que hizo match, linea, columna y indice de la expresión VALIDA).
+
+Luego de generar todos los tokens de salida se genera el archivo ".out", el cual contiene cada token valido y de error que se detectaron en el archivo. De igual forma los tokens de salida se presentan en pantalla por medio de la interfaz gráfica.
+

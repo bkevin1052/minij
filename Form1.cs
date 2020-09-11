@@ -95,16 +95,18 @@ namespace minij
             
 
             analizador.agregarToken(@"\s+", "ESPACIO", true);
+            analizador.agregarToken("//[^\r\n]*", "COMENTARIO1", true);
+            analizador.agregarToken("/[*](.*?|\n|\r)*[*]/", "COMENTARIO2", true);
+            analizador.agregarToken(@"\/[*](.*?|\n|\r)*$", "EOF_EN_COMENTARIO");
             analizador.agregarToken(@"(void|int|double|boolean|string|class|const|interface|null|this|extends|implements|for|while|if|else|return|break|New|System|out|println)\b", "PALABRA_RESERVADA");
             analizador.agregarToken(@"(true|false)\b", "CONSTANTE_BOOLEANA");
-            analizador.agregarToken(@"\b[_$a-zA-Z][_$a-zA-Z0-9]{0,30}\b", "IDENTIFICADOR");
+            analizador.agregarToken(@"[_$a-zA-Z][_$a-zA-Z0-9]*", "IDENTIFICADOR");
             analizador.agregarToken("\".*?[^\n]\"", "CADENA");
-            analizador.agregarToken("//[^\r\n]*", "COMENTARIO1",true);
-            analizador.agregarToken("/[*](.*?|\n|\r)*[*]/", "COMENTARIO2",true);
-            analizador.agregarToken(@"/[*]|[*]/", "EOF_EN_COMENTARIO");
+
+
             analizador.agregarToken("\".*?\n", "EOF_EN_CADENA");
             analizador.agregarToken(@"(\d+\.\d*([eE][\+\-]?\d*)?\s)", "CONSTANTE_DOUBLE");
-            analizador.agregarToken(@"\d+\b", "CONSTANTE_ENTERA_DECIMAL");
+            analizador.agregarToken(@"[^\.]\d+", "CONSTANTE_ENTERA_DECIMAL");
             analizador.agregarToken(@"(0x|0X)[\da-fA-F]+\b", "CONSTANTE_ENTERA_HEXADECIMAL");
             //analizador.agregarToken(@"'\\.'|'[^\\]'", "CARACTER");
             analizador.agregarToken(@"(\[\]|\{\}|\(\))", "DELIMITADOR_VACIO");
@@ -120,6 +122,7 @@ namespace minij
 
             foreach (var tk in analizador.obtenerTokens(texto))
             {
+                if (tk.Lexema.Length > 31) { tk.Nombre = "ERROR - LARGO DE CADENA"; tk.Lexema = tk.Lexema.Substring(0, 31); }
                 ListViewItem lvi = new ListViewItem();
                 string[] row = { tk.Nombre, tk.Lexema, tk.Linea.ToString(), tk.Columna.ToString(), tk.Index.ToString()};
                 var listViewItem = new ListViewItem(row);

@@ -10,7 +10,7 @@ namespace minij
     {
 
         public string Nombre { get; set; }
-        public string Lexema { get; private set; }
+        public string Lexema { get; set; }
 
         public int Index { get; private set; }
         public int Linea { get; private set; }

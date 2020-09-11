@@ -99,15 +99,15 @@ namespace minij
             analizador.agregarToken("/[*](.*?|\n|\r)*[*]/", "COMENTARIO2", true);
             analizador.agregarToken(@"\/[*](.*?|\n|\r)*$", "EOF_EN_COMENTARIO");
             analizador.agregarToken(@"(void|int|double|boolean|string|class|const|interface|null|this|extends|implements|for|while|if|else|return|break|New|System|out|println)\b", "PALABRA_RESERVADA");
-            analizador.agregarToken(@"(true|false)\b", "CONSTANTE_BOOLEANA");
+            analizador.agregarToken(@"(true|false)", "CONSTANTE_BOOLEANA");
             analizador.agregarToken(@"[_$a-zA-Z][_$a-zA-Z0-9]*", "IDENTIFICADOR");
             analizador.agregarToken("\".*?[^\n]\"", "CADENA");
 
 
             analizador.agregarToken("\".*?\n", "EOF_EN_CADENA");
-            analizador.agregarToken(@"(\d+\.\d*([eE][\+\-]?\d*)?\s)", "CONSTANTE_DOUBLE");
-            analizador.agregarToken(@"[^\.]\d+", "CONSTANTE_ENTERA_DECIMAL");
-            analizador.agregarToken(@"(0x|0X)[\da-fA-F]+\b", "CONSTANTE_ENTERA_HEXADECIMAL");
+            analizador.agregarToken(@"(\d+\.\d*([eE][\+\-]?\d+)?)", "CONSTANTE_DOUBLE");
+            analizador.agregarToken(@"\d+", "CONSTANTE_ENTERA_DECIMAL");
+            analizador.agregarToken(@"(0x|0X)[\da-fA-F]+", "CONSTANTE_ENTERA_HEXADECIMAL");
             //analizador.agregarToken(@"'\\.'|'[^\\]'", "CARACTER");
             analizador.agregarToken(@"(\[\]|\{\}|\(\))", "DELIMITADOR_VACIO");
             analizador.agregarToken(@"[\(\)\{\}\[\];,\.]", "DELIMITADOR");

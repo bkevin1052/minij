@@ -12,6 +12,7 @@ namespace minij
         String texto;
         OpenFileDialog open;
         AnalizadorLexico analizador;
+        AnalizadorSintactico sintactico;
         StreamWriter file;
         string rutaEscritura;
 
@@ -109,7 +110,7 @@ namespace minij
 
         private void analizarSintactico(List<Token> tokens)
         {
-
+            sintactico = new AnalizadorSintactico(tokens);
         }
     }
 }

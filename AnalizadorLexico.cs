@@ -236,6 +236,11 @@ namespace minij
             return tokens;
         }
 
+        /// <summary>
+        /// Funcion que retorna la lista de tokens encontrada dentro del analisis lexico pero sin tomar en cuenta errores
+        /// </summary>
+        /// <param name="texto">Texto que se desea analizar</param>
+        /// <returns>Lista de tokens para analisis sintactico</returns>
         public List<Token> obtenerTokensSintactico(string texto)
         {
             List<Token> tokens = new List<Token>();

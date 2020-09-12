@@ -36,7 +36,7 @@ namespace minij
                 texto = File.ReadAllText(open.FileName);
                 rutaEscritura = Environment.CurrentDirectory + @"\" + Path.GetFileNameWithoutExtension(open.FileName) + ".out";
                 AnalizarCodigo(open.FileName);
-                EscribirArchivo(rutaEscritura);
+                //EscribirArchivo(rutaEscritura);
             }
         }
 
@@ -108,6 +108,10 @@ namespace minij
             analizarSintactico(listaTokens);
         }
 
+        /// <summary>
+        /// Realiza un analisis sintactica a partir de los tokens generados por el analizador lexico
+        /// </summary>
+        /// <param name="tokens">Lista de tokens generada en la fase de analisis lexico</param>
         private void analizarSintactico(List<Token> tokens)
         {
             lvToken.View = View.Details;

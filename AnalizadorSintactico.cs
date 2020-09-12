@@ -596,10 +596,13 @@ namespace minij
         private bool matchToken(string type)
         {
             bool value = false;
+            if (lookAhead == tokens.Count())
+                return false;
             if (tokens[lookAhead].Nombre == type)
             {
                 tokenActual = lookAhead;
                 lookAhead++;
+                value = true;
             }
 
             return value;

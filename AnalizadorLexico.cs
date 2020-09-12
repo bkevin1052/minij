@@ -150,13 +150,13 @@ namespace minij
         /// </summary>
         private void ingresarExpresionesRegulares()
         {
-            //ESPACIOS EN BLANCO
+            //--ESPACIOS EN BLANCO
             agregarToken(@"\s+", "ESPACIO", true);
-            //COMENTARIOS
+            //--COMENTARIOS
             agregarToken("//[^\r\n]*", "COMENTARIO1", true);
             agregarToken("/[*](.*?|\n|\r)*[*]/", "COMENTARIO2", true);
             agregarToken(@"\/[*](.*?|\n|\r)*$", "EOF_EN_COMENTARIO");
-            //PALABRAS RESERVADAS
+            //--PALABRAS RESERVADAS
             agregarToken(@"(int)\b", "PALABRA_RESERVADA_INT");
             agregarToken(@"(double)\b", "PALABRA_RESERVADA_DOUBLE");
             agregarToken(@"(boolean)\b", "PALABRA_RESERVADA_BOOLEAN");
@@ -168,23 +168,23 @@ namespace minij
             agregarToken(@"(this)\b", "PALABRA_RESERVADA_THIS");
             agregarToken(@"(New)\b", "PALABRA_RESERVADA_NEW");
             agregarToken(@"(null)\b", "PALABRA_RESERVADA_NULL");
-            agregarToken(@"(class|const|interface|extends|implements|while|if|else|break|System|out|println)\b", "PALABRA_RESERVADA");
-            //CONSTANTE BOOLEANAS
+            //agregarToken(@"(class|const|interface|extends|implements|while|if|else|break|System|out|println)\b", "PALABRA_RESERVADA");
+            //--CONSTANTE BOOLEANAS
             agregarToken(@"(true|false)", "CONSTANTE_BOOLEANA");
-            //IDENTIFICADORES
+            //--IDENTIFICADORES
             agregarToken(@"[_$a-zA-Z][_$a-zA-Z0-9]*", "IDENTIFICADOR");
-            //CADENAS
+            //--CADENAS
             agregarToken("\".*?[^\n]\"", "CADENA");
             agregarToken("\".*?\n", "EOF_EN_CADENA");
-            //CONSTANTES NUMERICAS
+            //--CONSTANTES NUMERICAS
             agregarToken(@"(\d+\.\d*([eE][\+\-]?\d+)?)", "CONSTANTE_DOUBLE");
             agregarToken(@"\d+", "CONSTANTE_ENTERA_DECIMAL");
             agregarToken(@"(0x|0X)[\da-fA-F]+", "CONSTANTE_ENTERA_HEXADECIMAL");
             //agregarToken(@"'\\.'|'[^\\]'", "CARACTER");
-            //DELIMITADORES
-            agregarToken(@"(\(\))", "PARENTESIS_VACIO");
+            //--DELIMITADORES
+            //agregarToken(@"(\(\))", "PARENTESIS_VACIO");
             agregarToken(@"(\[\])", "CORCHETE_VACIO");
-            agregarToken(@"(\{\})", "LLAVE_VACIO");
+            //agregarToken(@"(\{\})", "LLAVE_VACIO");
             agregarToken(@"[,]", "DELIMITADOR_COMA");
             agregarToken(@"[;]", "DELIMITADOR_PUNTO_COMA");
             agregarToken(@"[\.]", "DELIMITADOR_PUNTO");
@@ -192,9 +192,9 @@ namespace minij
             agregarToken(@"[\)]", "PARENTESIS_CIERRA");
             agregarToken(@"[\[]", "CORCHETE_ABRE");
             agregarToken(@"[\]]", "CORCHETE_CIERRA");
-            agregarToken(@"[\{]", "LLAVE_ABRE");
-            agregarToken(@"[\}]", "LLAVE_CIERRA");
-            //COMPARADORES
+            //agregarToken(@"[\{]", "LLAVE_ABRE");
+            //agregarToken(@"[\}]", "LLAVE_CIERRA");
+            //--COMPARADORES
             agregarToken(@"(<=)", "COMPARADOR_MENOR_IGUAL");
             agregarToken(@"(>=)", "COMPARADOR_MAYOR_IGUAL");
             agregarToken(@"(==)", "COMPARADOR_IGUAL_IGUAL");
@@ -204,7 +204,7 @@ namespace minij
             agregarToken(@"[<]", "COMPARADOR_MENOR");
             agregarToken(@"[>]", "COMPARADOR_MAYOR");
             agregarToken(@"[!]", "COMPARADOR_DIFERENTE");
-            //OPERADORES
+            //--OPERADORES
             agregarToken(@"[\=]", "OPERADOR_IGUAL");
             agregarToken(@"[\+]", "OPERADOR_MAS");
             agregarToken(@"[\-]", "OPERADOR_MENOS");

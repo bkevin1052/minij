@@ -92,42 +92,24 @@ namespace minij
         private void AnalizarCodigo(string ruta)
         {
             lvToken.View = View.Details;
-            
-
-            analizador.agregarToken(@"\s+", "ESPACIO", true);
-            analizador.agregarToken("//[^\r\n]*", "COMENTARIO1", true);
-            analizador.agregarToken("/[*](.*?|\n|\r)*[*]/", "COMENTARIO2", true);
-            analizador.agregarToken(@"\/[*](.*?|\n|\r)*$", "EOF_EN_COMENTARIO");
-            analizador.agregarToken(@"(void|int|double|boolean|string|class|const|interface|null|this|extends|implements|for|while|if|else|return|break|New|System|out|println)\b", "PALABRA_RESERVADA");
-            analizador.agregarToken(@"(true|false)", "CONSTANTE_BOOLEANA");
-            analizador.agregarToken(@"[_$a-zA-Z][_$a-zA-Z0-9]*", "IDENTIFICADOR");
-            analizador.agregarToken("\".*?[^\n]\"", "CADENA");
-
-
-            analizador.agregarToken("\".*?\n", "EOF_EN_CADENA");
-            analizador.agregarToken(@"(\d+\.\d*([eE][\+\-]?\d+)?)", "CONSTANTE_DOUBLE");
-            analizador.agregarToken(@"\d+", "CONSTANTE_ENTERA_DECIMAL");
-            analizador.agregarToken(@"(0x|0X)[\da-fA-F]+", "CONSTANTE_ENTERA_HEXADECIMAL");
-            //analizador.agregarToken(@"'\\.'|'[^\\]'", "CARACTER");
-            analizador.agregarToken(@"(\[\]|\{\}|\(\))", "DELIMITADOR_VACIO");
-            analizador.agregarToken(@"[\(\)\{\}\[\];,\.]", "DELIMITADOR");
-            analizador.agregarToken(@"(<|<=|>|>=|==|!|!=|&&|\|\|)(\w)", "COMPARADOR");
-            analizador.agregarToken(@"[\+\-\=/*%]", "OPERADOR");
-            
-            analizador.cargarExpresionesRegulares(RegexOptions.Compiled | RegexOptions.Singleline | RegexOptions.ExplicitCapture);
-           
-
             lvToken.Items.Clear();
 
+            foreach(var tk in analizador.obtenerTokensLexico(texto))
+            {
+                ListViewItem lvi = new ListViewItem();
+                string[] row = { tk.Nombre, tk.Lexema, tk.Linea.ToString(), tk.Columna.ToString(), tk.Index.ToString() };
+                var listViewItem = new ListViewItem(row);
+                lvToken.Items.Add(listViewItem);
+            }
 
-            foreach (var tk in analizador.obtenerTokens(texto))
+            /*foreach (var tk in analizador.obtenerTokens(texto))
             {
                 if (tk.Lexema.Length > 31) { tk.Nombre = "ERROR - LARGO DE CADENA"; tk.Lexema = tk.Lexema.Substring(0, 31); }
                 ListViewItem lvi = new ListViewItem();
                 string[] row = { tk.Nombre, tk.Lexema, tk.Linea.ToString(), tk.Columna.ToString(), tk.Index.ToString()};
                 var listViewItem = new ListViewItem(row);
                 lvToken.Items.Add(listViewItem);
-            }
+            }*/
         }
     }
 }

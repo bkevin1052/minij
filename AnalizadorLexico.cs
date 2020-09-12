@@ -20,6 +20,7 @@ namespace minij
         {
             requiereCompilar = true;
             expresionesValidas = new List<string>();
+            ingresarExpresionesRegulares();
         }
 
         /// <summary>
@@ -28,7 +29,7 @@ namespace minij
         /// <param name="expresion_regular">expresión regular con la que debe coincidir</param>
         /// <param name="nombre_token">id único para esta expresión regular</param>
         /// <param name="ignorar">true para omitir la expresión regular</param>
-        public void agregarToken(string expresion_regular, string nombre_token, bool ignorar = false)
+        private void agregarToken(string expresion_regular, string nombre_token, bool ignorar = false)
         {
             if (string.IsNullOrWhiteSpace(nombre_token))
                 throw new ArgumentException(string.Format("{0} no es un nombre válido.", nombre_token));
@@ -52,7 +53,7 @@ namespace minij
         /// Analiza una entrada en busca de tokens validos y errores
         /// </summary>
         /// <param name="texto">entrada a analizar</param>
-        public IEnumerable<Token> obtenerTokens(string texto)
+        private IEnumerable<Token> obtenerTokens(string texto)
         {
             if (requiereCompilar) throw new Exception("Necesita cargar las ER, llame al método cargarExpresionesRegulares(options).");
 
@@ -99,7 +100,7 @@ namespace minij
         /// <summary>
         /// Crea el Automáta finito no determinista con las expresiones regulares establecidas 
         /// </summary>
-        public void cargarExpresionesRegulares(RegexOptions options)
+        private void cargarExpresionesRegulares(RegexOptions options)
         {
             if (patron == null) throw new Exception("Agrege una o más ER, llame al método agregarToken(expresion_regular, nombre_token).");
 
@@ -142,6 +143,110 @@ namespace minij
                 }
 
             return linea;
+        }
+
+        /// <summary>
+        /// Envia las expresiones regular para cargar la gramatica
+        /// </summary>
+        private void ingresarExpresionesRegulares()
+        {
+            //ESPACIOS EN BLANCO
+            agregarToken(@"\s+", "ESPACIO", true);
+            //COMENTARIOS
+            agregarToken("//[^\r\n]*", "COMENTARIO1", true);
+            agregarToken("/[*](.*?|\n|\r)*[*]/", "COMENTARIO2", true);
+            agregarToken(@"\/[*](.*?|\n|\r)*$", "EOF_EN_COMENTARIO");
+            //PALABRAS RESERVADAS
+            agregarToken(@"(int)\b", "PALABRA_RESERVADA_INT");
+            agregarToken(@"(double)\b", "PALABRA_RESERVADA_DOUBLE");
+            agregarToken(@"(boolean)\b", "PALABRA_RESERVADA_BOOLEAN");
+            agregarToken(@"(bool)\b", "PALABRA_RESERVADA_BOOL");
+            agregarToken(@"(string)\b", "PALABRA_RESERVADA_STRING");
+            agregarToken(@"(void)\b", "PALABRA_RESERVADA_VOID");
+            agregarToken(@"(for)\b", "PALABRA_RESERVADA_FOR");
+            agregarToken(@"(return)\b", "PALABRA_RESERVADA_RETURN");
+            agregarToken(@"(this)\b", "PALABRA_RESERVADA_THIS");
+            agregarToken(@"(New)\b", "PALABRA_RESERVADA_NEW");
+            agregarToken(@"(null)\b", "PALABRA_RESERVADA_NULL");
+            agregarToken(@"(class|const|interface|extends|implements|while|if|else|break|System|out|println)\b", "PALABRA_RESERVADA");
+            //CONSTANTE BOOLEANAS
+            agregarToken(@"(true|false)", "CONSTANTE_BOOLEANA");
+            //IDENTIFICADORES
+            agregarToken(@"[_$a-zA-Z][_$a-zA-Z0-9]*", "IDENTIFICADOR");
+            //CADENAS
+            agregarToken("\".*?[^\n]\"", "CADENA");
+            agregarToken("\".*?\n", "EOF_EN_CADENA");
+            //CONSTANTES NUMERICAS
+            agregarToken(@"(\d+\.\d*([eE][\+\-]?\d+)?)", "CONSTANTE_DOUBLE");
+            agregarToken(@"\d+", "CONSTANTE_ENTERA_DECIMAL");
+            agregarToken(@"(0x|0X)[\da-fA-F]+", "CONSTANTE_ENTERA_HEXADECIMAL");
+            //agregarToken(@"'\\.'|'[^\\]'", "CARACTER");
+            //DELIMITADORES
+            agregarToken(@"(\(\))", "PARENTESIS_VACIO");
+            agregarToken(@"(\[\])", "CORCHETE_VACIO");
+            agregarToken(@"(\{\})", "LLAVE_VACIO");
+            agregarToken(@"[,]", "DELIMITADOR_COMA");
+            agregarToken(@"[;]", "DELIMITADOR_PUNTO_COMA");
+            agregarToken(@"[\.]", "DELIMITADOR_PUNTO");
+            agregarToken(@"[\(]", "PARENTESIS_ABRE");
+            agregarToken(@"[\)]", "PARENTESIS_CIERRA");
+            agregarToken(@"[\[]", "CORCHETE_ABRE");
+            agregarToken(@"[\]]", "CORCHETE_CIERRA");
+            agregarToken(@"[\{]", "LLAVE_ABRE");
+            agregarToken(@"[\}]", "LLAVE_CIERRA");
+            //COMPARADORES
+            agregarToken(@"(<=)", "COMPARADOR_MENOR_IGUAL");
+            agregarToken(@"(>=)", "COMPARADOR_MAYOR_IGUAL");
+            agregarToken(@"(==)", "COMPARADOR_IGUAL_IGUAL");
+            agregarToken(@"(!=)", "COMPARADOR_DIFERENTE_IGUAL");
+            agregarToken(@"(&&)", "COMPARADOR_AND");
+            agregarToken(@"(\|\|)", "COMPARADOR_OR");
+            agregarToken(@"[<]", "COMPARADOR_MENOR");
+            agregarToken(@"[>]", "COMPARADOR_MAYOR");
+            agregarToken(@"[!]", "COMPARADOR_DIFERENTE");
+            //OPERADORES
+            agregarToken(@"[\=]", "OPERADOR_IGUAL");
+            agregarToken(@"[\+]", "OPERADOR_MAS");
+            agregarToken(@"[\-]", "OPERADOR_MENOS");
+            agregarToken(@"[\*]", "OPERADOR_MULT");
+            agregarToken(@"[\/]", "OPERADOR_DIV");
+            agregarToken(@"[%]", "OPERADOR_PORCENTAJE");
+
+
+            //CARGAR EXPRESIONES REGULARES EN ESTRUCTURA REGEX
+            cargarExpresionesRegulares(RegexOptions.Compiled | RegexOptions.Singleline | RegexOptions.ExplicitCapture);
+        }
+
+
+        /// <summary>
+        /// Funcion que retorna la lista de tokens encontrada dentro del analisis lexico
+        /// </summary>
+        /// <param name="texto">Texto que se desea analizar</param>
+        /// <returns>Lista de tokens producidos en el analisis lexico</returns>
+        public List<Token> obtenerTokensLexico(string texto)
+        {
+            List<Token> tokens = new List<Token>();
+
+            foreach (var tk in obtenerTokens(texto))
+            {
+                if (tk.Lexema.Length > 31) { tk.Nombre = "ERROR - LARGO DE CADENA"; tk.Lexema = tk.Lexema.Substring(0, 31); }
+                tokens.Add(tk);
+            }
+
+            return tokens;
+        }
+
+        public List<Token> obtenerTokensSintactico(string texto)
+        {
+            List<Token> tokens = new List<Token>();
+
+            foreach (var tk in obtenerTokens(texto))
+            {
+                if (tk.Lexema.Length > 31) { tk.Nombre = "ERROR - LARGO DE CADENA"; tk.Lexema = tk.Lexema.Substring(0, 31); }
+                tokens.Add(tk);
+            }
+
+            return tokens;
         }
     }
 }

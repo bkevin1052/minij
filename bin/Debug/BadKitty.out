@@ -15,9 +15,7 @@
 	Token: OPERADOR                        Lexema: =                                                                                           Linea: 8  Columna: 24         Indice: 141         
 	Token: IDENTIFICADOR                   Lexema: weight                                                                                      Linea: 8  Columna: 26         Indice: 143         
 	Token: OPERADOR                        Lexema: *                                                                                           Linea: 8  Columna: 33         Indice: 150         
-	Token: ERROR                           Lexema: 2                                                                                           Linea: 8  Columna: 35         Indice: 152         
-	Token: DELIMITADOR                     Lexema: .                                                                                           Linea: 8  Columna: 36         Indice: 153         
-	Token: ERROR                           Lexema: 0                                                                                           Linea: 8  Columna: 37         Indice: 154         
+	Token: CONSTANTE_DOUBLE                Lexema: 2.0                                                                                         Linea: 8  Columna: 35         Indice: 152         
 	Token: DELIMITADOR                     Lexema: ;                                                                                           Linea: 8  Columna: 38         Indice: 155         
 	Token: DELIMITADOR                     Lexema: }                                                                                           Linea: 8  Columna: 39         Indice: 156         
 	Token: DELIMITADOR                     Lexema: }                                                                                           Linea: 9  Columna: 1          Indice: 159         
@@ -87,9 +85,7 @@
 	Token: DELIMITADOR                     Lexema: .                                                                                           Linea: 34 Columna: 8          Indice: 667         
 	Token: IDENTIFICADOR                   Lexema: height                                                                                      Linea: 34 Columna: 9          Indice: 668         
 	Token: OPERADOR                        Lexema: =                                                                                           Linea: 34 Columna: 16         Indice: 675         
-	Token: CONSTANTE_ENTERA_DECIMAL        Lexema: 000003                                                                                      Linea: 34 Columna: 18         Indice: 677         
-	Token: DELIMITADOR                     Lexema: .                                                                                           Linea: 34 Columna: 24         Indice: 683         
-	Token: CONSTANTE_ENTERA_DECIMAL        Lexema: 000003                                                                                      Linea: 34 Columna: 25         Indice: 684         
+	Token: CONSTANTE_DOUBLE                Lexema: 000003.000003                                                                               Linea: 34 Columna: 18         Indice: 677         
 	Token: DELIMITADOR                     Lexema: ;                                                                                           Linea: 34 Columna: 31         Indice: 690         
 	Token: IDENTIFICADOR                   Lexema: kitty                                                                                       Linea: 35 Columna: 3          Indice: 707         
 	Token: DELIMITADOR                     Lexema: .                                                                                           Linea: 35 Columna: 8          Indice: 712         
@@ -107,8 +103,23 @@
 	Token: IDENTIFICADOR                   Lexema: Meow                                                                                        Linea: 37 Columna: 9          Indice: 787         
 	Token: DELIMITADOR_VACIO               Lexema: ()                                                                                          Linea: 37 Columna: 13         Indice: 791         
 	Token: DELIMITADOR                     Lexema: ;                                                                                           Linea: 37 Columna: 15         Indice: 793         
-	Token: EOF_EN_COMENTARIO               Lexema: /* Go, Kitty!
-}
-
-ERROR                                                                  Linea: 37 Columna: 17         Indice: 795         
+	Token: IDENTIFICADOR                   Lexema: Go                                                                                          Linea: 37 Columna: 17         Indice: 795         
+	Token: DELIMITADOR                     Lexema: ,                                                                                           Linea: 37 Columna: 19         Indice: 797         
+	Token: IDENTIFICADOR                   Lexema: Kitty                                                                                       Linea: 37 Columna: 21         Indice: 799         
+	Token: ERROR                           Lexema: !                                                                                           Linea: 37 Columna: 26         Indice: 804         
+	Token: DELIMITADOR                     Lexema: }                                                                                           Linea: 38 Columna: 1          Indice: 807         
+	Token: IDENTIFICADOR                   Lexema: ERROR                                                                                       Linea: 40 Columna: 1          Indice: 812         
+	Token: OPERADOR                        Lexema: -                                                                                           Linea: 40 Columna: 7          Indice: 818         
+	Token: CONSTANTE_ENTERA_DECIMAL        Lexema: 5                                                                                           Linea: 40 Columna: 8          Indice: 819         
+	Token: IDENTIFICADOR                   Lexema: EOF                                                                                         Linea: 40 Columna: 10         Indice: 821         
+	Token: IDENTIFICADOR                   Lexema: in                                                                                          Linea: 40 Columna: 14         Indice: 825         
+	Token: IDENTIFICADOR                   Lexema: multiline                                                                                   Linea: 40 Columna: 17         Indice: 828         
+	Token: IDENTIFICADOR                   Lexema: comment                                                                                     Linea: 40 Columna: 27         Indice: 838         
+	Token: ERROR                           Lexema: !                                                                                           Linea: 40 Columna: 34         Indice: 845         
+	Token: IDENTIFICADOR                   Lexema: should                                                                                      Linea: 40 Columna: 36         Indice: 847         
+	Token: IDENTIFICADOR                   Lexema: NOT                                                                                         Linea: 40 Columna: 43         Indice: 854         
+	Token: IDENTIFICADOR                   Lexema: scan                                                                                        Linea: 40 Columna: 47         Indice: 858         
+	Token: PALABRA_RESERVADA               Lexema: this                                                                                        Linea: 40 Columna: 52         Indice: 863         
+	Token: IDENTIFICADOR                   Lexema: line                                                                                        Linea: 40 Columna: 57         Indice: 868         
+	Token: ERROR                           Lexema: !                                                                                           Linea: 40 Columna: 61         Indice: 872         
 

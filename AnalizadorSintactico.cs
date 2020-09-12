@@ -37,7 +37,10 @@ namespace minij
             tokensErroneos = new List<Token>();
         }
 
-
+        /// <summary>
+        /// Funcion para iniciar el analisis sintactico de los tokens
+        /// </summary>
+        /// <returns>Valor que indica si el archivo posee una secuencia sintactica correcta</returns>
         public bool analizar()
         {
             bool value = false;
@@ -657,6 +660,11 @@ namespace minij
             return value;
         }
 
+        /// <summary>
+        /// Funcion que compara un valor esperado contra el token actual
+        /// </summary>
+        /// <param name="type">Valor esperado al momento de hacer la comparacion</param>
+        /// <returns>Valor que indica si son iguales</returns>
         private bool matchToken(string type)
         {
             bool value = false;
@@ -672,6 +680,10 @@ namespace minij
             return value;
         }
 
+        /// <summary>
+        /// Procedimiento que restablece el indice a su ultimo estado valido
+        /// </summary>
+        /// <param name="indice">ultimo estado valido</param>
         private void resetIndice(int indice)
         {
             tokenActual = indice;

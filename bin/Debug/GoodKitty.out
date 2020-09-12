@@ -1,147 +1,90 @@
 	Token: PALABRA_RESERVADA               Lexema: class                                                                                       Linea: 5  Columna: 1          Indice: 56          
-	Token: IDENTIFICADOR                   Lexema: Animal                                                                                      Linea: 5  Columna: 7          Indice: 62          
 	Token: LLAVE_ABRE                      Lexema: {                                                                                           Linea: 5  Columna: 14         Indice: 69          
-	Token: PALABRA_RESERVADA_INT           Lexema: int                                                                                         Linea: 6  Columna: 3          Indice: 74          
-	Token: IDENTIFICADOR                   Lexema: height                                                                                      Linea: 6  Columna: 7          Indice: 78          
 	Token: DELIMITADOR_PUNTO_COMA          Lexema: ;                                                                                           Linea: 6  Columna: 13         Indice: 84          
-	Token: PALABRA_RESERVADA_DOUBLE        Lexema: double                                                                                      Linea: 7  Columna: 3          Indice: 102         
-	Token: IDENTIFICADOR                   Lexema: weight                                                                                      Linea: 7  Columna: 10         Indice: 109         
 	Token: DELIMITADOR_PUNTO_COMA          Lexema: ;                                                                                           Linea: 7  Columna: 16         Indice: 115         
-	Token: PALABRA_RESERVADA_VOID          Lexema: void                                                                                        Linea: 8  Columna: 4          Indice: 121         
-	Token: IDENTIFICADOR                   Lexema: Eat                                                                                         Linea: 8  Columna: 9          Indice: 126         
 	Token: PARENTESIS_VACIO                Lexema: ()                                                                                          Linea: 8  Columna: 12         Indice: 129         
 	Token: LLAVE_ABRE                      Lexema: {                                                                                           Linea: 8  Columna: 15         Indice: 132         
-	Token: IDENTIFICADOR                   Lexema: weight                                                                                      Linea: 8  Columna: 17         Indice: 134         
 	Token: OPERADOR_IGUAL                  Lexema: =                                                                                           Linea: 8  Columna: 24         Indice: 141         
-	Token: IDENTIFICADOR                   Lexema: weight                                                                                      Linea: 8  Columna: 26         Indice: 143         
 	Token: OPERADOR_MULT                   Lexema: *                                                                                           Linea: 8  Columna: 33         Indice: 150         
 	Token: CONSTANTE_DOUBLE                Lexema: 2.0                                                                                         Linea: 8  Columna: 35         Indice: 152         
 	Token: DELIMITADOR_PUNTO_COMA          Lexema: ;                                                                                           Linea: 8  Columna: 38         Indice: 155         
 	Token: LLAVE_CIERRA                    Lexema: }                                                                                           Linea: 8  Columna: 39         Indice: 156         
 	Token: LLAVE_CIERRA                    Lexema: }                                                                                           Linea: 9  Columna: 1          Indice: 159         
 	Token: PALABRA_RESERVADA               Lexema: class                                                                                       Linea: 11 Columna: 1          Indice: 164         
-	Token: IDENTIFICADOR                   Lexema: Cat                                                                                         Linea: 11 Columna: 7          Indice: 170         
 	Token: PALABRA_RESERVADA               Lexema: extends                                                                                     Linea: 11 Columna: 11         Indice: 174         
-	Token: IDENTIFICADOR                   Lexema: Animal                                                                                      Linea: 11 Columna: 19         Indice: 182         
 	Token: LLAVE_ABRE                      Lexema: {                                                                                           Linea: 11 Columna: 26         Indice: 189         
-	Token: PALABRA_RESERVADA_STRING        Lexema: string                                                                                      Linea: 12 Columna: 3          Indice: 194         
-	Token: IDENTIFICADOR                   Lexema: name                                                                                        Linea: 12 Columna: 10         Indice: 201         
 	Token: DELIMITADOR_PUNTO_COMA          Lexema: ;                                                                                           Linea: 12 Columna: 14         Indice: 205         
-	Token: PALABRA_RESERVADA_VOID          Lexema: void                                                                                        Linea: 13 Columna: 3          Indice: 210         
-	Token: IDENTIFICADOR                   Lexema: Meow                                                                                        Linea: 13 Columna: 8          Indice: 215         
 	Token: PARENTESIS_VACIO                Lexema: ()                                                                                          Linea: 13 Columna: 12         Indice: 219         
 	Token: LLAVE_ABRE                      Lexema: {                                                                                           Linea: 13 Columna: 15         Indice: 222         
 	Token: LLAVE_CIERRA                    Lexema: }                                                                                           Linea: 14 Columna: 1          Indice: 245         
-	Token: PALABRA_RESERVADA_INT           Lexema: int                                                                                         Linea: 16 Columna: 1          Indice: 250         
-	Token: IDENTIFICADOR                   Lexema: $$$$$$34$$$$                                                                                Linea: 16 Columna: 5          Indice: 254         
 	Token: DELIMITADOR_PUNTO_COMA          Lexema: ;                                                                                           Linea: 16 Columna: 17         Indice: 266         
-	Token: PALABRA_RESERVADA_VOID          Lexema: void                                                                                        Linea: 18 Columna: 1          Indice: 277         
-	Token: IDENTIFICADOR                   Lexema: main                                                                                        Linea: 18 Columna: 6          Indice: 282         
 	Token: PARENTESIS_VACIO                Lexema: ()                                                                                          Linea: 18 Columna: 10         Indice: 286         
 	Token: LLAVE_ABRE                      Lexema: {                                                                                           Linea: 18 Columna: 13         Indice: 289         
-	Token: PALABRA_RESERVADA_INT           Lexema: int                                                                                         Linea: 19 Columna: 4          Indice: 295         
-	Token: IDENTIFICADOR                   Lexema: b                                                                                           Linea: 19 Columna: 8          Indice: 299         
 	Token: DELIMITADOR_PUNTO_COMA          Lexema: ;                                                                                           Linea: 19 Columna: 9          Indice: 300         
-	Token: PALABRA_RESERVADA_INT           Lexema: int                                                                                         Linea: 20 Columna: 4          Indice: 306         
-	Token: IDENTIFICADOR                   Lexema: a                                                                                           Linea: 20 Columna: 8          Indice: 310         
 	Token: DELIMITADOR_PUNTO_COMA          Lexema: ;                                                                                           Linea: 20 Columna: 9          Indice: 311         
-	Token: PALABRA_RESERVADA_INT           Lexema: int                                                                                         Linea: 21 Columna: 4          Indice: 317         
-	Token: IDENTIFICADOR                   Lexema: d                                                                                           Linea: 21 Columna: 8          Indice: 321         
 	Token: DELIMITADOR_PUNTO_COMA          Lexema: ;                                                                                           Linea: 21 Columna: 9          Indice: 322         
-	Token: PALABRA_RESERVADA_BOOLEAN       Lexema: boolean                                                                                     Linea: 22 Columna: 4          Indice: 328         
-	Token: IDENTIFICADOR                   Lexema: TRUE                                                                                        Linea: 22 Columna: 12         Indice: 336         
 	Token: OPERADOR_IGUAL                  Lexema: =                                                                                           Linea: 22 Columna: 17         Indice: 341         
 	Token: CONSTANTE_BOOLEANA              Lexema: false                                                                                       Linea: 22 Columna: 19         Indice: 343         
 	Token: DELIMITADOR_PUNTO_COMA          Lexema: ;                                                                                           Linea: 22 Columna: 24         Indice: 348         
-	Token: PALABRA_RESERVADA_INT           Lexema: int                                                                                         Linea: 23 Columna: 4          Indice: 365         
-	Token: IDENTIFICADOR                   Lexema: INT                                                                                         Linea: 23 Columna: 8          Indice: 369         
 	Token: DELIMITADOR_PUNTO_COMA          Lexema: ;                                                                                           Linea: 23 Columna: 11         Indice: 372         
-	Token: IDENTIFICADOR                   Lexema: d                                                                                           Linea: 24 Columna: 4          Indice: 402         
 	Token: OPERADOR_IGUAL                  Lexema: =                                                                                           Linea: 24 Columna: 6          Indice: 404         
 	Token: CONSTANTE_ENTERA_DECIMAL        Lexema: 0                                                                                           Linea: 24 Columna: 8          Indice: 406         
-	Token: IDENTIFICADOR                   Lexema: xa2F                                                                                        Linea: 24 Columna: 9          Indice: 407         
 	Token: DELIMITADOR_PUNTO_COMA          Lexema: ;                                                                                           Linea: 24 Columna: 13         Indice: 411         
-	Token: IDENTIFICADOR                   Lexema: a                                                                                           Linea: 25 Columna: 4          Indice: 435         
 	Token: OPERADOR_IGUAL                  Lexema: =                                                                                           Linea: 25 Columna: 6          Indice: 437         
 	Token: CONSTANTE_ENTERA_DECIMAL        Lexema: 0                                                                                           Linea: 25 Columna: 8          Indice: 439         
-	Token: IDENTIFICADOR                   Lexema: X00A1                                                                                       Linea: 25 Columna: 9          Indice: 440         
 	Token: OPERADOR_MAS                    Lexema: +                                                                                           Linea: 25 Columna: 15         Indice: 446         
-	Token: IDENTIFICADOR                   Lexema: d                                                                                           Linea: 25 Columna: 16         Indice: 447         
 	Token: OPERADOR_MENOS                  Lexema: -                                                                                           Linea: 25 Columna: 17         Indice: 448         
-	Token: IDENTIFICADOR                   Lexema: b                                                                                           Linea: 25 Columna: 18         Indice: 449         
 	Token: DELIMITADOR_PUNTO_COMA          Lexema: ;                                                                                           Linea: 25 Columna: 19         Indice: 450         
-	Token: IDENTIFICADOR                   Lexema: b                                                                                           Linea: 26 Columna: 4          Indice: 496         
 	Token: OPERADOR_IGUAL                  Lexema: =                                                                                           Linea: 26 Columna: 6          Indice: 498         
 	Token: CONSTANTE_DOUBLE                Lexema: 12.                                                                                         Linea: 26 Columna: 8          Indice: 500         
-	Token: IDENTIFICADOR                   Lexema: d                                                                                           Linea: 27 Columna: 4          Indice: 522         
 	Token: OPERADOR_IGUAL                  Lexema: =                                                                                           Linea: 27 Columna: 6          Indice: 524         
 	Token: CONSTANTE_DOUBLE                Lexema: 12.E2                                                                                       Linea: 27 Columna: 8          Indice: 526         
-	Token: IDENTIFICADOR                   Lexema: a                                                                                           Linea: 28 Columna: 4          Indice: 554         
 	Token: OPERADOR_IGUAL                  Lexema: =                                                                                           Linea: 28 Columna: 6          Indice: 556         
 	Token: DELIMITADOR_PUNTO               Lexema: .                                                                                           Linea: 28 Columna: 8          Indice: 558         
 	Token: CONSTANTE_ENTERA_DECIMAL        Lexema: 1232                                                                                        Linea: 28 Columna: 9          Indice: 559         
 	Token: OPERADOR_MULT                   Lexema: *                                                                                           Linea: 28 Columna: 14         Indice: 564         
 	Token: DELIMITADOR_PUNTO               Lexema: .                                                                                           Linea: 28 Columna: 16         Indice: 566         
 	Token: CONSTANTE_ENTERA_DECIMAL        Lexema: 12                                                                                          Linea: 28 Columna: 17         Indice: 567         
-	Token: IDENTIFICADOR                   Lexema: E                                                                                           Linea: 28 Columna: 19         Indice: 569         
 	Token: OPERADOR_MAS                    Lexema: +                                                                                           Linea: 28 Columna: 20         Indice: 570         
 	Token: OPERADOR_MENOS                  Lexema: -                                                                                           Linea: 28 Columna: 21         Indice: 571         
 	Token: CONSTANTE_ENTERA_DECIMAL        Lexema: 2                                                                                           Linea: 28 Columna: 22         Indice: 572         
 	Token: DELIMITADOR_PUNTO_COMA          Lexema: ;                                                                                           Linea: 28 Columna: 23         Indice: 573         
-	Token: IDENTIFICADOR                   Lexema: b                                                                                           Linea: 29 Columna: 4          Indice: 634         
 	Token: OPERADOR_IGUAL                  Lexema: =                                                                                           Linea: 29 Columna: 6          Indice: 636         
 	Token: CONSTANTE_DOUBLE                Lexema: 1.12                                                                                        Linea: 29 Columna: 8          Indice: 638         
-	Token: IDENTIFICADOR                   Lexema: E                                                                                           Linea: 29 Columna: 12         Indice: 642         
 	Token: OPERADOR_MAS                    Lexema: +                                                                                           Linea: 29 Columna: 13         Indice: 643         
 	Token: OPERADOR_MENOS                  Lexema: -                                                                                           Linea: 29 Columna: 14         Indice: 644         
 	Token: CONSTANTE_ENTERA_DECIMAL        Lexema: 2                                                                                           Linea: 29 Columna: 15         Indice: 645         
 	Token: DELIMITADOR_PUNTO_COMA          Lexema: ;                                                                                           Linea: 29 Columna: 16         Indice: 646         
-	Token: IDENTIFICADOR                   Lexema: c                                                                                           Linea: 30 Columna: 4          Indice: 682         
 	Token: OPERADOR_IGUAL                  Lexema: =                                                                                           Linea: 30 Columna: 6          Indice: 684         
 	Token: PARENTESIS_ABRE                 Lexema: (                                                                                           Linea: 30 Columna: 8          Indice: 686         
 	Token: PARENTESIS_CIERRA               Lexema: )                                                                                           Linea: 30 Columna: 10         Indice: 688         
 	Token: OPERADOR_MAS                    Lexema: +                                                                                           Linea: 30 Columna: 12         Indice: 690         
 	Token: CONSTANTE_ENTERA_DECIMAL        Lexema: 2                                                                                           Linea: 30 Columna: 14         Indice: 692         
 	Token: LLAVE_CIERRA                    Lexema: }                                                                                           Linea: 31 Columna: 1          Indice: 726         
-	Token: PALABRA_RESERVADA_VOID          Lexema: void                                                                                        Linea: 34 Columna: 1          Indice: 769         
-	Token: IDENTIFICADOR                   Lexema: main                                                                                        Linea: 34 Columna: 6          Indice: 774         
 	Token: PARENTESIS_VACIO                Lexema: ()                                                                                          Linea: 34 Columna: 10         Indice: 778         
 	Token: LLAVE_ABRE                      Lexema: {                                                                                           Linea: 34 Columna: 13         Indice: 781         
 	Token: PALABRA_RESERVADA               Lexema: class                                                                                       Linea: 35 Columna: 3          Indice: 786         
-	Token: IDENTIFICADOR                   Lexema: Cat                                                                                         Linea: 35 Columna: 9          Indice: 792         
-	Token: IDENTIFICADOR                   Lexema: kitty                                                                                       Linea: 35 Columna: 13         Indice: 796         
 	Token: DELIMITADOR_PUNTO_COMA          Lexema: ;                                                                                           Linea: 35 Columna: 18         Indice: 801         
-	Token: ERROR - LARGO DE CADENA         Lexema: variable_whose$name$is$too$much                                                             Linea: 36 Columna: 3          Indice: 806         
 	Token: OPERADOR_IGUAL                  Lexema: =                                                                                           Linea: 36 Columna: 39         Indice: 842         
 	Token: CADENA                          Lexema: "No, kitty!"                                                                                Linea: 36 Columna: 40         Indice: 843         
 	Token: DELIMITADOR_PUNTO_COMA          Lexema: ;                                                                                           Linea: 36 Columna: 52         Indice: 855         
-	Token: IDENTIFICADOR                   Lexema: kitty                                                                                       Linea: 37 Columna: 3          Indice: 880         
 	Token: OPERADOR_IGUAL                  Lexema: =                                                                                           Linea: 37 Columna: 9          Indice: 886         
 	Token: PALABRA_RESERVADA_NEW           Lexema: New                                                                                         Linea: 37 Columna: 11         Indice: 888         
 	Token: PARENTESIS_ABRE                 Lexema: (                                                                                           Linea: 37 Columna: 14         Indice: 891         
-	Token: IDENTIFICADOR                   Lexema: Cat                                                                                         Linea: 37 Columna: 15         Indice: 892         
 	Token: PARENTESIS_CIERRA               Lexema: )                                                                                           Linea: 37 Columna: 18         Indice: 895         
 	Token: DELIMITADOR_PUNTO_COMA          Lexema: ;                                                                                           Linea: 37 Columna: 19         Indice: 896         
-	Token: IDENTIFICADOR                   Lexema: kitty                                                                                       Linea: 38 Columna: 3          Indice: 901         
 	Token: DELIMITADOR_PUNTO               Lexema: .                                                                                           Linea: 38 Columna: 8          Indice: 906         
-	Token: IDENTIFICADOR                   Lexema: height                                                                                      Linea: 38 Columna: 9          Indice: 907         
 	Token: OPERADOR_IGUAL                  Lexema: =                                                                                           Linea: 38 Columna: 16         Indice: 914         
 	Token: CONSTANTE_DOUBLE                Lexema: 000003.000003                                                                               Linea: 38 Columna: 18         Indice: 916         
 	Token: DELIMITADOR_PUNTO_COMA          Lexema: ;                                                                                           Linea: 38 Columna: 31         Indice: 929         
-	Token: IDENTIFICADOR                   Lexema: kitty                                                                                       Linea: 39 Columna: 3          Indice: 946         
 	Token: DELIMITADOR_PUNTO               Lexema: .                                                                                           Linea: 39 Columna: 8          Indice: 951         
-	Token: IDENTIFICADOR                   Lexema: weight                                                                                      Linea: 39 Columna: 9          Indice: 952         
 	Token: OPERADOR_IGUAL                  Lexema: =                                                                                           Linea: 39 Columna: 16         Indice: 959         
 	Token: CONSTANTE_DOUBLE                Lexema: 1.12E-000002                                                                                Linea: 39 Columna: 18         Indice: 961         
-	Token: IDENTIFICADOR                   Lexema: besty                                                                                       Linea: 40 Columna: 3          Indice: 995         
 	Token: DELIMITADOR_PUNTO               Lexema: .                                                                                           Linea: 40 Columna: 8          Indice: 1000        
-	Token: IDENTIFICADOR                   Lexema: name                                                                                        Linea: 40 Columna: 9          Indice: 1001        
 	Token: OPERADOR_IGUAL                  Lexema: =                                                                                           Linea: 40 Columna: 14         Indice: 1006        
 	Token: CADENA                          Lexema: "Kitty"                                                                                     Linea: 40 Columna: 16         Indice: 1008        
 	Token: DELIMITADOR_PUNTO_COMA          Lexema: ;                                                                                           Linea: 40 Columna: 23         Indice: 1015        
-	Token: IDENTIFICADOR                   Lexema: kitty                                                                                       Linea: 41 Columna: 3          Indice: 1020        
 	Token: DELIMITADOR_PUNTO               Lexema: .                                                                                           Linea: 41 Columna: 8          Indice: 1025        
-	Token: IDENTIFICADOR                   Lexema: Meow                                                                                        Linea: 41 Columna: 9          Indice: 1026        
 	Token: PARENTESIS_VACIO                Lexema: ()                                                                                          Linea: 41 Columna: 13         Indice: 1030        
 	Token: DELIMITADOR_PUNTO_COMA          Lexema: ;                                                                                           Linea: 41 Columna: 15         Indice: 1032        
 	Token: LLAVE_CIERRA                    Lexema: }                                                                                           Linea: 42 Columna: 1          Indice: 1049        

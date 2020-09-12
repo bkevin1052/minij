@@ -110,8 +110,25 @@ namespace minij
 
         private void analizarSintactico(List<Token> tokens)
         {
+            lvToken.View = View.Details;
+            lvToken.Items.Clear();
+
             sintactico = new AnalizadorSintactico(tokens);
-            sintactico.analizar();
+            if(sintactico.analizar())
+            {
+                MessageBox.Show("Analisis Sintactico - Positivo");
+            }
+            else
+            {
+                MessageBox.Show("Analisis Sintactico - Fallido");
+                foreach (var tk in sintactico.tokensErroneos)
+                {
+                    ListViewItem lvi = new ListViewItem();
+                    string[] row = { tk.Nombre, tk.Lexema, tk.Linea.ToString(), tk.Columna.ToString(), tk.Index.ToString() };
+                    var listViewItem = new ListViewItem(row);
+                    lvToken.Items.Add(listViewItem);
+                }
+            }
         }
     }
 }

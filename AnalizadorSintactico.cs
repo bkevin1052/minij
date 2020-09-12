@@ -12,7 +12,7 @@ namespace minij
         int tokenActual;
         int lookAhead;
         List<Token> tokens;
-        List<Token> tokensErroneos;
+        public List<Token> tokensErroneos;
 
         /// <summary>
         /// Constructor de la clase
@@ -38,20 +38,22 @@ namespace minij
         }
 
 
-        public void analizar()
+        public bool analizar()
         {
             bool value = false;
 
             while (lookAhead <= tokens.Count - 1)
             {
+                value = true;
                 if (!Program())
                 {
                     tokensErroneos.Add(tokens[lookAhead]);
                     matchToken(tokens[lookAhead].Nombre);
+                    value = false;
                 }
             }
 
-            //return value;
+            return value;
         }
 
         private bool Program()
@@ -247,11 +249,11 @@ namespace minij
 
             if (matchToken("PALABRA_RESERVADA_FOR"))
                 if (matchToken("PARENTESIS_ABRE"))
-                    if (Expr_hijo())
+                    if (Expr_nulo())
                         if (matchToken("DELIMITADOR_PUNTO_COMA"))
                             if(Expr())
                                 if(matchToken("DELIMITADOR_PUNTO_COMA"))
-                                    if(Expr_hijo())
+                                    if(Expr_nulo())
                                         if(matchToken("PARENTESIS_CIERRA"))
                                             if(Stmt())
                                                 return true;
@@ -265,7 +267,7 @@ namespace minij
 
             if (matchToken("PALABRA_RESERVADA_RETURN"))
             {
-                if (Expr_hijo())
+                if (Expr_nulo())
                     return true;
             }
 
@@ -314,12 +316,256 @@ namespace minij
         {
             bool value = false;
 
+            if (Or())
+                if (Expr_hijo())
+                    return true;
 
-            
             return value;
         }
 
         private bool Expr_hijo()
+        {
+            bool value = true;
+
+            if (matchToken("COMPARADOR_OR"))
+            {
+                if (Or())
+                    if (Expr_hijo())
+                        return true;
+            }
+
+            return value;
+        }
+
+        private bool Or()
+        {
+            bool value = false;
+
+            if (And())
+                if (Or_hijo())
+                    return true;
+
+            return value;
+        }
+
+        private bool Or_hijo()
+        {
+            bool value = true;
+
+            if (matchToken("COMPARADOR_AND"))
+            {
+                if (And())
+                    if (Or_hijo())
+                        return true;
+            }
+
+            return value;
+        }
+
+        private bool And()
+        {
+            bool value = false;
+
+            if (Igualdad())
+                if (And_hijo())
+                    return true;
+
+            return value;
+        }
+
+        private bool And_hijo()
+        {
+            bool value = true;
+
+            if (matchToken("COMPARADOR_DIFERENTE_IGUAL"))
+            {
+                if (Igualdad())
+                    if (And_hijo())
+                        return true;
+            }
+            if (matchToken("COMPARADOR_IGUAL_IGUAL"))
+            {
+                if (Igualdad())
+                    if (And_hijo())
+                        return true;
+            }
+
+            return value;
+        }
+
+        private bool Igualdad()
+        {
+            bool value = false;
+
+            if (Relacionales())
+                if (Igualdad_hijo())
+                    return true;
+
+            return value;
+        }
+
+        private bool Igualdad_hijo()
+        {
+            bool value = true;
+
+            if (matchToken("COMPARADOR_MENOR_IGUAL"))
+            {
+                if (Relacionales())
+                    if (Igualdad_hijo())
+                        return true;
+            }
+            if (matchToken("COMPARADOR_MAYOR_IGUAL"))
+            {
+                if (Relacionales())
+                    if (Igualdad_hijo())
+                        return true;
+            }
+            if (matchToken("COMPARADOR_MENOR"))
+            {
+                if (Relacionales())
+                    if (Igualdad_hijo())
+                        return true;
+            }
+            if (matchToken("COMPARADOR_MAYOR"))
+            {
+                if (Relacionales())
+                    if (Igualdad_hijo())
+                        return true;
+            }
+
+            return value;
+        }
+
+        private bool Relacionales()
+        {
+            bool value = false;
+
+            if (Terminos())
+                if (Relacionales_hijo())
+                    return true;
+
+            return value;
+        }
+
+        private bool Relacionales_hijo()
+        {
+            bool value = true;
+
+            if (matchToken("OPERADOR_MAS"))
+            {
+                if (Terminos())
+                    if (Relacionales_hijo())
+                        return true;
+            }
+            if (matchToken("OPERADOR_MENOS"))
+            {
+                if (Terminos())
+                    if (Relacionales_hijo())
+                        return true;
+            }
+
+            return value;
+        }
+
+        private bool Terminos()
+        {
+            bool value = false;
+
+            if (Multiplicadores())
+                if (Terminos_hijo())
+                    return true;
+
+            return value;
+        }
+
+        private bool Terminos_hijo()
+        {
+            bool value = true;
+
+            if (matchToken("OPERADOR_MULT"))
+            {
+                if (Multiplicadores())
+                    if (Terminos_hijo())
+                        return true;
+            }
+            if (matchToken("OPERADOR_DIV"))
+            {
+                if (Multiplicadores())
+                    if (Terminos_hijo())
+                        return true;
+            }
+            if (matchToken("OPERADOR_PORCENTAJE"))
+            {
+                if (Multiplicadores())
+                    if (Terminos_hijo())
+                        return true;
+            }
+
+            return value;
+        }
+
+        private bool Multiplicadores()
+        {
+            bool value = false;
+
+            if (matchToken("OPERADOR_MENOS"))
+            {
+                if (Unitarios())
+                    return true;
+            }
+            if (matchToken("COMPARADOR_DIFERENTE"))
+            {
+                if (Unitarios())
+                    return true;
+            }
+            if (Unitarios())
+                return true;
+
+            return value;
+        }
+
+        private bool Unitarios()
+        {
+            bool value = false;
+
+            if (matchToken("PALABRA_RESERVADA_THIS"))
+                return true;
+            if (matchToken("PALABRA_RESERVADA_NEW"))
+            {
+                if (matchToken("PARENTESIS_ABRE"))
+                    if (matchToken("IDENTIFICADOR"))
+                        if (matchToken("PARENTESIS_CIERRA"))
+                            return true;
+            }
+            if (Constant())
+                return true;
+            if (LValue())
+            {
+                if (Unitarios_hijo())
+                    return true;
+            }
+            if (matchToken("PARENTESIS_ABRE"))
+            {
+                if (Expr())
+                    if (matchToken("PARENTESIS_CIERRA"))
+                        return true;
+            }
+
+            return value;
+        }
+
+        private bool Unitarios_hijo()
+        {
+            bool value = true;
+
+            if (matchToken("OPERADOR_IGUAL"))
+                if(Expr())
+                    return true;
+
+            return value;
+        }
+
+        private bool Expr_nulo()
         {
             bool value = true;
 

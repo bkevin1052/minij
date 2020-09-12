@@ -40,12 +40,120 @@ namespace minij
 
         public void analizar()
         {
+            bool value = false;
 
+            while (lookAhead <= tokens.Count - 1)
+            {
+                if (!Program())
+                {
+                    tokensErroneos.Add(tokens[lookAhead]);
+                    matchToken(tokens[lookAhead].Nombre);
+                }
+            }
+
+            //return value;
+        }
+
+        private bool Program()
+        {
+            bool value = false;
+
+            if (Decl())
+                if (Program_hijo())
+                    return true;
+
+            return value;
+        }
+
+        private bool Program_hijo()
+        {
+            bool value = true;
+
+            if (Decl())
+                if (Program_hijo())
+                    return true;
+
+            return value;
+        }
+
+        private bool Decl()
+        {
+            bool value = false;
+
+            if (VariableDecl())
+                return true;
+            if (FunctionDecl())
+                return true;
+
+            return value;
+        }
+
+        private bool VariableDecl()
+        {
+            bool value = false;
+
+            if (Variable())
+                if (matchToken("DELIMITADOR_PUNTO_COMA"))
+                    return true;
+
+            return value;
         }
 
         private bool Variable()
         {
             bool value = false;
+
+            if (Type())
+                if (matchToken("IDENTIFICADOR"))
+                    return true;
+
+            return value;
+        }
+
+        private bool Type()
+        {
+            bool value = false;
+            if (matchToken("PALABRA_RESERVADA_INT"))
+            {
+                if (Type_hijo())
+                    return true;
+            }
+            if (matchToken("PALABRA_RESERVADA_DOUBLE"))
+            {
+                if (Type_hijo())
+                    return true;
+            }
+            if (matchToken("PALABRA_RESERVADA_BOOLEAN"))
+            {
+                if (Type_hijo())
+                    return true;
+            }
+            if (matchToken("PALABRA_RESERVADA_BOOL"))
+            {
+                if (Type_hijo())
+                    return true;
+            }
+            if (matchToken("PALABRA_RESERVADA_STRING"))
+            {
+                if (Type_hijo())
+                    return true;
+            }
+            if (matchToken("IDENTIFICADOR"))
+            {
+                if (Type_hijo())
+                    return true;
+            }
+
+            return value;
+        }
+
+        private bool Type_hijo()
+        {
+            bool value = true;
+
+            if (matchToken("CORCHETE_VACIO"))
+                if (Type_hijo())
+                    return true;
 
             return value;
         }
@@ -53,6 +161,17 @@ namespace minij
         private bool FunctionDecl()
         {
             bool value = false;
+
+            if (matchToken("PALABRA_RESERVADA_VOID"))
+            {
+                if (Function())
+                    return true;
+            }
+            else if(Type())
+            {
+                if (Function())
+                    return true;
+            }
 
             return value;
         }

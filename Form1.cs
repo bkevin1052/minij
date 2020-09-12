@@ -111,6 +111,7 @@ namespace minij
         private void analizarSintactico(List<Token> tokens)
         {
             sintactico = new AnalizadorSintactico(tokens);
+            sintactico.analizar();
         }
     }
 }

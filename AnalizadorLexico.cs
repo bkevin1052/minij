@@ -243,6 +243,7 @@ namespace minij
             foreach (var tk in obtenerTokens(texto))
             {
                 if (tk.Lexema.Length > 31) { tk.Nombre = "ERROR - LARGO DE CADENA"; tk.Lexema = tk.Lexema.Substring(0, 31); }
+                if(!(tk.Nombre == "ERROR" || tk.Nombre == "EOF_EN_COMENTARIO" || tk.Nombre == "ERROR - LARGO DE CADENA" || tk.Nombre == "EOF_EN_CADENA"))
                 tokens.Add(tk);
             }
 

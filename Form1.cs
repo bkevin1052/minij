@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -102,14 +103,13 @@ namespace minij
                 lvToken.Items.Add(listViewItem);
             }
 
-            /*foreach (var tk in analizador.obtenerTokens(texto))
-            {
-                if (tk.Lexema.Length > 31) { tk.Nombre = "ERROR - LARGO DE CADENA"; tk.Lexema = tk.Lexema.Substring(0, 31); }
-                ListViewItem lvi = new ListViewItem();
-                string[] row = { tk.Nombre, tk.Lexema, tk.Linea.ToString(), tk.Columna.ToString(), tk.Index.ToString()};
-                var listViewItem = new ListViewItem(row);
-                lvToken.Items.Add(listViewItem);
-            }*/
+            var listaTokens = analizador.obtenerTokensSintactico(texto);
+            analizarSintactico(listaTokens);
+        }
+
+        private void analizarSintactico(List<Token> tokens)
+        {
+
         }
     }
 }

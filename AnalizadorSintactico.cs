@@ -306,48 +306,6 @@ namespace minij
             return value;
         }
 
-        /*private bool LValue()
-        {
-            bool value = false;
-            int indiceActual = tokenActual;
-
-            if (matchToken("IDENTIFICADOR"))
-            {
-                return true;
-            }
-            else if (Expr())
-            {
-                if (LValue_hijo())
-                    return true;
-            }
-
-            resetIndice(indiceActual);
-            return value;
-        }
-
-        private bool LValue_hijo()
-        {
-            bool value = false;
-            int indiceActual = tokenActual;
-
-            if (matchToken("DELIMITADOR_PUNTO"))
-            {
-                if (matchToken("IDENTIFICADOR"))
-                    return true;
-            }
-            else if (matchToken("CORCHETE_ABRE"))
-            {
-                if (Expr())
-                {
-                    if (matchToken("CORCHETE_CIERRA"))
-                        return true;
-                }
-            }
-
-            resetIndice(indiceActual);
-            return value;
-        }*/
-
         private bool LValue()
         {
             bool value = false;

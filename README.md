@@ -97,6 +97,96 @@ private bool Type()
 
 Cuando el analizador detecta una produccion invalida regresa a la produccion inicial, guarda la posicion del token incorrecto, actualiza el index del analizador para pasar al siguiente Token y por ultimo vuelve a ingresar en la produccion inicial para recorrer el flujo nuevamente.
 
+## Gramatica ⌨️
+
+Para implementar la gramatica, primero se debio modificar de la siguiente forma:
+
+```
+Program     ->      Decl Program'
+                    Program'    ->  Decl Program'
+                                    | Ɛ
+
+Decl        ->      VariableDecl
+                    | FunctionDecl
+
+VariableDecl ->     Variable ;
+                    Variable    ->  Type identificador
+
+Type        ->      int Type'
+                    | double Type'
+                    | bool Type'
+                    | string Type'
+                    |identificador Type'
+                    Type'       ->  [] Type'
+                                    | Ɛ
+
+FunctionDecl ->     void Function
+                    | Type Function
+                    Function    ->  identificador ( Formals ) Function'
+                    Funtion'    ->  Stmt Function'
+                                    | Ɛ
+
+Formals     ->      Variable Formals'
+                    | Ɛ
+                    Formals'    ->  , Variable Formals'
+                                    | Ɛ
+
+Stmt        ->      ForStmt
+                    | ReturnStmt
+                    | Expr;
+
+ForStmt     ->      for ( Expr' ; Expr ; Expr' ) Stmt
+ReturnStmt  ->      return Expr' ;
+                    Expr'        -> Expr
+                                    | Ɛ
+
+LValue      ->      identificador LValue'
+                    LValue'     ->  . identificador LValue'
+                                    | [Expr] LValue'
+                                    | Ɛ
+
+Constant    ->      constante_entera
+                    | constante_double
+                    | constante_booleana
+                    | cadena
+                    | null
+
+Expr        ->      OR Expr'
+                    Expr'       ->  || OR Expr'
+                                    | Ɛ
+OR          ->      AND OR'
+                    OR'         ->  && AND OR'
+                                    | Ɛ
+AND          ->     I AND'
+                    AND'        ->  != I AND'
+                                    | == I AND'
+                                    | Ɛ
+I          ->       R I'
+                    I'          ->  <= R I'
+                                    | >= R I'
+                                    | < R I'
+                                    | > R I'
+                                    | Ɛ
+R          ->       T R'
+                    R'          ->  + T R'
+                                    | - T R'
+                                    | Ɛ
+T          ->       M T'
+                    T'          ->  * M T'
+                                    | / M T'
+                                    | % M T'
+                                    | Ɛ
+M          ->       - U
+                    | ! U
+                    | U
+U          ->       Constant
+                    | LValue U'
+                    | this
+                    | ( Expr )
+                    | New (identificador)
+                    U'          ->  = Expr
+                                    | Ɛ
+```
 
 ## Desarrollo 📌
 

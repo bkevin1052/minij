@@ -59,62 +59,74 @@ namespace minij
         private bool Program()
         {
             bool value = false;
+            int indiceActual = tokenActual;
 
             if (Decl())
                 if (Program_hijo())
                     return true;
 
+            resetIndice(indiceActual);
             return value;
         }
 
         private bool Program_hijo()
         {
             bool value = true;
+            int indiceActual = tokenActual;
 
             if (Decl())
                 if (Program_hijo())
                     return true;
 
+            resetIndice(indiceActual);
             return value;
         }
 
         private bool Decl()
         {
             bool value = false;
+            int indiceActual = tokenActual;
 
             if (VariableDecl())
                 return true;
             if (FunctionDecl())
                 return true;
 
+            resetIndice(indiceActual);
             return value;
         }
 
         private bool VariableDecl()
         {
             bool value = false;
+            int indiceActual = tokenActual;
 
             if (Variable())
                 if (matchToken("DELIMITADOR_PUNTO_COMA"))
                     return true;
 
+            resetIndice(indiceActual);
             return value;
         }
 
         private bool Variable()
         {
             bool value = false;
+            int indiceActual = tokenActual;
 
             if (Type())
                 if (matchToken("IDENTIFICADOR"))
                     return true;
 
+            resetIndice(indiceActual);
             return value;
         }
 
         private bool Type()
         {
             bool value = false;
+            int indiceActual = tokenActual;
+
             if (matchToken("PALABRA_RESERVADA_INT"))
             {
                 if (Type_hijo())
@@ -146,23 +158,27 @@ namespace minij
                     return true;
             }
 
+            resetIndice(indiceActual);
             return value;
         }
 
         private bool Type_hijo()
         {
             bool value = true;
+            int indiceActual = tokenActual;
 
             if (matchToken("CORCHETE_VACIO"))
                 if (Type_hijo())
                     return true;
 
+            resetIndice(indiceActual);
             return value;
         }
 
         private bool FunctionDecl()
         {
             bool value = false;
+            int indiceActual = tokenActual;
 
             if (matchToken("PALABRA_RESERVADA_VOID"))
             {
@@ -175,12 +191,14 @@ namespace minij
                     return true;
             }
 
+            resetIndice(indiceActual);
             return value;
         }
 
         private bool Function()
         {
             bool value = false;
+            int indiceActual = tokenActual;
 
             if (matchToken("IDENTIFICADOR"))
                 if (matchToken("PARENTESIS_ABRE"))
@@ -189,46 +207,54 @@ namespace minij
                             if (Function_hijo())
                                 return true;
 
+            resetIndice(indiceActual);
             return value;
         }
 
         private bool Function_hijo()
         {
             bool value = true;
+            int indiceActual = tokenActual;
 
             if (Stmt())
                 if (Function_hijo())
                     return true;
 
+            resetIndice(indiceActual);
             return value;
         }
 
         private bool Formals()
         {
             bool value = true;
+            int indiceActual = tokenActual;
 
             if (Variable())
                 if (Formals_hijo())
                         return true;
 
+            resetIndice(indiceActual);
             return value;
         }
 
         private bool Formals_hijo()
         {
             bool value = true;
+            int indiceActual = tokenActual;
 
             if (matchToken("DELIMITADOR_COMA"))
                 if (Variable())
                     if (Formals_hijo())
                         return true;
 
+            resetIndice(indiceActual);
             return value;
         }
 
         private bool Stmt()
         {
             bool value = false;
+            int indiceActual = tokenActual;
 
             if (ForStmt())
                 return true;
@@ -240,12 +266,14 @@ namespace minij
                     return true;
             }
 
+            resetIndice(indiceActual);
             return value;
         }
 
         private bool ForStmt()
         {
             bool value = false;
+            int indiceActual = tokenActual;
 
             if (matchToken("PALABRA_RESERVADA_FOR"))
                 if (matchToken("PARENTESIS_ABRE"))
@@ -258,25 +286,30 @@ namespace minij
                                             if(Stmt())
                                                 return true;
 
+            resetIndice(indiceActual);
             return value;
         }
 
         private bool ReturnStmt()
         {
             bool value = false;
+            int indiceActual = tokenActual;
 
             if (matchToken("PALABRA_RESERVADA_RETURN"))
             {
                 if (Expr_nulo())
-                    return true;
+                    if (matchToken("DELIMITADOR_PUNTO_COMA"))
+                        return true;
             }
 
+            resetIndice(indiceActual);
             return value;
         }
 
-        private bool LValue()
+        /*private bool LValue()
         {
             bool value = false;
+            int indiceActual = tokenActual;
 
             if (matchToken("IDENTIFICADOR"))
             {
@@ -288,12 +321,14 @@ namespace minij
                     return true;
             }
 
+            resetIndice(indiceActual);
             return value;
         }
 
         private bool LValue_hijo()
         {
             bool value = false;
+            int indiceActual = tokenActual;
 
             if (matchToken("DELIMITADOR_PUNTO"))
             {
@@ -309,23 +344,63 @@ namespace minij
                 }
             }
 
+            resetIndice(indiceActual);
+            return value;
+        }*/
+
+        private bool LValue()
+        {
+            bool value = false;
+            int indiceActual = tokenActual;
+
+            if (matchToken("IDENTIFICADOR"))
+                if(LValue_hijo())
+                    return true;
+            
+            resetIndice(indiceActual);
+            return value;
+        }
+
+        private bool LValue_hijo()
+        {
+            bool value = true;
+            int indiceActual = tokenActual;
+
+            if (matchToken("DELIMITADOR_PUNTO"))
+            {
+                if (matchToken("IDENTIFICADOR"))
+                    if(LValue_hijo())
+                        return true;
+            }
+            if (matchToken("CORCHETE_ABRE"))
+            {
+                if (Expr())
+                    if (matchToken("CORCHETE_CIERRA"))
+                        if (LValue_hijo())
+                            return true;
+            }
+
+            resetIndice(indiceActual);
             return value;
         }
 
         private bool Expr()
         {
             bool value = false;
+            int indiceActual = tokenActual;
 
             if (Or())
                 if (Expr_hijo())
                     return true;
 
+            resetIndice(indiceActual);
             return value;
         }
 
         private bool Expr_hijo()
         {
             bool value = true;
+            int indiceActual = tokenActual;
 
             if (matchToken("COMPARADOR_OR"))
             {
@@ -334,23 +409,27 @@ namespace minij
                         return true;
             }
 
+            resetIndice(indiceActual);
             return value;
         }
 
         private bool Or()
         {
             bool value = false;
+            int indiceActual = tokenActual;
 
             if (And())
                 if (Or_hijo())
                     return true;
 
+            resetIndice(indiceActual);
             return value;
         }
 
         private bool Or_hijo()
         {
             bool value = true;
+            int indiceActual = tokenActual;
 
             if (matchToken("COMPARADOR_AND"))
             {
@@ -359,23 +438,27 @@ namespace minij
                         return true;
             }
 
+            resetIndice(indiceActual);
             return value;
         }
 
         private bool And()
         {
             bool value = false;
+            int indiceActual = tokenActual;
 
             if (Igualdad())
                 if (And_hijo())
                     return true;
 
+            resetIndice(indiceActual);
             return value;
         }
 
         private bool And_hijo()
         {
             bool value = true;
+            int indiceActual = tokenActual;
 
             if (matchToken("COMPARADOR_DIFERENTE_IGUAL"))
             {
@@ -390,23 +473,27 @@ namespace minij
                         return true;
             }
 
+            resetIndice(indiceActual);
             return value;
         }
 
         private bool Igualdad()
         {
             bool value = false;
+            int indiceActual = tokenActual;
 
             if (Relacionales())
                 if (Igualdad_hijo())
                     return true;
 
+            resetIndice(indiceActual);
             return value;
         }
 
         private bool Igualdad_hijo()
         {
             bool value = true;
+            int indiceActual = tokenActual;
 
             if (matchToken("COMPARADOR_MENOR_IGUAL"))
             {
@@ -433,23 +520,27 @@ namespace minij
                         return true;
             }
 
+            resetIndice(indiceActual);
             return value;
         }
 
         private bool Relacionales()
         {
             bool value = false;
+            int indiceActual = tokenActual;
 
             if (Terminos())
                 if (Relacionales_hijo())
                     return true;
 
+            resetIndice(indiceActual);
             return value;
         }
 
         private bool Relacionales_hijo()
         {
             bool value = true;
+            int indiceActual = tokenActual;
 
             if (matchToken("OPERADOR_MAS"))
             {
@@ -464,23 +555,27 @@ namespace minij
                         return true;
             }
 
+            resetIndice(indiceActual);
             return value;
         }
 
         private bool Terminos()
         {
             bool value = false;
+            int indiceActual = tokenActual;
 
             if (Multiplicadores())
                 if (Terminos_hijo())
                     return true;
 
+            resetIndice(indiceActual);
             return value;
         }
 
         private bool Terminos_hijo()
         {
             bool value = true;
+            int indiceActual = tokenActual;
 
             if (matchToken("OPERADOR_MULT"))
             {
@@ -501,12 +596,14 @@ namespace minij
                         return true;
             }
 
+            resetIndice(indiceActual);
             return value;
         }
 
         private bool Multiplicadores()
         {
             bool value = false;
+            int indiceActual = tokenActual;
 
             if (matchToken("OPERADOR_MENOS"))
             {
@@ -521,12 +618,14 @@ namespace minij
             if (Unitarios())
                 return true;
 
+            resetIndice(indiceActual);
             return value;
         }
 
         private bool Unitarios()
         {
             bool value = false;
+            int indiceActual = tokenActual;
 
             if (matchToken("PALABRA_RESERVADA_THIS"))
                 return true;
@@ -551,33 +650,39 @@ namespace minij
                         return true;
             }
 
+            resetIndice(indiceActual);
             return value;
         }
 
         private bool Unitarios_hijo()
         {
             bool value = true;
+            int indiceActual = tokenActual;
 
             if (matchToken("OPERADOR_IGUAL"))
                 if(Expr())
                     return true;
 
+            resetIndice(indiceActual);
             return value;
         }
 
         private bool Expr_nulo()
         {
             bool value = true;
+            int indiceActual = tokenActual;
 
             if (Expr())
                 return true;
 
+            resetIndice(indiceActual);
             return value;
         }
 
         private bool Constant()
         {
             bool value = false;
+            int indiceActual = tokenActual;
 
             if (matchToken("CONSTANTE_ENTERA_DECIMAL") || matchToken("CONSTANTE_ENTERA_HEXADECIMAL"))
                 return true;
@@ -590,6 +695,7 @@ namespace minij
             if (matchToken("PALABRA_RESERVADA_NULL"))
                 return true;
 
+            resetIndice(indiceActual);
             return value;
         }
 
@@ -606,6 +712,12 @@ namespace minij
             }
 
             return value;
+        }
+
+        private void resetIndice(int indice)
+        {
+            tokenActual = indice;
+            lookAhead = tokenActual + 1;
         }
     }
 }

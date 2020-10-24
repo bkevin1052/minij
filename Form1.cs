@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Parser;
+using Parser.Lexical;
+using Parser.Models;
+using Parser.Parse;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -15,6 +19,11 @@ namespace minij
         AnalizadorSintactico sintactico;
         StreamWriter file;
         string rutaEscritura;
+
+        private GrammarRules _grammarRules;
+        private Preprocessor _preprocessor;
+        private LeftToRight_RightMost_Zero _lrZero;
+        private LeftToRight_LookAhead_One _leftToRightLookAhead1;
 
         /// <summary>
         /// Constructor de la clase
@@ -131,6 +140,67 @@ namespace minij
                     string[] row = { tk.Nombre, tk.Lexema, tk.Linea.ToString(), tk.Columna.ToString(), tk.Index.ToString() };
                     var listViewItem = new ListViewItem(row);
                     lvToken.Items.Add(listViewItem);
+                }
+            }
+        }
+
+        private void btnGramatica_Click(object sender, EventArgs e)
+        {
+            ChooseFile(txtGramatica);
+            btnParseGrammar_Click(null, null);
+        }
+
+        private void ChooseFile(TextBox textbox)
+        {
+            OpenFileDialog openFile = new OpenFileDialog()
+            {
+                CheckFileExists = true,
+                AddExtension = true,
+                Multiselect = false,
+                CheckPathExists = true,
+                DefaultExt = "txt",
+                InitialDirectory = AppDomain.CurrentDomain.BaseDirectory,
+            };
+
+            openFile.ShowDialog();
+            textbox.Text = openFile.FileName;
+        } 
+
+        private void btnParseGrammar_Click(object sender, EventArgs e)
+        {
+            listBoxGrammar.Items.Clear();
+            listBoxFirst.Items.Clear();
+            if (string.IsNullOrEmpty(txtGramatica.Text))
+            {
+                MessageBox.Show("Grammar file is empty!");
+                return;
+            }
+
+            var text = File.ReadAllText(txtGramatica.Text);
+            LexicalAnalyzer lex = new LexicalAnalyzer(text);
+            _grammarRules = lex.TokenizeGrammar();
+            foreach (ISymbol symbol in _grammarRules.SymbolList)
+            {
+                if (symbol.SymbolType == SymbolType.Variable)
+                    listBoxGrammar.Items.Add(((Variable)symbol).ShowRules());
+            }
+
+            listBoxFirst.Items.Clear();
+            listBoxFollow.Items.Clear();
+            if (_grammarRules == null)
+            {
+                MessageBox.Show("Grammar File is empty");
+                return;
+            }
+            _preprocessor = new Preprocessor(_grammarRules);
+            _preprocessor.CalculateAllFirsts();
+            _preprocessor.CalculateAllFollows();
+            foreach (ISymbol symbol in _grammarRules.SymbolList)
+            {
+                if (symbol is Variable variable)
+                {
+                    listBoxFirst.Items.Add(variable.ShowFirsts());
+                    listBoxFollow.Items.Add(variable.ShowFollows());
                 }
             }
         }

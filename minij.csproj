@@ -50,6 +50,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnalizadorSintactico.cs" />
+    <Compile Include="Lexical\LexicalAnalyzer.cs" />
+    <Compile Include="LRTable\Action.cs" />
+    <Compile Include="LRTable\GoTo.cs" />
+    <Compile Include="LRTable\LRGrammarTable.cs" />
+    <Compile Include="LRTable\LRType.cs" />
+    <Compile Include="LRTable\ParserAction.cs" />
+    <Compile Include="Mapper\MapperToNumber.cs" />
+    <Compile Include="Models\GrammarRules.cs" />
+    <Compile Include="Models\ISymbol.cs" />
+    <Compile Include="Models\ParseReportModel.cs" />
+    <Compile Include="Models\RuleSet.cs" />
+    <Compile Include="Models\SymbolType.cs" />
+    <Compile Include="Models\Terminal.cs" />
+    <Compile Include="Models\Variable.cs" />
+    <Compile Include="Parse\LeftToRight_LookAhead_One.cs" />
+    <Compile Include="Parse\LeftToRight_RightMost_Zero.cs" />
+    <Compile Include="Parse\Preprocessor.cs" />
+    <Compile Include="Parse\TreeNode.cs" />
+    <Compile Include="States\FiniteStateMachine.cs" />
+    <Compile Include="States\RowState.cs" />
+    <Compile Include="States\State.cs" />
     <Compile Include="Token.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

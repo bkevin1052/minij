@@ -49,8 +49,20 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.cmbGrammarType = new System.Windows.Forms.ComboBox();
+            this.dgvLR_0 = new System.Windows.Forms.DataGridView();
+            this.dataGridReportLR = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtLRStates = new System.Windows.Forms.RichTextBox();
+            this.btnFSM = new System.Windows.Forms.Button();
+            this.btnShowParseTree = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLR_0)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridReportLR)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCargarArchivo
@@ -210,6 +222,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1808, 613);
             this.tabControl1.TabIndex = 13;
+            this.tabControl1.Enter += new System.EventHandler(this.tabItem_Enter);
             // 
             // tabPage1
             // 
@@ -235,6 +248,12 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.btnShowParseTree);
+            this.tabPage2.Controls.Add(this.btnFSM);
+            this.tabPage2.Controls.Add(this.txtLRStates);
+            this.tabPage2.Controls.Add(this.dataGridReportLR);
+            this.tabPage2.Controls.Add(this.dgvLR_0);
+            this.tabPage2.Controls.Add(this.cmbGrammarType);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -242,6 +261,119 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "SLR";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // cmbGrammarType
+            // 
+            this.cmbGrammarType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbGrammarType.FormattingEnabled = true;
+            this.cmbGrammarType.Items.AddRange(new object[] {
+            "LR(0)",
+            "SLR(1)",
+            "CLR(1)"});
+            this.cmbGrammarType.Location = new System.Drawing.Point(7, 7);
+            this.cmbGrammarType.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbGrammarType.Name = "cmbGrammarType";
+            this.cmbGrammarType.Size = new System.Drawing.Size(245, 24);
+            this.cmbGrammarType.TabIndex = 5;
+            this.cmbGrammarType.SelectedIndexChanged += new System.EventHandler(this.cmbGrammarType_SelectedIndexChanged_1);
+            // 
+            // dgvLR_0
+            // 
+            this.dgvLR_0.AllowUserToAddRows = false;
+            this.dgvLR_0.AllowUserToDeleteRows = false;
+            this.dgvLR_0.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvLR_0.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvLR_0.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvLR_0.Location = new System.Drawing.Point(260, 7);
+            this.dgvLR_0.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvLR_0.Name = "dgvLR_0";
+            this.dgvLR_0.ReadOnly = true;
+            this.dgvLR_0.RowHeadersWidth = 51;
+            this.dgvLR_0.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dgvLR_0.Size = new System.Drawing.Size(583, 246);
+            this.dgvLR_0.TabIndex = 6;
+            // 
+            // dataGridReportLR
+            // 
+            this.dataGridReportLR.AllowUserToAddRows = false;
+            this.dataGridReportLR.AllowUserToDeleteRows = false;
+            this.dataGridReportLR.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridReportLR.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridReportLR.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3});
+            this.dataGridReportLR.Location = new System.Drawing.Point(260, 261);
+            this.dataGridReportLR.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridReportLR.Name = "dataGridReportLR";
+            this.dataGridReportLR.ReadOnly = true;
+            this.dataGridReportLR.RowHeadersWidth = 51;
+            this.dataGridReportLR.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataGridReportLR.Size = new System.Drawing.Size(583, 226);
+            this.dataGridReportLR.TabIndex = 7;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn1.HeaderText = "Stack";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn2.HeaderText = "InputText";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn3.HeaderText = "Result";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // txtLRStates
+            // 
+            this.txtLRStates.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtLRStates.Location = new System.Drawing.Point(7, 39);
+            this.txtLRStates.Margin = new System.Windows.Forms.Padding(4);
+            this.txtLRStates.Name = "txtLRStates";
+            this.txtLRStates.Size = new System.Drawing.Size(245, 451);
+            this.txtLRStates.TabIndex = 8;
+            this.txtLRStates.Text = "";
+            // 
+            // btnFSM
+            // 
+            this.btnFSM.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnFSM.Location = new System.Drawing.Point(7, 498);
+            this.btnFSM.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFSM.Name = "btnFSM";
+            this.btnFSM.Size = new System.Drawing.Size(247, 33);
+            this.btnFSM.TabIndex = 9;
+            this.btnFSM.Text = "View Finite State Machine";
+            this.btnFSM.UseVisualStyleBackColor = true;
+            this.btnFSM.Click += new System.EventHandler(this.btnFSM_Click_1);
+            // 
+            // btnShowParseTree
+            // 
+            this.btnShowParseTree.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnShowParseTree.Location = new System.Drawing.Point(262, 498);
+            this.btnShowParseTree.Margin = new System.Windows.Forms.Padding(4);
+            this.btnShowParseTree.Name = "btnShowParseTree";
+            this.btnShowParseTree.Size = new System.Drawing.Size(583, 33);
+            this.btnShowParseTree.TabIndex = 10;
+            this.btnShowParseTree.Text = "Show Parse Tree";
+            this.btnShowParseTree.UseVisualStyleBackColor = true;
+            this.btnShowParseTree.Click += new System.EventHandler(this.btnShowParseTree_Click_1);
             // 
             // Form1
             // 
@@ -254,9 +386,13 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MiniJ";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLR_0)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridReportLR)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -283,6 +419,15 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.Button btnShowParseTree;
+        private System.Windows.Forms.Button btnFSM;
+        private System.Windows.Forms.RichTextBox txtLRStates;
+        private System.Windows.Forms.DataGridView dataGridReportLR;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridView dgvLR_0;
+        private System.Windows.Forms.ComboBox cmbGrammarType;
     }
 }
 

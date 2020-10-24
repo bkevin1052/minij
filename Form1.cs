@@ -1,13 +1,23 @@
-﻿using Parser;
-using Parser.Lexical;
+﻿using Parser.Lexical;
 using Parser.Models;
 using Parser.Parse;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Msagl.Core.Geometry.Curves;
+using Microsoft.Msagl.Drawing;
+using Microsoft.Msagl.GraphViewerGdi;
+using Parser.LLTable;
+using Action = Parser.State.Action;
+using Color = System.Drawing.Color;
+using TreeNode = Parser.Parse.TreeNode;
+using System.Text;
+using Parser.States;
+using Parser;
 
 namespace minij
 {
@@ -203,6 +213,190 @@ namespace minij
                     listBoxFollow.Items.Add(variable.ShowFollows());
                 }
             }
+        }
+
+        private void btnShowParseTree_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnFSM_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbGrammarType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            tabLR_0_Enter(null, null);
+        }
+
+        private void cmbGrammarType_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+        }
+
+        private void tabLR_0_Enter(object sender, EventArgs e)
+        {
+            dataGridReportLR.Rows.Clear();
+            dgvLR_0.Rows.Clear();
+            dgvLR_0.Columns.Clear();
+
+            LRType lrType = (LRType)cmbGrammarType.SelectedIndex;
+            _lrZero = new LeftToRight_RightMost_Zero(_grammarRules, lrType, _preprocessor);
+            txtLRStates.Text = _lrZero.CalculateStateMachine();
+            var grammarTable = _lrZero.FillTable();
+            foreach (var keyValuePair in _lrZero.MapperToNumber.MapTerminalToNumber)
+            {
+                dgvLR_0.Columns.Add(keyValuePair.Key, keyValuePair.Key);
+            }
+            foreach (var keyValuePair in _lrZero.MapperToNumber.MapVariableToNumber.Skip(1))
+            {
+                dgvLR_0.Columns.Add(keyValuePair.Key, keyValuePair.Key);
+            }
+            foreach (var keyValue in _lrZero.FiniteStateMachine.States)
+            {
+                dgvLR_0.Rows.Add(new DataGridViewRow()
+                {
+                    HeaderCell = { Value = keyValue.StateId },
+                });
+            }
+
+            bool valid = true;
+            foreach (var state in _lrZero.FiniteStateMachine.States)
+            {
+                for (int j = 0; j < _lrZero.MapperToNumber.TerminalCount; j++)
+                {
+                    var parserAction = grammarTable.ActionTable[state.StateId, j];
+                    if (parserAction == null) continue;
+                    dgvLR_0.Rows[state.StateId].Cells[j].Value = parserAction;
+                    dgvLR_0.Rows[state.StateId].Cells[j].Style.BackColor = !parserAction.HasError ? Color.LightGreen : Color.Orange;
+                    if (parserAction.HasError) valid = false;
+                }
+
+                int terminalCount = _lrZero.MapperToNumber.TerminalCount;
+                for (int j = 0; j < _lrZero.MapperToNumber.VariableCount; j++)
+                {
+                    if (grammarTable.GoToTable[state.StateId, j] == null) continue;
+                    dgvLR_0.Rows[state.StateId].Cells[j + terminalCount - 1].Value = grammarTable.GoToTable[state.StateId, j].StateId;
+                    dgvLR_0.Rows[state.StateId].Cells[j + terminalCount - 1].Style.BackColor = Color.LightGreen;
+                }
+            }
+            Progress<ParseReportModel> progress = new Progress<ParseReportModel>();
+            progress.ProgressChanged += (o, m) =>
+            {
+                dataGridReportLR.Rows.Add(m.Stack, m.InputString, m.Output);
+            };
+
+            long stackTime = 0;
+            if (valid)
+            {
+                var terminals = GetTerminals();
+                if (terminals == null)
+                {
+                    MessageBox.Show("Terminal is empty!");
+                    return;
+                }
+                _lrZero.Parse(terminals, progress);
+            }
+        }
+
+        private List<Terminal> GetTerminals()
+        {
+            if (string.IsNullOrWhiteSpace(txtRuta.Text)) return null;
+            return new LexicalAnalyzer(
+                File.ReadAllText(txtRuta.Text)).TokenizeInputText();
+        }
+
+        private void tabItem_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnFSM_Click_1(object sender, EventArgs e)
+        {
+            System.Windows.Forms.Form form = new System.Windows.Forms.Form();
+            form.WindowState = FormWindowState.Maximized;
+            //create a viewer object 
+            Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
+
+            //create a graph object 
+            var graph = new Graph("Finite State Machine");
+            //create the graph content 
+
+            Dictionary<Parser.States.State, Node> dictionary = new Dictionary<Parser.States.State, Node>();
+            foreach (Parser.States.State state in _lrZero.FiniteStateMachine.States)
+            {
+                Node node = new Node(state.ToStringCompact());
+                node.Attr.FillColor = state.ReduceOnly ? Microsoft.Msagl.Drawing.Color.SeaGreen :
+                                        (state.ShiftOnly ? Microsoft.Msagl.Drawing.Color.LightGreen : Microsoft.Msagl.Drawing.Color.Orange);
+
+                dictionary.Add(state, node);
+                graph.AddNode(node);
+            }
+
+            foreach (Parser.States.State state in _lrZero.FiniteStateMachine.States)
+            {
+                foreach (KeyValuePair<ISymbol, Parser.States.State> stateNextState in state.NextStates)
+                {
+                    var edge = new Edge(dictionary[state], dictionary[stateNextState.Value], ConnectionToGraph.Connected);
+                    edge.LabelText = stateNextState.Key.ToString();
+                    graph.AddPrecalculatedEdge(edge);
+                }
+            }
+
+            viewer.Graph = graph;
+            //associate the viewer with the form 
+            form.SuspendLayout();
+            viewer.Dock = System.Windows.Forms.DockStyle.Fill;
+            form.Controls.Add(viewer);
+            form.ResumeLayout();
+            //show the form 
+            form.ShowDialog();
+        }
+
+        private void btnShowParseTree_Click_1(object sender, EventArgs e)
+        {
+            Queue<TreeNode> nodes = new Queue<TreeNode>();
+            foreach (TreeNode lrZeroNode in _lrZero.Nodes)
+            {
+                nodes.Enqueue(lrZeroNode);
+            }
+            ShowParseTree(nodes);
+        }
+
+        private void ShowParseTree(Queue<TreeNode> nodes)
+        {
+            var form = new Form();
+            form.WindowState = FormWindowState.Maximized;
+            GViewer viewer = new GViewer();
+            var tree = new PhyloTree();
+
+
+            while (nodes.Count > 0)
+            {
+                TreeNode treeNode = nodes.Dequeue();
+                foreach (TreeNode childNode in treeNode.Nodes)
+                {
+                    Node node = tree.AddNode(treeNode.ToString());
+                    node.Attr.FillColor = Microsoft.Msagl.Drawing.Color.Orange;
+                    tree.AddEdge(treeNode.ToString(), childNode.ToString());
+
+                    nodes.Enqueue(childNode);
+                }
+            }
+
+            viewer.Graph = tree;
+            form.SuspendLayout();
+            viewer.Dock = System.Windows.Forms.DockStyle.Fill;
+            form.Controls.Add(viewer);
+            form.ResumeLayout();
+            form.ShowDialog();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            cmbGrammarType.SelectedIndexChanged -= cmbGrammarType_SelectedIndexChanged;
+            cmbGrammarType.SelectedIndex = 0;
+            cmbGrammarType.SelectedIndexChanged += cmbGrammarType_SelectedIndexChanged;
         }
     }
 }

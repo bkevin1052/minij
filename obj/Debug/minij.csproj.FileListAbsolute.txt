@@ -18,3 +18,10 @@ C:\Users\angel\Desktop\Proyecto_Compis\minij\obj\Debug\minij.csproj.GenerateReso
 C:\Users\angel\Desktop\Proyecto_Compis\minij\obj\Debug\minij.csproj.CoreCompileInputs.cache
 C:\Users\angel\Desktop\Proyecto_Compis\minij\obj\Debug\minij.exe
 C:\Users\angel\Desktop\Proyecto_Compis\minij\obj\Debug\minij.pdb
+C:\Users\kevin\Desktop\COMPILADORES\minij\bin\Debug\Microsoft.Msagl.dll
+C:\Users\kevin\Desktop\COMPILADORES\minij\bin\Debug\Microsoft.Msagl.Drawing.dll
+C:\Users\kevin\Desktop\COMPILADORES\minij\bin\Debug\Microsoft.Msagl.GraphViewerGdi.dll
+C:\Users\kevin\Desktop\COMPILADORES\minij\bin\Debug\Microsoft.Msagl.xml
+C:\Users\kevin\Desktop\COMPILADORES\minij\bin\Debug\Microsoft.Msagl.Drawing.xml
+C:\Users\kevin\Desktop\COMPILADORES\minij\bin\Debug\Microsoft.Msagl.GraphViewerGdi.xml
+C:\Users\kevin\Desktop\COMPILADORES\minij\obj\Debug\minij.csproj.CopyComplete

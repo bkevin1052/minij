@@ -49,20 +49,20 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.cmbGrammarType = new System.Windows.Forms.ComboBox();
-            this.dgvLR_0 = new System.Windows.Forms.DataGridView();
+            this.btnShowParseTree = new System.Windows.Forms.Button();
+            this.btnFSM = new System.Windows.Forms.Button();
+            this.txtLRStates = new System.Windows.Forms.RichTextBox();
             this.dataGridReportLR = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtLRStates = new System.Windows.Forms.RichTextBox();
-            this.btnFSM = new System.Windows.Forms.Button();
-            this.btnShowParseTree = new System.Windows.Forms.Button();
+            this.dgvLR_0 = new System.Windows.Forms.DataGridView();
+            this.cmbGrammarType = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvLR_0)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridReportLR)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLR_0)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCargarArchivo
@@ -262,37 +262,41 @@
             this.tabPage2.Text = "SLR";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // cmbGrammarType
+            // btnShowParseTree
             // 
-            this.cmbGrammarType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbGrammarType.FormattingEnabled = true;
-            this.cmbGrammarType.Items.AddRange(new object[] {
-            "LR(0)",
-            "SLR(1)",
-            "CLR(1)"});
-            this.cmbGrammarType.Location = new System.Drawing.Point(7, 7);
-            this.cmbGrammarType.Margin = new System.Windows.Forms.Padding(4);
-            this.cmbGrammarType.Name = "cmbGrammarType";
-            this.cmbGrammarType.Size = new System.Drawing.Size(245, 24);
-            this.cmbGrammarType.TabIndex = 5;
-            this.cmbGrammarType.SelectedIndexChanged += new System.EventHandler(this.cmbGrammarType_SelectedIndexChanged_1);
-            // 
-            // dgvLR_0
-            // 
-            this.dgvLR_0.AllowUserToAddRows = false;
-            this.dgvLR_0.AllowUserToDeleteRows = false;
-            this.dgvLR_0.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnShowParseTree.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvLR_0.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvLR_0.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvLR_0.Location = new System.Drawing.Point(260, 7);
-            this.dgvLR_0.Margin = new System.Windows.Forms.Padding(4);
-            this.dgvLR_0.Name = "dgvLR_0";
-            this.dgvLR_0.ReadOnly = true;
-            this.dgvLR_0.RowHeadersWidth = 51;
-            this.dgvLR_0.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dgvLR_0.Size = new System.Drawing.Size(583, 246);
-            this.dgvLR_0.TabIndex = 6;
+            this.btnShowParseTree.Location = new System.Drawing.Point(262, 498);
+            this.btnShowParseTree.Margin = new System.Windows.Forms.Padding(4);
+            this.btnShowParseTree.Name = "btnShowParseTree";
+            this.btnShowParseTree.Size = new System.Drawing.Size(583, 33);
+            this.btnShowParseTree.TabIndex = 10;
+            this.btnShowParseTree.Text = "Show Parse Tree";
+            this.btnShowParseTree.UseVisualStyleBackColor = true;
+            this.btnShowParseTree.Click += new System.EventHandler(this.btnShowParseTree_Click_1);
+            // 
+            // btnFSM
+            // 
+            this.btnFSM.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnFSM.Location = new System.Drawing.Point(7, 498);
+            this.btnFSM.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFSM.Name = "btnFSM";
+            this.btnFSM.Size = new System.Drawing.Size(247, 33);
+            this.btnFSM.TabIndex = 9;
+            this.btnFSM.Text = "View Finite State Machine";
+            this.btnFSM.UseVisualStyleBackColor = true;
+            this.btnFSM.Click += new System.EventHandler(this.btnFSM_Click_1);
+            // 
+            // txtLRStates
+            // 
+            this.txtLRStates.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtLRStates.Location = new System.Drawing.Point(7, 39);
+            this.txtLRStates.Margin = new System.Windows.Forms.Padding(4);
+            this.txtLRStates.Name = "txtLRStates";
+            this.txtLRStates.Size = new System.Drawing.Size(245, 451);
+            this.txtLRStates.TabIndex = 8;
+            this.txtLRStates.Text = "";
             // 
             // dataGridReportLR
             // 
@@ -339,41 +343,36 @@
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
             // 
-            // txtLRStates
+            // dgvLR_0
             // 
-            this.txtLRStates.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtLRStates.Location = new System.Drawing.Point(7, 39);
-            this.txtLRStates.Margin = new System.Windows.Forms.Padding(4);
-            this.txtLRStates.Name = "txtLRStates";
-            this.txtLRStates.Size = new System.Drawing.Size(245, 451);
-            this.txtLRStates.TabIndex = 8;
-            this.txtLRStates.Text = "";
-            // 
-            // btnFSM
-            // 
-            this.btnFSM.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnFSM.Location = new System.Drawing.Point(7, 498);
-            this.btnFSM.Margin = new System.Windows.Forms.Padding(4);
-            this.btnFSM.Name = "btnFSM";
-            this.btnFSM.Size = new System.Drawing.Size(247, 33);
-            this.btnFSM.TabIndex = 9;
-            this.btnFSM.Text = "View Finite State Machine";
-            this.btnFSM.UseVisualStyleBackColor = true;
-            this.btnFSM.Click += new System.EventHandler(this.btnFSM_Click_1);
-            // 
-            // btnShowParseTree
-            // 
-            this.btnShowParseTree.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.dgvLR_0.AllowUserToAddRows = false;
+            this.dgvLR_0.AllowUserToDeleteRows = false;
+            this.dgvLR_0.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnShowParseTree.Location = new System.Drawing.Point(262, 498);
-            this.btnShowParseTree.Margin = new System.Windows.Forms.Padding(4);
-            this.btnShowParseTree.Name = "btnShowParseTree";
-            this.btnShowParseTree.Size = new System.Drawing.Size(583, 33);
-            this.btnShowParseTree.TabIndex = 10;
-            this.btnShowParseTree.Text = "Show Parse Tree";
-            this.btnShowParseTree.UseVisualStyleBackColor = true;
-            this.btnShowParseTree.Click += new System.EventHandler(this.btnShowParseTree_Click_1);
+            this.dgvLR_0.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvLR_0.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvLR_0.Location = new System.Drawing.Point(260, 7);
+            this.dgvLR_0.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvLR_0.Name = "dgvLR_0";
+            this.dgvLR_0.ReadOnly = true;
+            this.dgvLR_0.RowHeadersWidth = 51;
+            this.dgvLR_0.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dgvLR_0.Size = new System.Drawing.Size(583, 246);
+            this.dgvLR_0.TabIndex = 6;
+            // 
+            // cmbGrammarType
+            // 
+            this.cmbGrammarType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbGrammarType.FormattingEnabled = true;
+            this.cmbGrammarType.Items.AddRange(new object[] {
+            "LR(0)",
+            "SLR(1)"});
+            this.cmbGrammarType.Location = new System.Drawing.Point(7, 7);
+            this.cmbGrammarType.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbGrammarType.Name = "cmbGrammarType";
+            this.cmbGrammarType.Size = new System.Drawing.Size(245, 24);
+            this.cmbGrammarType.TabIndex = 5;
+            this.cmbGrammarType.SelectedIndexChanged += new System.EventHandler(this.cmbGrammarType_SelectedIndexChanged_1);
             // 
             // Form1
             // 
@@ -391,8 +390,8 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvLR_0)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridReportLR)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLR_0)).EndInit();
             this.ResumeLayout(false);
 
         }

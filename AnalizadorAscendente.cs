@@ -144,7 +144,7 @@ namespace minij
 
         private void cargarProducciones()
         {
-            lProducciones.Add(new Produccion(0, "IrASPrima", 1));
+            lProducciones.Add(new Produccion(0, "IrA"+"SPrima", 1));
             lProducciones.Add(new Produccion(1, "IrAS", 2));
             lProducciones.Add(new Produccion(2, "IrAC", 2));
             lProducciones.Add(new Produccion(3, "IrAC", 1));

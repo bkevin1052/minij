@@ -50,6 +50,7 @@ namespace minij
         {
             bool value = false;
 
+            cargarGramatica();
             pEstados.Push(0);
             bReduccion = false;
             aActual.setAccion(new Accion());
@@ -57,6 +58,8 @@ namespace minij
             while(aActual.sRegla != "Aceptar" && iTokenIndex < lTokens.Count())
             {
                 comparacion();
+
+                if(aActual.sRegla == "Aceptar") { value = true; }
             }
 
             return value;
@@ -66,10 +69,10 @@ namespace minij
         {
             bool value = false;
 
-            Accion aAux = dTablaAnalisis[new Validacion(lTokens[iTokenIndex].Lexema, pEstados.Peek())];
-
-            if(aAux != null)
+            if(dTablaAnalisis.ContainsKey(new Validacion(lTokens[iTokenIndex].Lexema, pEstados.Peek())))
             {
+                aActual = dTablaAnalisis[new Validacion(lTokens[iTokenIndex].Lexema, pEstados.Peek())];
+
 
             }
             else
@@ -79,6 +82,13 @@ namespace minij
             }
 
             return value;
+        }
+
+
+        private void cargarGramatica()
+        {
+            dTablaAnalisis.Add(new Validacion("x", 0), new Accion("D", 3));
+            dTablaAnalisis.Add(new Validacion("bool", 0), new Accion("Aceptar", 3));
         }
 
         public List<Token> getErrores()

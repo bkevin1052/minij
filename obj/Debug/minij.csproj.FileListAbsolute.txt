@@ -18,3 +18,13 @@ C:\Users\angel\Desktop\Proyecto_Compis\minij\obj\Debug\minij.csproj.GenerateReso
 C:\Users\angel\Desktop\Proyecto_Compis\minij\obj\Debug\minij.csproj.CoreCompileInputs.cache
 C:\Users\angel\Desktop\Proyecto_Compis\minij\obj\Debug\minij.exe
 C:\Users\angel\Desktop\Proyecto_Compis\minij\obj\Debug\minij.pdb
+C:\Users\angel\Desktop\Fase2_Compiladores_Final\minij\bin\Debug\minij.exe.config
+C:\Users\angel\Desktop\Fase2_Compiladores_Final\minij\bin\Debug\minij.exe
+C:\Users\angel\Desktop\Fase2_Compiladores_Final\minij\bin\Debug\minij.pdb
+C:\Users\angel\Desktop\Fase2_Compiladores_Final\minij\obj\Debug\minij.csprojAssemblyReference.cache
+C:\Users\angel\Desktop\Fase2_Compiladores_Final\minij\obj\Debug\minij.Form1.resources
+C:\Users\angel\Desktop\Fase2_Compiladores_Final\minij\obj\Debug\minij.Properties.Resources.resources
+C:\Users\angel\Desktop\Fase2_Compiladores_Final\minij\obj\Debug\minij.csproj.GenerateResource.cache
+C:\Users\angel\Desktop\Fase2_Compiladores_Final\minij\obj\Debug\minij.csproj.CoreCompileInputs.cache
+C:\Users\angel\Desktop\Fase2_Compiladores_Final\minij\obj\Debug\minij.exe
+C:\Users\angel\Desktop\Fase2_Compiladores_Final\minij\obj\Debug\minij.pdb

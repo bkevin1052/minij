@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace minij.Models
 {
-    class Validacion
+    class Validacion: IEquatable<Validacion>
     {
         public string sSimbolo { get; private set; }
         public int iEstado { get; private set; }
@@ -22,6 +22,19 @@ namespace minij.Models
         {
             this.sSimbolo = simbolo;
             this.iEstado = estado;
+        }
+
+
+        public override int GetHashCode() => (sSimbolo, iEstado).GetHashCode();
+        public override bool Equals(object obj) => Equals(obj as Validacion);
+        public override string ToString() => $"Simbolo:{this.sSimbolo} , Estado:{this.iEstado}";
+
+        public bool Equals(Validacion other)
+        {
+            if (other is null)
+                return false;
+
+            return (this.sSimbolo == other.sSimbolo && this.iEstado == other.iEstado);
         }
     }
 }

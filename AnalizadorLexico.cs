@@ -169,7 +169,17 @@ namespace minij
             agregarToken(@"(this)\b", "PALABRA_RESERVADA_THIS");
             agregarToken(@"(New)\b", "PALABRA_RESERVADA_NEW");
             agregarToken(@"(null)\b", "PALABRA_RESERVADA_NULL");
-            //agregarToken(@"(class|const|interface|extends|implements|while|if|else|break|System|out|println)\b", "PALABRA_RESERVADA");
+            agregarToken(@"(const)\b", "PALABRA_RESERVADA_CONST");
+            agregarToken(@"(class)\b", "PALABRA_RESERVADA_CLASS");
+            agregarToken(@"(interface)\b", "PALABRA_RESERVADA_INTERFACE");
+            agregarToken(@"(if)\b", "PALABRA_RESERVADA_IF");
+            agregarToken(@"(else)\b", "PALABRA_RESERVADA_ELSE");
+            agregarToken(@"(while)\b", "PALABRA_RESERVADA_WHILE");
+            agregarToken(@"(break)\b", "PALABRA_RESERVADA_BREAK");
+            agregarToken(@"(Console)\b", "PALABRA_RESERVADA_CONSOLE");
+            agregarToken(@"(Writeline)\b", "PALABRA_RESERVADA_WRITELINE");
+
+            //agregarToken(@"(extends|implements|System|out|println)\b", "PALABRA_RESERVADA");
             //--CONSTANTE BOOLEANAS
             agregarToken(@"(true|false)", "CONSTANTE_BOOLEANA");
             //--IDENTIFICADORES
@@ -193,8 +203,8 @@ namespace minij
             agregarToken(@"[\)]", "PARENTESIS_CIERRA");
             agregarToken(@"[\[]", "CORCHETE_ABRE");
             agregarToken(@"[\]]", "CORCHETE_CIERRA");
-            //agregarToken(@"[\{]", "LLAVE_ABRE");
-            //agregarToken(@"[\}]", "LLAVE_CIERRA");
+            agregarToken(@"[\{]", "LLAVE_ABRE");
+            agregarToken(@"[\}]", "LLAVE_CIERRA");
             //--COMPARADORES
             agregarToken(@"(<=)", "COMPARADOR_MENOR_IGUAL");
             agregarToken(@"(>=)", "COMPARADOR_MAYOR_IGUAL");

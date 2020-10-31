@@ -1,0 +1,39 @@
+No Terminal                  Nullable  PRIMERO          SIGUIENTE
+
+<S>                           False     int double boolean string identificador void static class interface
+<Program>                     False     int double boolean string identificador void static class interface
+<Decl>                        False     int double boolean string identificador void static class interface Epsilon int double boolean string identificador void static class interface
+<Program1>                    False     Epsilon int double boolean string identificador void static class interface
+<VariableDecl>                False     int double boolean string identificador Epsilon int double boolean string identificador void static class interface
+<FunctionDecl>                False     int double boolean string identificador void Epsilon int double boolean string identificador void static class interface
+<ConstDecl>                   False     static              static Epsilon int double boolean string identificador void class interface
+<ClassDecl>                   False     class               Epsilon int double boolean string identificador void static class interface
+<InterfaceDecl>               False     interface           Epsilon int double boolean string identificador void static class interface
+<Variable>                    False     int double boolean string identificador ; , )
+<Type>                        False     int double boolean string identificador identificador []
+<ConstType>                   False     int double boolean string identificador
+<Formals>                     False     int double boolean string identificador )
+<StmtBlock>                   False     {                   Epsilon else { int double boolean string identificador void static class interface this ( - ! New if while for break return System intConstant doubleConstant booleanConstant stringConstant null
+<Extends1>                    False     extends Epsilon     implements Epsilon
+<Identificador1>              False     identificador       ,
+<Implements1>                 False     implements Epsilon  {
+<Field1>                      False     Epsilon int double boolean string identificador void static }
+<Field>                       False     int double boolean string identificador void static Epsilon int double boolean string identificador void static
+<Prototype1>                  False     Epsilon int double boolean string identificador void }
+<Prototype>                   False     int double boolean string identificador void Epsilon int double boolean string identificador void
+<VariableDecl1>               False     Epsilon int double boolean string identificador static Epsilon
+<ConstDecl1>                  False     static Epsilon      Epsilon { this ( - ! New if while for break return System identificador intConstant doubleConstant booleanConstant stringConstant null
+<Stmt1>                       False     Epsilon { this ( - ! New if while for break return System identificador intConstant doubleConstant booleanConstant stringConstant null }
+<Stmt>                        False     Epsilon { this ( - ! New if while for break return System identificador intConstant doubleConstant booleanConstant stringConstant null else Epsilon { this ( - ! New if while for break return System identificador intConstant doubleConstant booleanConstant stringConstant null
+<Expr1>                       False     Epsilon this ( - ! New identificador intConstant doubleConstant booleanConstant stringConstant null ;
+<Expr>                        False     this ( - ! New identificador intConstant doubleConstant booleanConstant stringConstant null ) ; , - / % > >= != || .
+<IfStmt>                      False     if                  else Epsilon { this ( - ! New if while for break return System identificador intConstant doubleConstant booleanConstant stringConstant null
+<WhileStmt>                   False     while               else Epsilon { this ( - ! New if while for break return System identificador intConstant doubleConstant booleanConstant stringConstant null
+<ForStmt>                     False     for                 else Epsilon { this ( - ! New if while for break return System identificador intConstant doubleConstant booleanConstant stringConstant null
+<BreakStmt>                   False     break               else Epsilon { this ( - ! New if while for break return System identificador intConstant doubleConstant booleanConstant stringConstant null
+<ReturnStmt>                  False     return              else Epsilon { this ( - ! New if while for break return System identificador intConstant doubleConstant booleanConstant stringConstant null
+<PrintStmt>                   False     System              else Epsilon { this ( - ! New if while for break return System identificador intConstant doubleConstant booleanConstant stringConstant null
+<Else1>                       False     else Epsilon        else Epsilon { this ( - ! New if while for break return System identificador intConstant doubleConstant booleanConstant stringConstant null
+<Expr2>                       False     this ( - ! New identificador intConstant doubleConstant booleanConstant stringConstant null )
+<LValue>                      False     identificador this ( - ! New intConstant doubleConstant booleanConstant stringConstant null = ) ; , - / % > >= != || .
+<Constant>                    False     intConstant doubleConstant booleanConstant stringConstant null ) ; , - / % > >= != || .

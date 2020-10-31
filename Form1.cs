@@ -13,6 +13,7 @@ namespace minij
         OpenFileDialog open;
         AnalizadorLexico analizador;
         AnalizadorSintactico sintactico;
+        AnalizadorAscendente ascendente;
         StreamWriter file;
         string rutaEscritura;
 
@@ -105,7 +106,8 @@ namespace minij
             }
 
             var listaTokens = analizador.obtenerTokensSintactico(texto);
-            analizarSintactico(listaTokens);
+            //analizarSintactico(listaTokens);
+            analizarAscendente(listaTokens);
         }
 
         /// <summary>
@@ -126,6 +128,30 @@ namespace minij
             {
                 MessageBox.Show("Analisis Sintactico - Fallido");
                 foreach (var tk in sintactico.tokensErroneos)
+                {
+                    ListViewItem lvi = new ListViewItem();
+                    string[] row = { tk.Nombre, tk.Lexema, tk.Linea.ToString(), tk.Columna.ToString(), tk.Index.ToString() };
+                    var listViewItem = new ListViewItem(row);
+                    lvToken.Items.Add(listViewItem);
+                }
+            }
+        }
+
+        private void analizarAscendente(List<Token> tokens)
+        {
+            lvToken.View = View.Details;
+            lvToken.Items.Clear();
+
+            ascendente = new AnalizadorAscendente(tokens);
+
+            if (ascendente.analizar())
+            {
+                MessageBox.Show("Analisis Sintactico - Positivo");
+            }
+            else
+            {
+                MessageBox.Show("Analisis Sintactico - Fallido");
+                foreach (var tk in ascendente.getErrores())
                 {
                     ListViewItem lvi = new ListViewItem();
                     string[] row = { tk.Nombre, tk.Lexema, tk.Linea.ToString(), tk.Columna.ToString(), tk.Index.ToString() };

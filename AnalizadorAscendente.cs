@@ -12,35 +12,38 @@ namespace minij
     {
         private List<Produccion> lProducciones;
         private Dictionary<Validacion, Accion> dTablaAnalisis;
-        private List<Token> tokens;
-        private List<Token> tokensErroneos;
+        private List<Token> lTokens;
+        private List<Token> lTokensErroneos;
         private Stack<int> pEstados;
         private Stack<Token> pSimbolos;
         private int iTokenIndex;
         private bool bReduccion;
+        private Accion aActual;
 
         public AnalizadorAscendente()
         {
             this.lProducciones = new List<Produccion>();
             this.dTablaAnalisis = new Dictionary<Validacion, Accion>();
-            tokens = new List<Token>();
-            tokensErroneos = new List<Token>();
+            lTokens = new List<Token>();
+            lTokensErroneos = new List<Token>();
             pEstados = new Stack<int>();
             pSimbolos = new Stack<Token>();
             iTokenIndex = default;
             bReduccion = default;
+            aActual = new Accion();
         }
 
         public AnalizadorAscendente(List<Token> listaTokens)
         {
             this.lProducciones = new List<Produccion>();
             this.dTablaAnalisis = new Dictionary<Validacion, Accion>();
-            tokens = listaTokens;
-            tokensErroneos = new List<Token>();
+            lTokens = listaTokens;
+            lTokensErroneos = new List<Token>();
             pEstados = new Stack<int>();
             pSimbolos = new Stack<Token>();
             iTokenIndex = 0;
             bReduccion = false;
+            aActual = new Accion();
         }
 
         public bool analizar()
@@ -49,14 +52,38 @@ namespace minij
 
             pEstados.Push(0);
             bReduccion = false;
+            aActual.setAccion(new Accion());
 
+            while(aActual.sRegla != "Aceptar" && iTokenIndex < lTokens.Count())
+            {
+                comparacion();
+            }
+
+            return value;
+        }
+
+        public bool comparacion()
+        {
+            bool value = false;
+
+            Accion aAux = dTablaAnalisis[new Validacion(lTokens[iTokenIndex].Lexema, pEstados.Peek())];
+
+            if(aAux != null)
+            {
+
+            }
+            else
+            {
+                lTokensErroneos.Add(lTokens[iTokenIndex]);
+                iTokenIndex++;
+            }
 
             return value;
         }
 
         public List<Token> getErrores()
         {
-            return this.tokensErroneos;
+            return this.lTokensErroneos;
         }
     }
 }

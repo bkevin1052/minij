@@ -23,5 +23,11 @@ namespace minij.Models
             this.sRegla = regla;
             this.iEstado = estado;
         }
+
+        public void setAccion(Accion accion)
+        {
+            sRegla = accion.sRegla;
+            iEstado = accion.iEstado;
+        }
     }
 }

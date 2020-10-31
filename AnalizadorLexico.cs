@@ -157,6 +157,7 @@ namespace minij
             agregarToken("/[*](.*?|\n|\r)*[*]/", "COMENTARIO2", true);
             agregarToken(@"\/[*](.*?|\n|\r)*$", "EOF_EN_COMENTARIO");
             //--PALABRAS RESERVADAS
+            agregarToken(@"(KyAtodoBien)\b", "SIMBOLO_FINAL_ARCHIVO");
             agregarToken(@"(int)\b", "PALABRA_RESERVADA_INT");
             agregarToken(@"(double)\b", "PALABRA_RESERVADA_DOUBLE");
             agregarToken(@"(boolean)\b", "PALABRA_RESERVADA_BOOLEAN");

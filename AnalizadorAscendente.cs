@@ -50,6 +50,7 @@ namespace minij
         {
             bool value = false;
 
+            lTokens.Add(new Token("SIMBOLO_FINAL_ARCHIVO", "KyAtodoBien", lTokens.Last().Linea + lTokens.Last().Lexema.Length + 1, lTokens.Last().Linea, lTokens.Last().Linea + lTokens.Last().Lexema.Length + 1));
             cargarGramatica();
             pEstados.Push(0);
             bReduccion = false;
@@ -69,11 +70,16 @@ namespace minij
         {
             bool value = false;
 
-            if(dTablaAnalisis.ContainsKey(new Validacion(lTokens[iTokenIndex].Lexema, pEstados.Peek())))
+            if(dTablaAnalisis.ContainsKey(new Validacion(lTokens[iTokenIndex].Nombre, pEstados.Peek())))
             {
-                aActual = dTablaAnalisis[new Validacion(lTokens[iTokenIndex].Lexema, pEstados.Peek())];
+                aActual = dTablaAnalisis[new Validacion(lTokens[iTokenIndex].Nombre, pEstados.Peek())];
 
-
+                if(aActual.sRegla == "D")
+                {
+                    pEstados.Push(aActual.iEstado);
+                    pSimbolos.Push(lTokens[iTokenIndex]);
+                    iTokenIndex++;
+                }
             }
             else
             {
@@ -88,7 +94,12 @@ namespace minij
         private void cargarGramatica()
         {
             dTablaAnalisis.Add(new Validacion("x", 0), new Accion("D", 3));
-            dTablaAnalisis.Add(new Validacion("bool", 0), new Accion("Aceptar", 3));
+            dTablaAnalisis.Add(new Validacion("PALABRA_RESERVADA_BOOL", 0), new Accion("D", 3));
+            dTablaAnalisis.Add(new Validacion("CORCHETE_VACIO", 3), new Accion("D", 3));
+            dTablaAnalisis.Add(new Validacion("IDENTIFICADOR", 3), new Accion("D", 4));
+            dTablaAnalisis.Add(new Validacion("DELIMITADOR_PUNTO_COMA", 4), new Accion("D", 1));
+            dTablaAnalisis.Add(new Validacion("SIMBOLO_FINAL_ARCHIVO", 1), new Accion("Aceptar", default));
+
         }
 
         public List<Token> getErrores()

@@ -169,17 +169,18 @@ namespace minij
             agregarToken(@"(this)\b", "PALABRA_RESERVADA_THIS");
             agregarToken(@"(New)\b", "PALABRA_RESERVADA_NEW");
             agregarToken(@"(null)\b", "PALABRA_RESERVADA_NULL");
-            agregarToken(@"(const)\b", "PALABRA_RESERVADA_CONST");
+            agregarToken(@"(static)\b", "PALABRA_RESERVADA_STATIC");
             agregarToken(@"(class)\b", "PALABRA_RESERVADA_CLASS");
             agregarToken(@"(interface)\b", "PALABRA_RESERVADA_INTERFACE");
             agregarToken(@"(if)\b", "PALABRA_RESERVADA_IF");
             agregarToken(@"(else)\b", "PALABRA_RESERVADA_ELSE");
             agregarToken(@"(while)\b", "PALABRA_RESERVADA_WHILE");
             agregarToken(@"(break)\b", "PALABRA_RESERVADA_BREAK");
-            agregarToken(@"(Console)\b", "PALABRA_RESERVADA_CONSOLE");
-            agregarToken(@"(Writeline)\b", "PALABRA_RESERVADA_WRITELINE");
-
-            //agregarToken(@"(extends|implements|System|out|println)\b", "PALABRA_RESERVADA");
+            agregarToken(@"(extends)\b", "PALABRA_RESERVADA_EXTENDS");
+            agregarToken(@"(implements)\b", "PALABRA_RESERVADA_IMPLEMENTS");
+            agregarToken(@"(System)\b", "PALABRA_RESERVADA_System");
+            agregarToken(@"(out)\b", "PALABRA_RESERVADA_OUT");
+            agregarToken(@"(println)\b", "PALABRA_RESERVADA_PRINTLN");
             //--CONSTANTE BOOLEANAS
             agregarToken(@"(true|false)", "CONSTANTE_BOOLEANA");
             //--IDENTIFICADORES

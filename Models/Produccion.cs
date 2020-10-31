@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace minij.Models
 {
-    class Produccion
+    class Produccion: IEquatable<Produccion>
     {
         public int iEstado { get; private set; }
         public string sSimbolo { get; private set; }
@@ -25,6 +25,19 @@ namespace minij.Models
             this.iEstado = estado;
             this.sSimbolo = simbolo;
             this.iNumeroEstados = numeroEstados;
+        }
+
+
+        public override int GetHashCode() => (sSimbolo, iEstado, iNumeroEstados).GetHashCode();
+        public override bool Equals(object obj) => Equals(obj as Produccion);
+        public override string ToString() => $"Estado:{this.iEstado} , Simbolo:{this.sSimbolo} , No. elementos:{this.iNumeroEstados}";
+
+        public bool Equals(Produccion other)
+        {
+            if (other is null)
+                return false;
+
+            return (this.sSimbolo == other.sSimbolo && this.iEstado == other.iEstado && this.iNumeroEstados == other.iNumeroEstados);
         }
     }
 }

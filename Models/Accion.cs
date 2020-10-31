@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace minij.Models
 {
-    class Accion
+    class Accion: IEquatable<Accion>
     {
         public string sRegla { get; private set; }
 
@@ -28,6 +28,19 @@ namespace minij.Models
         {
             sRegla = accion.sRegla;
             iEstado = accion.iEstado;
+        }
+
+
+        public override int GetHashCode() => (sRegla, iEstado).GetHashCode();
+        public override bool Equals(object obj) => Equals(obj as Accion);
+        public override string ToString() => $"Regla:{this.sRegla} , Estado:{this.iEstado}";
+
+        public bool Equals(Accion other)
+        {
+            if (other is null)
+                return false;
+
+            return (this.sRegla == other.sRegla && this.iEstado == other.iEstado);
         }
     }
 }

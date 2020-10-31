@@ -24,6 +24,11 @@ namespace minij.Models
             this.iEstado = estado;
         }
 
+        public void setAccion(Validacion validacion)
+        {
+            sSimbolo = validacion.sSimbolo;
+            iEstado = validacion.iEstado;
+        }
 
         public override int GetHashCode() => (sSimbolo, iEstado).GetHashCode();
         public override bool Equals(object obj) => Equals(obj as Validacion);

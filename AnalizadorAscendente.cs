@@ -52,6 +52,7 @@ namespace minij
 
             lTokens.Add(new Token("SIMBOLO_FINAL_ARCHIVO", "KyAtodoBien", lTokens.Last().Linea + lTokens.Last().Lexema.Length + 1, lTokens.Last().Linea, lTokens.Last().Linea + lTokens.Last().Lexema.Length + 1));
             cargarGramatica();
+            cargarProducciones();
             pEstados.Push(0);
             bReduccion = false;
             aActual.setAccion(new Accion());
@@ -70,7 +71,20 @@ namespace minij
         {
             bool value = false;
 
-            if(dTablaAnalisis.ContainsKey(new Validacion(lTokens[iTokenIndex].Nombre, pEstados.Peek())))
+            if (bReduccion)
+            {
+                if (dTablaAnalisis.ContainsKey(new Validacion(pSimbolos.Peek().Lexema, pEstados.Peek())))
+                {
+                    aActual = dTablaAnalisis[new Validacion(pSimbolos.Peek().Lexema, pEstados.Peek())];
+
+                    if (aActual.sRegla == "IrA")
+                    {
+                        pEstados.Push(aActual.iEstado);
+                        bReduccion = false;
+                    }
+                }
+            }
+            else if(dTablaAnalisis.ContainsKey(new Validacion(lTokens[iTokenIndex].Nombre, pEstados.Peek())))
             {
                 aActual = dTablaAnalisis[new Validacion(lTokens[iTokenIndex].Nombre, pEstados.Peek())];
 
@@ -80,6 +94,16 @@ namespace minij
                     pSimbolos.Push(lTokens[iTokenIndex]);
                     iTokenIndex++;
                 }
+                else if(aActual.sRegla == "R")
+                {
+                    for (int i = 0; i < lProducciones[aActual.iEstado].iNumeroEstados; i++)
+                    {
+                        pEstados.Pop();
+                        pSimbolos.Pop();
+                    }
+                    pSimbolos.Push(new Token(lProducciones[aActual.iEstado].sSimbolo, lProducciones[aActual.iEstado].sSimbolo, lProducciones[aActual.iEstado].iEstado, 0, 0));
+                    bReduccion = true;
+                }
             }
             else
             {
@@ -87,19 +111,43 @@ namespace minij
                 iTokenIndex++;
             }
 
+            if (aActual.sRegla == "Aceptar") { value = true; }
+
             return value;
         }
 
 
         private void cargarGramatica()
         {
-            dTablaAnalisis.Add(new Validacion("x", 0), new Accion("D", 3));
-            dTablaAnalisis.Add(new Validacion("PALABRA_RESERVADA_BOOL", 0), new Accion("D", 3));
-            dTablaAnalisis.Add(new Validacion("CORCHETE_VACIO", 3), new Accion("D", 3));
-            dTablaAnalisis.Add(new Validacion("IDENTIFICADOR", 3), new Accion("D", 4));
-            dTablaAnalisis.Add(new Validacion("DELIMITADOR_PUNTO_COMA", 4), new Accion("D", 1));
+            dTablaAnalisis.Add(new Validacion("PALABRA_RESERVADA_INT", 0), new Accion("D", 3));
+            dTablaAnalisis.Add(new Validacion("PALABRA_RESERVADA_INT", 2), new Accion("D", 6));
+            dTablaAnalisis.Add(new Validacion("PALABRA_RESERVADA_INT", 3), new Accion("D", 3));
+            dTablaAnalisis.Add(new Validacion("PALABRA_RESERVADA_INT", 4), new Accion("R", 3));
+            dTablaAnalisis.Add(new Validacion("PALABRA_RESERVADA_INT", 6), new Accion("D", 6));
+            dTablaAnalisis.Add(new Validacion("PALABRA_RESERVADA_INT", 8), new Accion("R", 2));
+            dTablaAnalisis.Add(new Validacion("PALABRA_RESERVADA_STRING", 0), new Accion("D", 4));
+            dTablaAnalisis.Add(new Validacion("PALABRA_RESERVADA_STRING", 2), new Accion("D", 7));
+            dTablaAnalisis.Add(new Validacion("PALABRA_RESERVADA_STRING", 3), new Accion("D", 4));
+            dTablaAnalisis.Add(new Validacion("PALABRA_RESERVADA_STRING", 4), new Accion("R", 3));
+            dTablaAnalisis.Add(new Validacion("PALABRA_RESERVADA_STRING", 6), new Accion("D", 7));
+            dTablaAnalisis.Add(new Validacion("PALABRA_RESERVADA_STRING", 8), new Accion("R", 2));
             dTablaAnalisis.Add(new Validacion("SIMBOLO_FINAL_ARCHIVO", 1), new Accion("Aceptar", default));
+            dTablaAnalisis.Add(new Validacion("SIMBOLO_FINAL_ARCHIVO", 5), new Accion("R", 1));
+            dTablaAnalisis.Add(new Validacion("SIMBOLO_FINAL_ARCHIVO", 7), new Accion("R", 3));
+            dTablaAnalisis.Add(new Validacion("SIMBOLO_FINAL_ARCHIVO", 9), new Accion("R", 2));
+            dTablaAnalisis.Add(new Validacion("IrAS", 0), new Accion("IrA", 1));
+            dTablaAnalisis.Add(new Validacion("IrAC", 0), new Accion("IrA", 2));
+            dTablaAnalisis.Add(new Validacion("IrAC", 2), new Accion("IrA", 5));
+            dTablaAnalisis.Add(new Validacion("IrAC", 3), new Accion("IrA", 8));
+            dTablaAnalisis.Add(new Validacion("IrAC", 6), new Accion("IrA", 9));
+        }
 
+        private void cargarProducciones()
+        {
+            lProducciones.Add(new Produccion(0, "IrASPrima", 1));
+            lProducciones.Add(new Produccion(1, "IrAS", 2));
+            lProducciones.Add(new Produccion(2, "IrAC", 2));
+            lProducciones.Add(new Produccion(3, "IrAC", 1));
         }
 
         public List<Token> getErrores()

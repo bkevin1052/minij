@@ -42,9 +42,9 @@
             // 
             // btnCompilar
             // 
-            this.btnCompilar.Location = new System.Drawing.Point(693, 12);
+            this.btnCompilar.Location = new System.Drawing.Point(665, 12);
             this.btnCompilar.Name = "btnCompilar";
-            this.btnCompilar.Size = new System.Drawing.Size(75, 23);
+            this.btnCompilar.Size = new System.Drawing.Size(116, 33);
             this.btnCompilar.TabIndex = 1;
             this.btnCompilar.Text = "Compilar";
             this.btnCompilar.UseVisualStyleBackColor = true;

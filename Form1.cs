@@ -160,5 +160,11 @@ namespace minij
                 }
             }
         }
+
+        private void btnSemantico_Click(object sender, EventArgs e)
+        {
+            var consola = new Semantico();
+            consola.Show();
+        }
     }
 }

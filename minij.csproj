@@ -36,6 +36,9 @@
     <ApplicationIcon>search.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Irony, Version=1.1.0.0, Culture=neutral, PublicKeyToken=ca48ace7223ead47, processorArchitecture=MSIL">
+      <HintPath>packages\Irony.1.1.0\lib\net40\Irony.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -54,6 +57,21 @@
     <Compile Include="Models\Accion.cs" />
     <Compile Include="Models\Produccion.cs" />
     <Compile Include="Models\Validacion.cs" />
+    <Compile Include="Semantico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Semantico.Designer.cs">
+      <DependentUpon>Semantico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Semantico\Arbol.cs" />
+    <Compile Include="Semantico\ejecucion\ThanosExecutor.cs" />
+    <Compile Include="Semantico\ejecucion\ThanosLexer.cs" />
+    <Compile Include="Semantico\ejecucion\ThanosListaTokens.cs" />
+    <Compile Include="Semantico\ejecucion\ThanosParser.cs" />
+    <Compile Include="Semantico\ejecucion\ThanosToken.cs" />
+    <Compile Include="Semantico\Gramatica.cs" />
+    <Compile Include="Semantico\Simbolo.cs" />
+    <Compile Include="Semantico\TablaSimbolos.cs" />
     <Compile Include="Token.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -76,6 +94,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Semantico.resx">
+      <DependentUpon>Semantico.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -92,5 +114,6 @@
   <ItemGroup>
     <Content Include="search.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

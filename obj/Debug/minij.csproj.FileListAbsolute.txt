@@ -28,3 +28,6 @@ C:\Users\angel\Desktop\Fase2_Compiladores_Final\minij\obj\Debug\minij.csproj.Gen
 C:\Users\angel\Desktop\Fase2_Compiladores_Final\minij\obj\Debug\minij.csproj.CoreCompileInputs.cache
 C:\Users\angel\Desktop\Fase2_Compiladores_Final\minij\obj\Debug\minij.exe
 C:\Users\angel\Desktop\Fase2_Compiladores_Final\minij\obj\Debug\minij.pdb
+C:\Users\kevin\Desktop\COMPILADORES\minij\obj\Debug\minij.Semantico.resources
+C:\Users\kevin\Desktop\COMPILADORES\minij\bin\Debug\Irony.dll
+C:\Users\kevin\Desktop\COMPILADORES\minij\obj\Debug\minij.csproj.CopyComplete

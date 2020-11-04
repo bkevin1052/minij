@@ -38,6 +38,7 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnSemantico = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnCargarArchivo
@@ -106,11 +107,22 @@
             this.columnHeader5.Text = "Index";
             this.columnHeader5.Width = 160;
             // 
+            // btnSemantico
+            // 
+            this.btnSemantico.Location = new System.Drawing.Point(836, 52);
+            this.btnSemantico.Name = "btnSemantico";
+            this.btnSemantico.Size = new System.Drawing.Size(222, 23);
+            this.btnSemantico.TabIndex = 5;
+            this.btnSemantico.Text = "Analizador Semantico";
+            this.btnSemantico.UseVisualStyleBackColor = true;
+            this.btnSemantico.Click += new System.EventHandler(this.btnSemantico_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1070, 619);
+            this.Controls.Add(this.btnSemantico);
             this.Controls.Add(this.lvToken);
             this.Controls.Add(this.txtRuta);
             this.Controls.Add(this.lblError);
@@ -135,6 +147,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.Button btnSemantico;
     }
 }
 

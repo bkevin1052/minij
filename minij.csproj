@@ -57,6 +57,7 @@
     <Compile Include="Models\Accion.cs" />
     <Compile Include="Models\Produccion.cs" />
     <Compile Include="Models\Validacion.cs" />
+    <Compile Include="RegexLexer.cs" />
     <Compile Include="Semantico.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +73,7 @@
     <Compile Include="Semantico\Gramatica.cs" />
     <Compile Include="Semantico\Simbolo.cs" />
     <Compile Include="Semantico\TablaSimbolos.cs" />
+    <Compile Include="Sintactico.cs" />
     <Compile Include="Token.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

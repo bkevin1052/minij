@@ -29,11 +29,6 @@ namespace frmMain.semantico.ejecucion
 
             Errores = results.Errors.Cast<CompilerError>().ToList();
 
-            foreach (var error in Errores)
-            {
-                MessageBox.Show(error.ErrorText);
-            }
-
             if (Errores.Count != 0)
             {
                 return false;

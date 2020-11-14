@@ -9,7 +9,7 @@ namespace minij
 {
     public partial class Form1 : Form
     {
-        String texto;
+        public static String texto;
         OpenFileDialog open;
         AnalizadorLexico analizador;
         AnalizadorSintactico sintactico;

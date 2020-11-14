@@ -28,6 +28,8 @@ namespace minij
         {
             InitializeComponent();
 
+            txtTexto.Text = Form1.texto;
+
             using (StreamReader sr = new StreamReader(@"..\..\RegexLexer.cs"))
             {
 
@@ -321,7 +323,7 @@ namespace minij
 
         private void btnCompilar_Click(object sender, EventArgs e)
         {
-            aCodigo();
+            //aCodigo();
             analisisSemantico();
             ejecutar();
 
@@ -515,7 +517,7 @@ namespace minij
 
             if (!ThanosExecutor.Compilar(nuevoCodigo))
             {
-                MessageBox.Show(String.Join("\n\n", ThanosExecutor.Errores));
+                txtErrores.Text =  String.Join("\n\n", ThanosExecutor.Errores);
                 return;
             }
 

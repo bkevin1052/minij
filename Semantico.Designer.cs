@@ -30,31 +30,63 @@
         {
             this.txtTexto = new System.Windows.Forms.TextBox();
             this.btnCompilar = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtErrores = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtTexto
             // 
-            this.txtTexto.Location = new System.Drawing.Point(12, 12);
+            this.txtTexto.Location = new System.Drawing.Point(12, 44);
             this.txtTexto.Multiline = true;
             this.txtTexto.Name = "txtTexto";
-            this.txtTexto.Size = new System.Drawing.Size(647, 597);
+            this.txtTexto.Size = new System.Drawing.Size(647, 602);
             this.txtTexto.TabIndex = 0;
             // 
             // btnCompilar
             // 
-            this.btnCompilar.Location = new System.Drawing.Point(665, 12);
+            this.btnCompilar.Location = new System.Drawing.Point(1196, 5);
             this.btnCompilar.Name = "btnCompilar";
             this.btnCompilar.Size = new System.Drawing.Size(116, 33);
             this.btnCompilar.TabIndex = 1;
-            this.btnCompilar.Text = "Compilar";
+            this.btnCompilar.Text = "Analizar";
             this.btnCompilar.UseVisualStyleBackColor = true;
             this.btnCompilar.Click += new System.EventHandler(this.btnCompilar_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(47, 17);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Texto:";
+            // 
+            // txtErrores
+            // 
+            this.txtErrores.Location = new System.Drawing.Point(665, 44);
+            this.txtErrores.Multiline = true;
+            this.txtErrores.Name = "txtErrores";
+            this.txtErrores.Size = new System.Drawing.Size(647, 602);
+            this.txtErrores.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(662, 21);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(59, 17);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Errores:";
             // 
             // Semantico
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(793, 621);
+            this.ClientSize = new System.Drawing.Size(1324, 658);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.txtErrores);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCompilar);
             this.Controls.Add(this.txtTexto);
             this.Name = "Semantico";
@@ -68,5 +100,8 @@
 
         private System.Windows.Forms.TextBox txtTexto;
         private System.Windows.Forms.Button btnCompilar;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtErrores;
+        private System.Windows.Forms.Label label2;
     }
 }

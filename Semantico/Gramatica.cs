@@ -34,6 +34,7 @@ namespace frmMain
             public const string DeclaracionFuncion = "<declaracion-funcion>";
             public const string DeclaracionFuncion2 = "<declaracion-funcion2>";
             public const string DeclaracionFuncion3 = "<declaracion-funcion3>";
+            public const string DeclaracionFuncion4 = "<declaracion-funcion4>";
             public const string TipoFuncion = "<tipo-funcion>";
             public const string BloqueFuncion = "<bloque-funcion>";
             public const string Parametro = "<parametro>";
@@ -164,6 +165,7 @@ namespace frmMain
             var declaracionFuncion = new NonTerminal(NoTerminales.DeclaracionFuncion);
             var declaracionFuncion2 = new NonTerminal(NoTerminales.DeclaracionFuncion2);
             var declaracionFuncion3 = new NonTerminal(NoTerminales.DeclaracionFuncion3);
+            var declaracionFuncion4 = new NonTerminal(NoTerminales.DeclaracionFuncion4);
             var tipoFuncion = new NonTerminal(NoTerminales.TipoFuncion);
             var bloqueFuncion = new NonTerminal(NoTerminales.BloqueFuncion);
             var parametro = new NonTerminal(NoTerminales.Parametro);
@@ -272,7 +274,7 @@ namespace frmMain
 
             inicio.Rule =
                 declaracionFuncion + inicio |
-                declaracionFuncion | declaracionFuncion2 | declaracionFuncion3;
+                declaracionFuncion | declaracionFuncion2 | declaracionFuncion3 | declaracionFuncion4;
 
             declaracionFuncion.Rule =
                 ToTerm("public") + ToTerm("class") + ToTerm("Main") + llavesAbrir_ + ToTerm("public") + ToTerm("static") + ToTerm("void") + ToTerm("main") + parentesisAbrir_ + string_ + ToTerm("[") + ToTerm("]") + ToTerm("args") + parentesisCerrar_ + bloqueFuncion + llavesCerrar_;
@@ -280,8 +282,12 @@ namespace frmMain
             declaracionFuncion2.Rule =
                 tipoFuncion + id + parentesisAbrir_ + parentesisCerrar_ + bloqueFuncion;
 
+            declaracionFuncion4.Rule =
+                tipoFuncion + id + parentesisAbrir_ + listaParametro + parentesisCerrar_ + bloqueFuncion;
+
             declaracionFuncion3.Rule =
                 ToTerm("public") + ToTerm("static") + ToTerm("void") + ToTerm("main") + parentesisAbrir_ + string_ + ToTerm("[") + ToTerm("]") + ToTerm("args") + parentesisCerrar_ + bloqueFuncion;
+
 
             tipoFuncion.Rule =
                 void_ |
@@ -297,6 +303,10 @@ namespace frmMain
             bloqueFuncion.Rule =
                 llavesAbrir_ + llavesCerrar_ |
                 llavesAbrir_ + listaSentencia + llavesCerrar_;
+
+            listaParametro.Rule = tipo + id + coma_+ listaParametro|
+                tipo + id;
+
 
             listaSentencia.Rule =
                 sentencia + puntoComa_ + listaSentencia |
@@ -321,7 +331,9 @@ namespace frmMain
                 asignacion;
 
             asignacion.Rule =
-                id + igual_ + asignable;
+                id + igual_ + asignable|
+                id + mas_ + mas_|
+                id + menos_ + menos_ ;
 
             asignacionSentencia.Rule =
                 id + igual_ + asignable;
@@ -330,7 +342,10 @@ namespace frmMain
                 idAsignable |
                 expresionAritmetica |
                 stringRegex |
-                llamadaFuncion | true_ | false_;
+                llamadaFuncion |
+                bool_ |
+                true_ |
+                false_;
 
             listaAsignable.Rule =
                 asignable + coma_ + listaAsignable |

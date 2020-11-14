@@ -123,27 +123,6 @@ namespace minij
             int i = 0;
             int j = 0;
 
-            /*foreach (var tk in csLexer.GetTokens(tbxCode.Text))
-            {
-                if (tk.Name == "ERROR")
-                {
-                    errores++;
-                    j++;
-                }else if (tk.Name == "IDENTIFICADOR")
-                {
-                    tbxCode.ForeColor = Color.White;
-                    if (PalabrasReservadas.Contains(tk.Lexema)){
-                        tk.Name = "RESERVADO";
-                    }
-                }
-                if (!(tk.Name == "ERROR"||tk.Name=="0"))
-                {
-                    lvToken.Rows.Insert(i, tk.Name, tk.Lexema, tk.Linea);
-                    i++;
-                }
-                n++;
-            }*/
-
             // SINTACTICO
             bool resultado = Sintactico.analizar(txtTexto.Text);
 
@@ -158,7 +137,7 @@ namespace minij
 
                 if (parseTree.Root == null)
                 {
-                    MessageBox.Show("Error sintactico");
+                    Console.WriteLine("Error sintactico");
                     return;
                 }
 
@@ -348,8 +327,7 @@ namespace minij
 
             foreach (var s in ts.Simbolos)
             {
-                sb.Append(s.ToString()).Append('\n');
-                listBox2.Items.Add(sb);
+                listBox2.Items.Add(s);
             }
         }
 
@@ -389,11 +367,11 @@ namespace minij
             if (simbolo.Valor == null)
                 return null;
 
-            if (ValidarRegex(simbolo.Valor, Gramatica.ExpresionesRegulares.IdRegex) && !ValidarRegex(simbolo.Valor, Gramatica.ExpresionesRegulares.StringRegex))
+            /*if (ValidarRegex(simbolo.Valor, Gramatica.ExpresionesRegulares.IdRegex) && !ValidarRegex(simbolo.Valor, Gramatica.ExpresionesRegulares.StringRegex))
             {
                 Console.WriteLine("Recursando...");
                 return ValorDe(tabla, simbolo.Valor);
-            }
+            }*/
 
             Console.WriteLine($"Se encontro el tipo del id '{id}'. Tipo es '{simbolo.Tipo}'");
             return simbolo.Valor;
@@ -405,6 +383,7 @@ namespace minij
             {
                 string tipo = simbolo.Tipo;
                 string valor = simbolo.Valor;
+                string id = simbolo.Id;
 
                 if (valor == null)
                     continue;
@@ -413,11 +392,11 @@ namespace minij
                 if (ValidarRegex(valor, Gramatica.ExpresionesRegulares.IdRegex) && !ValidarRegex(valor, Gramatica.ExpresionesRegulares.StringRegex))
                 {
                     // Primero, checamos si el identificador existe
-                    if (!tabla.ContieneSimbolo(valor))
+                    if (!tabla.ContieneSimbolo(id))
                         return false;
 
                     // Despues, tenemos que obtener el valor de dicho id para comprobar su tipo
-                    valor = ValorDe(tabla, valor);
+                    valor = ValorDe(tabla, id);
                 }
 
                 switch (tipo)
@@ -451,7 +430,7 @@ namespace minij
 
                     case Gramatica.Terminales.Bool:
                         {
-                            if (!valor.Equals(Gramatica.Terminales.True) || !valor.Equals(Gramatica.Terminales.False))
+                            if (!valor.Equals(Gramatica.Terminales.True) && !valor.Equals(Gramatica.Terminales.False))
                                 return false;
 
                             break;

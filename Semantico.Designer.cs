@@ -90,7 +90,7 @@
             this.listBox2.ItemHeight = 16;
             this.listBox2.Location = new System.Drawing.Point(922, 44);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(251, 596);
+            this.listBox2.Size = new System.Drawing.Size(390, 596);
             this.listBox2.TabIndex = 6;
             // 
             // label3

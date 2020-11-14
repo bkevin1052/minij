@@ -194,7 +194,7 @@ namespace minij
 
                 /* MANEJAR TABLA DE SIMBOLOS AQUI */
 
-                bool duplicados = ChecarDuplicados(ts);
+                bool duplicados = VerificarDuplicados(ts);
 
                 if (duplicados == false)
                 {
@@ -202,7 +202,7 @@ namespace minij
                     return;
                 }
 
-                bool tipos = ChecarTipos(ts);
+                bool tipos = VerficarTipos(ts);
 
                 if (tipos == false)
                 {
@@ -259,7 +259,7 @@ namespace minij
             */
         }
 
-        public bool ChecarDuplicados(TablaSimbolos tabla)
+        public bool VerificarDuplicados(TablaSimbolos tabla)
         {
             var contadores = new Dictionary<string, int>();
 
@@ -277,6 +277,25 @@ namespace minij
             }
 
             return true;
+        }
+
+        public Dictionary<string, int> ObtenerDuplicados(TablaSimbolos tabla) {
+            var contadores = new Dictionary<string, int>();
+
+            foreach (Simbolo simbolo in tabla.Simbolos)
+            {
+                string id = simbolo.Id;
+
+                if (!contadores.ContainsKey(id))
+                    contadores[id] = 0;
+
+                contadores[id] += 1;
+
+                if (contadores[id] > 1)
+                    return contadores;
+            }
+
+            return null;
         }
 
         private void btnCompilar_Click(object sender, EventArgs e)
@@ -300,22 +319,28 @@ namespace minij
             // hacer arbol
             var arbol = new Arbol(parseTree);
 
-            // checar tabla de simbolos
+            // verificar tabla de simbolos
             ts = GenerarTablaSimbolos(arbol);
 
-            bool duplicados = ChecarDuplicados(ts);
+            bool duplicados = VerificarDuplicados(ts);
+            Dictionary<string, int> cont = ObtenerDuplicados(ts);
 
             if (duplicados == false)
             {
-                listBox1.Items.Add("Variables duplicadas");
+                for (int i = 0; i < cont.Count; i++)
+                {
+                    if (cont.ToList()[i].Value > 1) {
+                        listBox1.Items.Add("Variables duplicadas y declaradas con el mismo nombre " + cont.ToList()[i].Key);
+                    }
+                }
                 return;
             }
 
-            bool tipos = ChecarTipos(ts);
+            bool tipos = VerficarTipos(ts);
 
             if (tipos == false)
             {
-                listBox1.Items.Add("Error de tipo");
+                listBox1.Items.Add("Error en conversión de tipo");
                 return;
             }
 
@@ -374,7 +399,7 @@ namespace minij
             return simbolo.Valor;
         }
 
-        public bool ChecarTipos(TablaSimbolos tabla)
+        public bool VerficarTipos(TablaSimbolos tabla)
         {
             foreach (Simbolo simbolo in tabla.Simbolos)
             {

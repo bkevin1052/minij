@@ -149,12 +149,11 @@ namespace minij
 
             if (resultado)
             {
-                txtTexto.ForeColor = Color.White;
+                txtTexto.ForeColor = Color.Blue;
 
                 // SEMANTICO
                 ts.Simbolos.Clear();
 
-                //var raiz = Sintactico.analizarArbol(tbxCode.Text);
                 ParseTree parseTree = Sintactico.AnalisisSemantico(txtTexto.Text);
 
                 if (parseTree.Root == null)
@@ -180,26 +179,13 @@ namespace minij
                         Console.WriteLine("El tipo es " + id);
                         Console.WriteLine("La variable es " + variable);
                         Console.WriteLine("El resultado es" + resultados);
-                        /*
-                        for (int l = k; l < nodos.Count; l++)
-                        {
-                            Console.Write(nodos[l].FindTokenAndGetText() + "_ ");
-                        }
-                        Console.WriteLine("Salio");
-                        Console.WriteLine("000000000000000000000000000000000000000000000000000");
-                        Console.WriteLine("El tipo es " + id);
-                        //Console.WriteLine("El valor es " + igual);
-                        Console.WriteLine("000000000000000000000000000000000000000000000000000");
-                        /*var simbolo = new Simbolo(id, tipo, valor);
-                        ts.Agregar(simbolo);*/
                     }
-                    //Console.WriteLine(nodo.Term.ToString() + " " + nodo.FindTokenAndGetText());
                 }
                 int q = 0;
                 List<String> repetido = new List<string>();
                 List<String> temporal = new List<string>();
 
-                // LENAR TABLA DE SIMBOLOS
+                // LLENAR TABLA DE SIMBOLOS
                 foreach (var recorrido in ts.Simbolos)
                 {
                     repetido.Add(recorrido.Tipo);
@@ -212,7 +198,7 @@ namespace minij
 
                 if (duplicados == false)
                 {
-                    MessageBox.Show("Variables duplicadas");
+                    Console.WriteLine("Variables duplicadas");
                     return;
                 }
 
@@ -220,7 +206,7 @@ namespace minij
 
                 if (tipos == false)
                 {
-                    MessageBox.Show("Error de tipo");
+                    Console.WriteLine("Error de tipo");
                     return;
                 }
 
@@ -244,36 +230,9 @@ namespace minij
                 }
                 Console.WriteLine("Valores: " + re);
 
-                /*foreach (var k in repetido)
-                {
-                    temporal.Add(k);
-                    for (int z = 0; z < temporal.Count; z++)
-                    {
-                        for(int zz = 0; zz < temporal.Count; zz++)
-                        {
-                            if (temporal[z].Equals(temporal[zz]))
-                            {
-                                re++;
-                                enc = true;
-                                break;
-                            }
-                            if (enc)
-                                break;
-                        }
-                        if (enc)
-                            break;
-                    }*/
-                /* if (k.Count() > 2)
-                 {
-                     MessageBox.Show("No se puede declarar dos veces una variable");
-                     tbxCode.ForeColor = Color.Red;
-                 }
-                 Console.WriteLine("Encontrado "+k.Count());
-                 Console.WriteLine($" {k.Key} encontrado {k.Count()} veces");*/
-                // }
                 if (re > 2)
                 {
-                    MessageBox.Show("No repetir variables");
+                    Console.WriteLine("No repetir variables");
                     txtTexto.ForeColor = Color.Red;
                 }
                 re = 0;
@@ -324,7 +283,7 @@ namespace minij
         {
             aCodigo();
             analisisSemantico();
-            ejecutar();
+            //ejecutar();
 
         }
 
@@ -334,7 +293,7 @@ namespace minij
 
             if (parseTree.Root == null)
             {
-                MessageBox.Show("Error sintactico");
+                listBox1.Items.Add("Error sintactico");
                 return;
             }
 
@@ -348,7 +307,7 @@ namespace minij
 
             if (duplicados == false)
             {
-                MessageBox.Show("Variables duplicadas");
+                listBox1.Items.Add("Variables duplicadas");
                 return;
             }
 
@@ -356,7 +315,7 @@ namespace minij
 
             if (tipos == false)
             {
-                MessageBox.Show("Error de tipo");
+                listBox1.Items.Add("Error de tipo");
                 return;
             }
 
@@ -365,9 +324,8 @@ namespace minij
             foreach (var s in ts.Simbolos)
             {
                 sb.Append(s.ToString()).Append('\n');
+                listBox2.Items.Add(sb);
             }
-
-            MessageBox.Show(sb.ToString());
         }
 
         public TablaSimbolos GenerarTablaSimbolos(Arbol arbol)

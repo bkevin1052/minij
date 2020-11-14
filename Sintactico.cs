@@ -35,7 +35,6 @@ namespace frmMain
         {
             var gramatica = new Gramatica();
             var sintactico = new Parser(gramatica);
-
             return sintactico.Parse(entrada);
         }
     }

@@ -203,7 +203,6 @@ namespace minij
                 foreach (var recorrido in ts.Simbolos)
                 {
                     repetido.Add(recorrido.Tipo);
-                   // lvToken.Rows.Insert(q, recorrido.Id, recorrido.Tipo, recorrido.Valor);
                     q++;
                 }
 
@@ -323,7 +322,7 @@ namespace minij
 
         private void btnCompilar_Click(object sender, EventArgs e)
         {
-            //aCodigo();
+            aCodigo();
             analisisSemantico();
             ejecutar();
 
@@ -517,7 +516,11 @@ namespace minij
 
             if (!ThanosExecutor.Compilar(nuevoCodigo))
             {
-                txtErrores.Text =  String.Join("\n\n", ThanosExecutor.Errores);
+                for (int i = 0; i < ThanosExecutor.Errores.Count; i++)
+                {
+                    listBox1.Items.Add(ThanosExecutor.Errores[i]);
+                }
+
                 return;
             }
 

@@ -115,6 +115,7 @@
             this.Controls.Add(this.btnCompilar);
             this.Controls.Add(this.txtTexto);
             this.Name = "Semantico";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Semantico";
             this.ResumeLayout(false);
             this.PerformLayout();

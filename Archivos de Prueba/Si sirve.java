@@ -1,6 +1,6 @@
 public class Main {
     public static void main(string[] args) {
-        int x = 0;
+        int x;
         string y = "hola";
         bool z = true;
 

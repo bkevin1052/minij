@@ -152,7 +152,14 @@ namespace minij
 
                         var id = nodo.FindTokenAndGetText();
                         var variable = nodos[k + 3].FindTokenAndGetText();
-                        var resultados = nodos[k + 6].FindTokenAndGetText();
+                        var resultados = "";
+                        try
+                        {
+                            resultados = nodos[k + 6].FindTokenAndGetText();
+                        }
+                        catch {
+                            resultados = null;
+                        }
                         ts.AgregarSimbolo(new Simbolo(id, variable, resultados));
 
                         Console.WriteLine("El tipo es " + id);
@@ -328,6 +335,10 @@ namespace minij
             foreach (var s in ts.Simbolos)
             {
                 listBox2.Items.Add(s);
+            }
+
+            if (listBox1.Items.Count == 0) {
+                MessageBox.Show("Analisis Semantico Correcto");
             }
         }
 

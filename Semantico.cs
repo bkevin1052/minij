@@ -340,7 +340,7 @@ namespace minij
             }
 
             if (listBox1.Items.Count == 0) {
-                MessageBox.Show("Analisis Semantico Correcto");
+                MessageBox.Show("Analisis Semantico Correcto","Información");
             }
         }
 

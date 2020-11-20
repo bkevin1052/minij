@@ -294,7 +294,7 @@ namespace frmMain
                 declaracionFuncion8;
 
             declaracionFuncion.Rule =
-                ToTerm("public") + ToTerm("class") + ToTerm("Program") + llavesAbrir_ + ToTerm("public") + ToTerm("static") + ToTerm("void") + ToTerm("main") + parentesisAbrir_ + string_ + ToTerm("[") + ToTerm("]") + ToTerm("args") + parentesisCerrar_ + bloqueFuncion + llavesCerrar_;
+                ToTerm("public") + ToTerm("class") + id + llavesAbrir_ + ToTerm("public") + ToTerm("static") + ToTerm("void") + ToTerm("main") + parentesisAbrir_ + string_ + ToTerm("[") + ToTerm("]") + ToTerm("args") + parentesisCerrar_ + bloqueFuncion + llavesCerrar_;
 
             declaracionFuncion2.Rule =
                 tipoFuncion + id + parentesisAbrir_ + parentesisCerrar_ + bloqueFuncion;

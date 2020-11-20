@@ -286,7 +286,9 @@ namespace minij
 
         private void btnCompilar_Click(object sender, EventArgs e)
         {
-            aCodigo();
+            listBox1.Items.Clear();
+            listBox2.Items.Clear();
+            //aCodigo();
             analisisSemantico();
             //ejecutar();
 
@@ -346,7 +348,7 @@ namespace minij
         {
             var tabla = new TablaSimbolos();
             List<ParseTreeNode> nodos = arbol.Recorrer(Gramatica.NoTerminales.DeclaracionVariable);
-
+            
             foreach (ParseTreeNode nodo in nodos)
             {
                 List<Simbolo> simbolos = CrearSimbolos(arbol, nodo);

@@ -392,7 +392,9 @@ namespace frmMain
                 id |
                 llamadaFuncion |
                 parentesisAbrir_ + expresionAritmetica + parentesisCerrar_ |
-                expresionAritmetica + operadorAritmetico + expresionAritmetica;
+                expresionAritmetica + operadorAritmetico + expresionAritmetica|
+                stringRegex + operadorAritmetico + expresionAritmetica|
+                expresionAritmetica + operadorAritmetico + stringRegex;
 
             operadorAritmetico.Rule =
                 mas_ |

@@ -519,9 +519,20 @@ namespace minij
             });
 
             // Crear simbolos
-            for (int i = 0; i < ids.Count; i++)
+            //for (int i = 0; i < ids.Count; i++)
+            for (int i = 0; i < 1; i++)
             {
-                string tipo = tipos[0].FindTokenAndGetText();
+                string tipo = "";
+
+                if (tipos[0].ChildNodes.Count > 1)
+                {
+                    tipo = tipos[0].FindTokenAndGetText() + " " + tipos[0].ChildNodes[1];
+                }
+                else {
+                    tipo = tipos[0].FindTokenAndGetText();
+                }              
+
+                
                 string id = ids[i].FindTokenAndGetText();
 
                 if (listaAsignables.Count == 0)
@@ -531,7 +542,7 @@ namespace minij
                 {
                     var sb = new StringBuilder();
 
-                    listaAsignables[i].ForEach(token =>
+                    listaAsignables[0].ForEach(token =>
                     {
                         sb.Append($"{token.FindTokenAndGetText()} ");
                     });

@@ -807,7 +807,7 @@ namespace minij
                             if (simbolo != null)
                             {
 
-                                if (simbolo.Tipo == "double" && simbolo.Valor != null)
+                                if ((simbolo.Tipo == "double"|| simbolo.Tipo == "float") && simbolo.Valor != null)
                                 {
                                     tempMulti = tempMulti * double.Parse(simbolo.Valor);
                                     asignable = temp.ToString();
@@ -850,7 +850,7 @@ namespace minij
                             if (simbolo != null)
                             {
 
-                                if (simbolo.Tipo == "double" && simbolo.Valor != null)
+                                if ((simbolo.Tipo == "double" || simbolo.Tipo == "float") && simbolo.Valor != null)
                                 {
                                     tempMulti = tempMulti / double.Parse(simbolo.Valor);
                                     asignable = temp.ToString();
@@ -972,7 +972,7 @@ namespace minij
                 {
                     try
                     {
-                        tempMulti = int.Parse(operacion[j].Trim());
+                        tempMulti = float.Parse(operacion[j].Trim());
                         tempMulti = tempMulti * float.Parse(operacion[1].Trim());
                         asignable = tempMulti.ToString();
                         j++;
@@ -985,7 +985,7 @@ namespace minij
                             if (simbolo != null)
                             {
 
-                                if (simbolo.Tipo == "float" && simbolo.Valor != null)
+                                if ((simbolo.Tipo == "double" || simbolo.Tipo == "float") && simbolo.Valor != null)
                                 {
                                     tempMulti = tempMulti * float.Parse(simbolo.Valor);
                                     asignable = temp.ToString();
@@ -1018,7 +1018,6 @@ namespace minij
                         tempMulti = float.Parse(operacion[j]);
                         tempMulti = tempMulti / float.Parse(operacion[1]);
                         asignable = tempMulti.ToString();
-                        j++;
                     }
                     catch
                     {
@@ -1028,7 +1027,7 @@ namespace minij
                             if (simbolo != null)
                             {
 
-                                if (simbolo.Tipo == "float" && simbolo.Valor != null)
+                                if ((simbolo.Tipo == "double" || simbolo.Tipo == "float") && simbolo.Valor != null)
                                 {
                                     tempMulti = tempMulti / float.Parse(simbolo.Valor);
                                     asignable = temp.ToString();

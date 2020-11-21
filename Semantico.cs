@@ -330,7 +330,7 @@ namespace minij
 
             if (tipos == false)
             {
-                listBox1.Items.Add("Error en conversión de tipo");
+                //listBox1.Items.Add("Error en conversión de tipo");
             }
 
             var sb = new StringBuilder();
@@ -419,12 +419,12 @@ namespace minij
                         {
                             if (!ValidarRegex(valor, Gramatica.ExpresionesRegulares.NumeroRegex))
                             {
-                                listBox1.Items.Add("Error en conversión de tipo a INT con variable: "+id);
+                                listBox1.Items.Add("Error en ASIGNACIÓN de TIPO INT con variable: "+id);
                                 return false;
                             }
                             if (valor.Contains('.'))
                             {
-                                listBox1.Items.Add("Error en conversión de tipo a INT con variable: " + id);
+                                listBox1.Items.Add("Error en ASIGNACIÓN de TIPO INT con variable: " + id);
                                 return false;
                             }
                             break;
@@ -434,7 +434,7 @@ namespace minij
                         {
                             if (!ValidarRegex(valor, Gramatica.ExpresionesRegulares.NumeroRegex))
                             {
-                                listBox1.Items.Add("Error en conversión de tipo a FLOAT con variable: " + id);
+                                listBox1.Items.Add("Error en ASIGNACIÓN de TIPO FLOAT con variable: " + id);
                                 return false;
                             }
                             break;
@@ -444,7 +444,7 @@ namespace minij
                         {
                             if (!ValidarRegex(valor, Gramatica.ExpresionesRegulares.NumeroRegex))
                             {
-                                listBox1.Items.Add("Error en conversión de tipo a DOUBLE con variable: " + id);
+                                listBox1.Items.Add("Error en ASIGNACIÓN de TIPO DOUBLE con variable: " + id);
                                 return false;
                             }
                             break;
@@ -454,7 +454,7 @@ namespace minij
                         {
                             if (!valor.Equals(Gramatica.Terminales.True) && !valor.Equals(Gramatica.Terminales.False))
                             {
-                                listBox1.Items.Add("Error en conversión de tipo a BOOL con variable: " + id);
+                                listBox1.Items.Add("Error en ASIGNACIÓN de TIPO BOOL con variable: " + id);
                                 return false;
                             }
                             break;
@@ -464,7 +464,7 @@ namespace minij
                         {
                             if (!ValidarRegex(valor, Gramatica.ExpresionesRegulares.StringRegex))
                             {
-                                listBox1.Items.Add("Error en conversión de tipo a STRING con variable: " + id);
+                                listBox1.Items.Add("Error en ASIGNACIÓN de TIPO STRING con variable: " + id);
                                 return false;
                             }
                             break;
@@ -568,16 +568,16 @@ namespace minij
                                 else
                                 {
                                     asignable = asignableTemp;
-                                    listBox1.Items.Add("Error en la conversion de suma con la variable " + id);
+                                    listBox1.Items.Add("Error en CONVERSIÓN de SUMA con variable: " + id);
                                 }
                             }
                             else
                             {
-                                listBox1.Items.Add("Error en la conversion de suma con la variable " + id);
+                                listBox1.Items.Add("Error en CONVERSIÓN de SUMA con variable: " + id);
                             }
                         }
                         catch {
-                            listBox1.Items.Add("Error en la conversion de suma con la variable " + id);
+                            listBox1.Items.Add("Error en CONVERSIÓN de SUMA con variable: " + id);
                         }
                     }
                 }
@@ -608,17 +608,17 @@ namespace minij
                                 else
                                 {
                                     asignable = asignableTemp;
-                                    listBox1.Items.Add("Error en la conversion de resta con la variable " + id);
+                                    listBox1.Items.Add("Error en CONVERSIÓN de RESTA con variable: " + id);
                                 }
                             }
                             else
                             {
-                                listBox1.Items.Add("Error en la conversion de resta con la variable " + id);
+                                listBox1.Items.Add("Error en CONVERSIÓN de RESTA con variable: " + id);
                             }
                         }
                         catch
                         {
-                            listBox1.Items.Add("Error en la conversion de resta con la variable " + id);
+                            listBox1.Items.Add("Error en CONVERSIÓN de RESTA con variable: " + id);
                         }
                     }
                 }
@@ -652,16 +652,16 @@ namespace minij
                                 else
                                 {
                                     asignable = asignableTemp;
-                                    listBox1.Items.Add("Error en la conversion de multiplicacion con la variable " + id);
+                                    listBox1.Items.Add("Error en CONVERSIÓN de MULTIPLICACIÓN con variable: " + id);
                                 }
                             }
                             else
                             {
-                                listBox1.Items.Add("Error en la conversion de multiplicacion con la variable " + id);
+                                listBox1.Items.Add("Error en CONVERSIÓN de MULTIPLICACIÓN con variable: " + id);
                             }
                         }
                         catch {
-                            listBox1.Items.Add("Error en la conversion de multiplicacion con la variable " + id);
+                            listBox1.Items.Add("Error en CONVERSIÓN de MULTIPLICACIÓN con variable: " + id);
                         }
                     }
                 }
@@ -694,16 +694,16 @@ namespace minij
                                 else
                                 {
                                     asignable = asignableTemp;
-                                    listBox1.Items.Add("Error en la conversion de division con la variable " + id);
+                                    listBox1.Items.Add("Error en CONVERSIÓN de DIVISIÓN con variable: " + id);
                                 }
                             }
                             else
                             {
-                                listBox1.Items.Add("Error en la conversion de division con la variable " + id);
+                                listBox1.Items.Add("Error en CONVERSIÓN de DIVISIÓN con variable: " + id);
                             }
                         }
                         catch {
-                            listBox1.Items.Add("Error en la conversion de division con la variable " + id);
+                            listBox1.Items.Add("Error en CONVERSIÓN de DIVISIÓN con variable: " + id);
                         }
                     }
                 }
@@ -744,17 +744,17 @@ namespace minij
                                 else
                                 {
                                     asignable = asignableTemp;
-                                    listBox1.Items.Add("Error en la conversion de suma con la variable " + id);
+                                    listBox1.Items.Add("Error en CONVERSIÓN de SUMA con variable: " + id);
                                 }
                             }
                             else
                             {
-                                listBox1.Items.Add("Error en la conversion de suma con la variable " + id);
+                                listBox1.Items.Add("Error en CONVERSIÓN de SUMA con variable: " + id);
                             }
                         }
                         catch
                         {
-                            listBox1.Items.Add("Error en la conversion de suma con la variable " + id);
+                            listBox1.Items.Add("Error en CONVERSIÓN de SUMA con variable: " + id);
                         }
                     }
                 }
@@ -785,17 +785,17 @@ namespace minij
                                 else
                                 {
                                     asignable = asignableTemp;
-                                    listBox1.Items.Add("Error en la conversion de resta con la variable " + id);
+                                    listBox1.Items.Add("Error en CONVERSIÓN de RESTA con variable: " + id);
                                 }
                             }
                             else
                             {
-                                listBox1.Items.Add("Error en la conversion de resta con la variable " + id);
+                                listBox1.Items.Add("Error en CONVERSIÓN de RESTA con variable: " + id);
                             }
                         }
                         catch
                         {
-                            listBox1.Items.Add("Error en la conversion de resta con la variable " + id);
+                            listBox1.Items.Add("Error en CONVERSIÓN de RESTA con variable: " + id);
                         }
                     }
                 }
@@ -828,17 +828,17 @@ namespace minij
                                 else
                                 {
                                     asignable = asignableTemp;
-                                    listBox1.Items.Add("Error en la conversion de multiplicacion con la variable " + id);
+                                    listBox1.Items.Add("Error en CONVERSIÓN de MULTIPLICACIÓN con variable: " + id);
                                 }
                             }
                             else
                             {
-                                listBox1.Items.Add("Error en la conversion de multiplicacion con la variable " + id);
+                                listBox1.Items.Add("Error en CONVERSIÓN de MULTIPLICACIÓN con variable: " + id);
                             }
                         }
                         catch
                         {
-                            listBox1.Items.Add("Error en la conversion de multiplicacion con la variable " + id);
+                            listBox1.Items.Add("Error en CONVERSIÓN de MULTIPLICACIÓN con variable: " + id);
                         }
                     }
                 }
@@ -871,17 +871,17 @@ namespace minij
                                 else
                                 {
                                     asignable = asignableTemp;
-                                    listBox1.Items.Add("Error en la conversion de division con la variable " + id);
+                                    listBox1.Items.Add("Error en CONVERSIÓN de DIVISIÓN con variable: " + id);
                                 }
                             }
                             else
                             {
-                                listBox1.Items.Add("Error en la conversion de division con la variable " + id);
+                                listBox1.Items.Add("Error en CONVERSIÓN de DIVISIÓN con variable: " + id);
                             }
                         }
                         catch
                         {
-                            listBox1.Items.Add("Error en la conversion de division con la variable " + id);
+                            listBox1.Items.Add("Error en CONVERSIÓN de DIVISIÓN con variable: " + id);
                         }
                     }
                 }
@@ -922,17 +922,17 @@ namespace minij
                                 else
                                 {
                                     asignable = asignableTemp;
-                                    listBox1.Items.Add("Error en la conversion de suma con la variable " + id);
+                                    listBox1.Items.Add("Error en CONVERSIÓN de SUMA con variable: " + id);
                                 }
                             }
                             else
                             {
-                                listBox1.Items.Add("Error en la conversion de suma con la variable " + id);
+                                listBox1.Items.Add("Error en CONVERSIÓN de SUMA con variable: " + id);
                             }
                         }
                         catch
                         {
-                            listBox1.Items.Add("Error en la conversion de suma con la variable " + id);
+                            listBox1.Items.Add("Error en CONVERSIÓN de SUMA con variable: " + id);
                         }
                     }
                 }
@@ -963,17 +963,17 @@ namespace minij
                                 else
                                 {
                                     asignable = asignableTemp;
-                                    listBox1.Items.Add("Error en la conversion de resta con la variable " + id);
+                                    listBox1.Items.Add("Error en CONVERSIÓN de RESTA con variable: " + id);
                                 }
                             }
                             else
                             {
-                                listBox1.Items.Add("Error en la conversion de resta con la variable " + id);
+                                listBox1.Items.Add("Error en CONVERSIÓN de RESTA con variable: " + id);
                             }
                         }
                         catch
                         {
-                            listBox1.Items.Add("Error en la conversion de resta con la variable " + id);
+                            listBox1.Items.Add("Error en CONVERSIÓN de RESTA con variable: " + id);
                         }
                     }
                 }
@@ -1006,17 +1006,17 @@ namespace minij
                                 else
                                 {
                                     asignable = asignableTemp;
-                                    listBox1.Items.Add("Error en la conversion de multiplicacion con la variable " + id);
+                                    listBox1.Items.Add("Error en CONVERSIÓN de MULTIPLICACIÓN con variable: " + id);
                                 }
                             }
                             else
                             {
-                                listBox1.Items.Add("Error en la conversion de multiplicacion con la variable " + id);
+                                listBox1.Items.Add("Error en CONVERSIÓN de MULTIPLICACIÓN con variable: " + id);
                             }
                         }
                         catch
                         {
-                            listBox1.Items.Add("Error en la conversion de multiplicacion con la variable " + id);
+                            listBox1.Items.Add("Error en CONVERSIÓN de MULTIPLICACIÓN con variable: " + id);
                         }
                     }
                 }
@@ -1048,17 +1048,17 @@ namespace minij
                                 else
                                 {
                                     asignable = asignableTemp;
-                                    listBox1.Items.Add("Error en la conversion de division con la variable " + id);
+                                    listBox1.Items.Add("Error en CONVERSIÓN de DIVISIÓN con variable: " + id);
                                 }
                             }
                             else
                             {
-                                listBox1.Items.Add("Error en la conversion de division con la variable " + id);
+                                listBox1.Items.Add("Error en CONVERSIÓN de DIVISIÓN con variable: " + id);
                             }
                         }
                         catch
                         {
-                            listBox1.Items.Add("Error en la conversion de division con la variable " + id);
+                            listBox1.Items.Add("Error en CONVERSIÓN de DIVISIÓN con variable: " + id);
                         }
                     }
                 }

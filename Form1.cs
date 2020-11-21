@@ -107,7 +107,7 @@ namespace minij
 
             var listaTokens = analizador.obtenerTokensSintactico(texto);
             //analizarSintactico(listaTokens);
-            analizarAscendente(listaTokens);
+            //analizarAscendente(listaTokens);
         }
 
         /// <summary>

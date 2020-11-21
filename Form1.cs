@@ -37,6 +37,7 @@ namespace minij
                 texto = File.ReadAllText(open.FileName);
                 rutaEscritura = Environment.CurrentDirectory + @"\" + Path.GetFileNameWithoutExtension(open.FileName) + ".out";
                 AnalizarCodigo(open.FileName);
+                MessageBox.Show("Analisis Lexico Correcto", "Información");
                 //EscribirArchivo(rutaEscritura);
             }
         }

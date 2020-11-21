@@ -302,9 +302,13 @@ namespace minij
 
             if (parseTree.Root == null)
             {
-                listBox1.Items.Add("Error sintactico");
+                MessageBox.Show("Analisis Sintactico Incorrecto", "Información");
+                listBox1.Items.Add("Error al analizar sintacticamente el texto.");
                 txtTexto.ForeColor = Color.Red;
                 return;
+            }
+            else {
+                MessageBox.Show("Analisis Sintactico Correcto", "Información");
             }
 
             // hacer arbol
@@ -340,9 +344,14 @@ namespace minij
                 listBox2.Items.Add(s);
             }
 
-            if (listBox1.Items.Count == 0) {
-                MessageBox.Show("Analisis Semantico Correcto","Información");
+            if (listBox1.Items.Count == 0)
+            {
+                MessageBox.Show("Analisis Semantico Correcto", "Información");
                 txtTexto.ForeColor = Color.Blue;
+            }
+            else {
+                MessageBox.Show("Analisis Semantico Inorrecto", "Información");
+                txtTexto.ForeColor = Color.Red;
             }
         }
 

@@ -22,6 +22,7 @@ namespace minij
         RegexLexer csLexer = new RegexLexer();
         List<String> PalabrasReservadas;
         TablaSimbolos ts = new TablaSimbolos();
+        TablaSimbolos tabla = new TablaSimbolos();
 
         public Semantico()
         {
@@ -346,7 +347,6 @@ namespace minij
 
         public TablaSimbolos GenerarTablaSimbolos(Arbol arbol)
         {
-            var tabla = new TablaSimbolos();
             List<ParseTreeNode> nodos = arbol.Recorrer(Gramatica.NoTerminales.DeclaracionVariable);
             
             foreach (ParseTreeNode nodo in nodos)
@@ -507,11 +507,188 @@ namespace minij
                     });
 
                     string asignable = sb.ToString().Trim();
+                    if (tipo == "int") {
+                        asignable = OperacionDeTipos(asignable, id);
+                    }
                     simbolos.Add(new Simbolo(tipo, id, asignable));
                 }
             }
 
             return simbolos;
+        }
+
+
+        public string OperacionDeTipos(string asignable, string id) {
+            string asignableTemp = asignable;
+            string[] operacion = null;
+            int temp = 0;
+            int tempMulti = 0;
+            //En el caso sea una operacion numerica
+            if (asignable.Contains("+"))
+            {
+                operacion = asignable.Split('+');
+                for (int j = 0; j < operacion.Length; j++)
+                {
+                    try
+                    {
+                        temp += int.Parse(operacion[j]);
+                        asignable = temp.ToString();
+                    }
+                    catch
+                    {
+                        try
+                        {
+                            Simbolo simbolo = tabla.BuscarSimbolo(operacion[j].Trim());
+
+                            if (simbolo != null)
+                            {
+                                if (simbolo.Tipo == "int" && simbolo.Valor != null)
+                                {
+                                    temp = temp + int.Parse(simbolo.Valor);
+                                    asignable = temp.ToString();
+                                }
+                                else
+                                {
+                                    asignable = asignableTemp;
+                                    listBox1.Items.Add("Error en la conversion de suma con la variable " + id);
+                                }
+                            }
+                            else
+                            {
+                                listBox1.Items.Add("Error en la conversion de suma con la variable " + id);
+                            }
+                        }
+                        catch {
+                            listBox1.Items.Add("Error en la conversion de suma con la variable " + id);
+                        }
+                    }
+                }
+            }
+            else if (asignable.Contains("-"))
+            {
+                operacion = asignable.Split('-');
+                for (int j = 0; j < operacion.Length; j++)
+                {
+                    try
+                    {
+                        temp -= int.Parse(operacion[j]);
+                        asignable = temp.ToString();
+                    }
+                    catch
+                    {
+                        try
+                        {
+                            Simbolo simbolo = tabla.BuscarSimbolo(operacion[j].Trim());
+
+                            if (simbolo != null)
+                            {
+                                if (simbolo.Tipo == "int" && simbolo.Valor != null)
+                                {
+                                    temp = temp - int.Parse(simbolo.Valor);
+                                    asignable = temp.ToString();
+                                }
+                                else
+                                {
+                                    asignable = asignableTemp;
+                                    listBox1.Items.Add("Error en la conversion de resta con la variable " + id);
+                                }
+                            }
+                            else
+                            {
+                                listBox1.Items.Add("Error en la conversion de resta con la variable " + id);
+                            }
+                        }
+                        catch
+                        {
+                            listBox1.Items.Add("Error en la conversion de resta con la variable " + id);
+                        }
+                    }
+                }
+            }
+            else if (asignable.Contains("*"))
+            {
+                operacion = asignable.Split('*');
+                for (int j = 0; j < operacion.Length; j++)
+                {
+                    try
+                    {
+                        tempMulti = int.Parse(operacion[j].Trim());
+                        tempMulti = tempMulti * int.Parse(operacion[j].Trim());
+                        asignable = tempMulti.ToString();
+                    }
+                    catch
+                    {
+                        try
+                        {
+                            Simbolo simbolo = tabla.BuscarSimbolo(operacion[j].Trim());
+                            if (simbolo != null)
+                            {
+
+                                if (simbolo.Tipo == "int" && simbolo.Valor != null)
+                                {
+                                    tempMulti = tempMulti * int.Parse(simbolo.Valor);
+                                    asignable = temp.ToString();
+                                }
+                                else
+                                {
+                                    asignable = asignableTemp;
+                                    listBox1.Items.Add("Error en la conversion de multiplicacion con la variable " + id);
+                                }
+                            }
+                            else
+                            {
+                                listBox1.Items.Add("Error en la conversion de multiplicacion con la variable " + id);
+                            }
+                        }
+                        catch {
+                            listBox1.Items.Add("Error en la conversion de multiplicacion con la variable " + id);
+                        }
+                    }
+                }
+            }
+            else if (asignable.Contains("/"))
+            {
+                operacion = asignable.Split('/');
+                for (int j = 0; j < operacion.Length; j++)
+                {
+                    try
+                    {
+                        tempMulti = int.Parse(operacion[j]);
+                        tempMulti = tempMulti / int.Parse(operacion[j]);
+                        asignable = tempMulti.ToString();
+                    }
+                    catch
+                    {
+                        try
+                        {
+                            Simbolo simbolo = tabla.BuscarSimbolo(operacion[j].Trim());
+                            if (simbolo != null)
+                            {
+
+                                if (simbolo.Tipo == "int" && simbolo.Valor != null)
+                                {
+                                    tempMulti = tempMulti / int.Parse(simbolo.Valor);
+                                    asignable = temp.ToString();
+                                }
+                                else
+                                {
+                                    asignable = asignableTemp;
+                                    listBox1.Items.Add("Error en la conversion de division con la variable " + id);
+                                }
+                            }
+                            else
+                            {
+                                listBox1.Items.Add("Error en la conversion de division con la variable " + id);
+                            }
+                        }
+                        catch {
+                            listBox1.Items.Add("Error en la conversion de division con la variable " + id);
+                        }
+                    }
+                }
+            }
+
+            return asignable;
         }
     }
 }

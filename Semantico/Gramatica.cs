@@ -331,6 +331,7 @@ namespace frmMain
                 sentencia + puntoComa_ |
 
                 controladorFlujo + listaSentencia |
+                listaSentencia + controladorFlujo|
                 controladorFlujo;
 
             declaracionVariable.Rule =

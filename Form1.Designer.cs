@@ -110,9 +110,9 @@
             // 
             // btnSemantico
             // 
-            this.btnSemantico.Location = new System.Drawing.Point(836, 48);
+            this.btnSemantico.Location = new System.Drawing.Point(788, 48);
             this.btnSemantico.Name = "btnSemantico";
-            this.btnSemantico.Size = new System.Drawing.Size(222, 36);
+            this.btnSemantico.Size = new System.Drawing.Size(270, 36);
             this.btnSemantico.TabIndex = 5;
             this.btnSemantico.Text = "Analizador Sintactico y Semantico";
             this.btnSemantico.UseVisualStyleBackColor = true;

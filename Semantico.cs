@@ -418,43 +418,55 @@ namespace minij
                     case Gramatica.Terminales.Int:
                         {
                             if (!ValidarRegex(valor, Gramatica.ExpresionesRegulares.NumeroRegex))
+                            {
+                                listBox1.Items.Add("Error en conversión de tipo a INT con variable: "+id);
                                 return false;
-
+                            }
                             if (valor.Contains('.'))
+                            {
+                                listBox1.Items.Add("Error en conversión de tipo a INT con variable: " + id);
                                 return false;
-
+                            }
                             break;
                         }
 
                     case Gramatica.Terminales.Float:
                         {
                             if (!ValidarRegex(valor, Gramatica.ExpresionesRegulares.NumeroRegex))
+                            {
+                                listBox1.Items.Add("Error en conversión de tipo a FLOAT con variable: " + id);
                                 return false;
-
+                            }
                             break;
                         }
 
                     case Gramatica.Terminales.Double:
                         {
                             if (!ValidarRegex(valor, Gramatica.ExpresionesRegulares.NumeroRegex))
+                            {
+                                listBox1.Items.Add("Error en conversión de tipo a DOUBLE con variable: " + id);
                                 return false;
-
+                            }
                             break;
                         }
 
                     case Gramatica.Terminales.Bool:
                         {
                             if (!valor.Equals(Gramatica.Terminales.True) && !valor.Equals(Gramatica.Terminales.False))
+                            {
+                                listBox1.Items.Add("Error en conversión de tipo a BOOL con variable: " + id);
                                 return false;
-
+                            }
                             break;
                         }
 
                     case Gramatica.Terminales.String:
                         {
                             if (!ValidarRegex(valor, Gramatica.ExpresionesRegulares.StringRegex))
+                            {
+                                listBox1.Items.Add("Error en conversión de tipo a STRING con variable: " + id);
                                 return false;
-
+                            }
                             break;
                         }
                 }

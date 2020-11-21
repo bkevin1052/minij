@@ -280,7 +280,16 @@ namespace frmMain
                 ToTerm("public") + ToTerm("class") + id + llavesAbrir_ + ToTerm("public") + ToTerm("static") + ToTerm("void") + ToTerm("main") + parentesisAbrir_ + string_ + ToTerm("[") + ToTerm("]") + ToTerm("args") + parentesisCerrar_ + bloqueFuncion + llavesCerrar_ |
                 tipoFuncion + id + parentesisAbrir_ + parentesisCerrar_ + bloqueFuncion |
                 ToTerm("public") + ToTerm("static") + ToTerm("void") + ToTerm("main") + parentesisAbrir_ + string_ + ToTerm("[") + ToTerm("]") + ToTerm("args") + parentesisCerrar_ + bloqueFuncion|
-                tipoFuncion + id + parentesisAbrir_ + listaParametro + parentesisCerrar_ + bloqueFuncion|
+                ToTerm("int") + id + parentesisAbrir_ + listaParametro + parentesisCerrar_ + bloqueFuncion|
+                ToTerm("float") + id + parentesisAbrir_ + listaParametro + parentesisCerrar_ + bloqueFuncion |
+                ToTerm("double") + id + parentesisAbrir_ + listaParametro + parentesisCerrar_ + bloqueFuncion |
+                ToTerm("bool") + id + parentesisAbrir_ + listaParametro + parentesisCerrar_ + bloqueFuncion |
+                ToTerm("string") + id + parentesisAbrir_ + listaParametro + parentesisCerrar_ + bloqueFuncion |
+                ToTerm("int") + id + parentesisAbrir_ + parentesisCerrar_ + bloqueFuncion |
+                ToTerm("float") + id + parentesisAbrir_ + parentesisCerrar_ + bloqueFuncion |
+                ToTerm("double") + id + parentesisAbrir_  + parentesisCerrar_ + bloqueFuncion |
+                ToTerm("bool") + id + parentesisAbrir_ + parentesisCerrar_ + bloqueFuncion |
+                ToTerm("string") + id + parentesisAbrir_ + parentesisCerrar_ + bloqueFuncion |
                 ToTerm("class") + id + bloqueFuncion|
                 ToTerm("interface") + id + bloqueFuncion|
                 ToTerm("class") + id + ToTerm("extends") + id + ToTerm("implements") + listaParametroImplements + bloqueFuncion|

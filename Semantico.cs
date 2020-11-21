@@ -18,7 +18,6 @@ namespace minij
     public partial class Semantico : Form
     {
 
-        int CARACTER;
         RegexLexer csLexer = new RegexLexer();
         List<String> PalabrasReservadas;
         TablaSimbolos ts = new TablaSimbolos();
@@ -60,42 +59,7 @@ namespace minij
                     "package","private","protected","public","return","short","static","stricftp","super","switch","synchronized",
                     "this","throw","throws","transient","try","void","volatile","while"
                 };
-                //Listas esme
-                //List<string> reservadasCiclos;
-                //List<string> tipoDeDato;
-                //List<string> ambitoNivelDeAcceso;
-                //List<string> palabrasReservadas;
-                //reservadasCiclos = new List<string>()
-                //{
-                //     "while","do","for","foreach","if"
-                //};
-                //tipoDeDato = new List<string>()
-                //{
-                //    "int","float","double","long","bool","byte", "char",
-                //    "decimal", "dynamic","sbyte", "short",
-                //    "string", "uint", "ulong", "ushort", "var"
-                //};
-                //ambitoNivelDeAcceso = new List<string>()
-                //{
-                //    "public","private", "protected","internal"
-                //};
-                //palabrasReservadas = new List<string>() {
-                //    "abstract","as","async","await","checked",
-                //    "const", "continue", "default", "delegate",
-                //    "base", "break", "case","else", "enum","event",
-                //    "explicit", "extern", "false", "finally",
-                //    "fixed","goto","implicit","in", "interface",
-                //    "is", "lock", "new","null", "operator",
-                //    "catch","out", "override","params","readonly",
-                //    "ref", "return", "sealed", "sizeof",
-                //    "stackalloc", "static","switch", "this",
-                //    "throw","true", "try", "typeof", "namespace",
-                //    "unchecked","unsafe", "virtual", "void",
-                //    "object","get", "set", "new","partial", "yield",
-                //    "add", "remove", "value","alias", "ascending",
-                //    "descending", "from","group", "into", "orderby",
-                //    "select", "where","join", "equals", "using",
-                //     "class", "struct" };
+                
                 csLexer.Compile(RegexOptions.Compiled | RegexOptions.Singleline | RegexOptions.ExplicitCapture);
             }
 
@@ -108,142 +72,6 @@ namespace minij
             {
                 Dfs(nodo, nodos);
             });
-        }
-
-        public List<ParseTreeNode> Dfs(ParseTreeNode raiz)
-        {
-            List<ParseTreeNode> nodos = new List<ParseTreeNode>();
-            Dfs(raiz, nodos);
-            return nodos;
-        }
-
-        public void aCodigo()
-        {
-            int n = 0;
-            int errores = 0;
-            int i = 0;
-            int j = 0;
-
-            // SINTACTICO
-            bool resultado = Sintactico.analizar(txtTexto.Text);
-
-            if (resultado)
-            {
-                txtTexto.ForeColor = Color.Blue;
-
-                // SEMANTICO
-                ts.Simbolos.Clear();
-
-                ParseTree parseTree = Sintactico.AnalisisSemantico(txtTexto.Text);
-
-                if (parseTree.Root == null)
-                {
-                    Console.WriteLine("Error sintactico");
-                    return;
-                }
-
-                ParseTreeNode raiz = parseTree.Root;
-
-                var nodos = Dfs(raiz);
-                for (int k = 0; k < nodos.Count(); k++)
-                {
-                    var nodo = nodos[k];
-                    if (nodo.Term.ToString().Equals("<tipo>"))
-                    {
-
-                        var id = nodo.FindTokenAndGetText();
-                        var variable = nodos[k + 3].FindTokenAndGetText();
-                        var resultados = "";
-                        try
-                        {
-                            resultados = nodos[k + 6].FindTokenAndGetText();
-                        }
-                        catch {
-                            resultados = null;
-                        }
-                        ts.AgregarSimbolo(new Simbolo(id, variable, resultados));
-
-                        Console.WriteLine("El tipo es " + id);
-                        Console.WriteLine("La variable es " + variable);
-                        Console.WriteLine("El resultado es" + resultados);
-                    }
-                }
-                int q = 0;
-                List<String> repetido = new List<string>();
-                List<String> temporal = new List<string>();
-
-                // LLENAR TABLA DE SIMBOLOS
-                foreach (var recorrido in ts.Simbolos)
-                {
-                    repetido.Add(recorrido.Tipo);
-                    q++;
-                }
-
-                /* MANEJAR TABLA DE SIMBOLOS AQUI */
-
-                bool duplicados = VerificarDuplicados(ts);
-
-                if (duplicados == false)
-                {
-                    Console.WriteLine("Variables duplicadas");
-                    return;
-                }
-
-                bool tipos = VerficarTipos(ts);
-
-                if (tipos == false)
-                {
-                    Console.WriteLine("Error de tipo");
-                    return;
-                }
-
-                /* MANEJAR TABLA DE SIMBOLOS FINALIZA AQUI */
-
-                q = 0;
-                int re = 0;
-                bool enc = false;
-
-                for (int z = 0; z < temporal.Count; z++)
-                {
-                    for (int zz = 0; zz < temporal.Count; z++)
-                    {
-                        if (temporal[z].Equals(temporal[zz]))
-                        {
-                            Console.WriteLine("Repetido");
-                            re++;
-                            break;
-                        }
-                    }
-                }
-                Console.WriteLine("Valores: " + re);
-
-                if (re > 2)
-                {
-                    Console.WriteLine("No repetir variables");
-                    txtTexto.ForeColor = Color.Red;
-                }
-                re = 0;
-                foreach (var mm in temporal)
-                {
-                    Console.WriteLine($"Valor de temporal {mm}");
-                }
-                temporal.Clear();
-                repetido.Clear();
-            }
-            else
-            {
-                MessageBox.Show("Sintactico incorrecto");
-                txtTexto.ForeColor = Color.Red;
-            }
-            /*
-            Kuto kt = new Kuto(tbxCode.Text);
-            kt = kt.Extract("public static void main(String []args){","");
-            string[] separador = kt.ToString().Split(';');
-            for(int t = 0;t < separador.Length; t++)
-            {
-                MessageBox.Show(separador[t]);
-            }
-            */
         }
 
         public bool VerificarDuplicados(TablaSimbolos tabla)

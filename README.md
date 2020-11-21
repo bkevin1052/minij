@@ -1,18 +1,22 @@
-# Fase 2 de Proyecto - Analisis Sintactico Ascendente LR(1)
+# Fase 3 de Proyecto - Analisis Semántico
 
-El repositorio corresponte a la segunda fase de proyecto de la clase de compiladores. Dicha dicha consta de la creación de un analizador sintactico para la gramatica establecida. En nuestro caso se nos solicito realizar el analizador para minijava
+El repositorio corresponte a la tercera fase de proyecto de la clase de compiladores. Dicha dicha consta de la creación de un analizador semántico para la gramatica establecida. En nuestro caso se nos solicito realizar el analizador para minijava
 
 
 ## Elementos del Proyecto 📋
 
-El proyecto consta de 2 partes fundamentales. La primera parte es "AnalizadorLexico.cs", la cual se encarga de realizar un analisis sintactico del archivo de entrada, ademas, crea una lista de tokens que se utilizan posteriormente en la parte de analisis sintactico.
+El proyecto consta de 4 partes fundamentales. La primera parte es "AnalizadorLexico", la cual se encarga de realizar un analisis léxico del archivo de entrada, ademas, crea una lista de tokens que se utilizan posteriormente en la parte de analisis sintáctico.
 
-La segunda parte es el "AnalizadorAscendente.cs", el cual es la parte central de esta fase de proyecto, se encarga de validar el orden de la secuencia de tokens por lo que utiliza una logica de analisis sintacticos ascendente LR(1).
+La segunda parte es el "AnalizadorSintactico", el cual es la segunda fase de proyecto y se encarga de validar el orden de la secuencia de tokens por lo que utiliza una logica de analisis sintacticos.
 
-Para implementar un analisis ascendente LR(1) se necesitan de un concepto basico como lo es:
+La tercera parte es la "TablaSimbolos", la tabla se encarga de llevar nuestros simbolos detectados y almacenar sus atributos. Se utiliza para validar la duplicidad o la asignación de valor.
 
-### Tabla de Estados
-_Esta función se encarga de evaluar el token de entrada actual y verificar si coincide con el valor esperado, para luego retornar un valor de salida que corresponda a dicha validacion._
+Por último esta el "AnalizadorSemantico", este se encarga de evaluar la lógica del archivo de entrada y verificar que los simbolos tengan congruencia en sus atributos.
+
+Para implementar un analizador semántico se necesitan de un concepto basico como lo es:
+
+### Tabla de Simbolos
+_Se encarga del control de los simbolos que se reconocen en la lógica del archivo de entrada, además de apoyar en la detección de errores como una asignación de un tipo de valor diferente al símbolo. Además almacena los atributos del símbolo para futuras comparaciones._
 
 
 
@@ -22,7 +26,7 @@ Al inicio se debe cargar un archivo (La interfaz gráfica del programa permite a
 
 Al momento de tener lista la estructura Regex se procede a realizar el analisis lexico del archivo, al finalizar el analisis se genera una lista de tokens de salida. Esta lista sirve de base para la siguiente fase, ya que contiene las producciones almacenadas en el archivo de entrada.
 
-Llegado el momento del analisis sintactico se llama al metodo analizar() para dar inicio a la logica del analisis. Se inicia desde la primera produccion y de forma recursiva se ingresa a los metodos (Simbolos no terminales) o se valida con la tabla de estados para verificar la siguiente accion. La tabla de estados esta construida apartir de las producciones de la gramatica.
+Llegado el momento del analisis sintactico se llama al metodo analizar() para dar inicio a la logica del analisis. Se inicia desde la primera produccion y de forma recursiva se ingresa a los metodos (Simbolos no terminales) o se valida con la tabla de simbolos para verificar la validez de la acción. La tabla de estados esta construida apartir de las producciones de la gramatica.
 
 ```
 Ej.
@@ -32,9 +36,11 @@ dTablaAnalisis.Add(new Validacion("SIMBOLO_FINAL_ARCHIVO", 1), new Accion("Acept
 
 Cuando el analizador detecta una produccion invalida regresa a la produccion inicial, guarda la posicion del token incorrecto, actualiza el index del analizador para pasar al siguiente Token y por ultimo vuelve a ingresar en la produccion inicial para recorrer el flujo nuevamente.
 
+Para finalizar realiza el análisis semántico y con ayuda de la tabla de símbolos, verifica las asignaciones, operaciones y llamados que se realizan dentro de la lógica del archivo de entrada para determinar la validez de la acción. Además, cada vez que se realiza una operación actualiza el valor de la variable en la tabla de símbolos para así llevar un control de los valores finales.
+
 ## Gramatica ⌨️
 
-Para implementar la gramatica, primero se debio modificar de la siguiente forma:
+La gramática que se utilizó durante el proyecto es:
 
 ```
 GRAMATICA G'

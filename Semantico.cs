@@ -508,7 +508,13 @@ namespace minij
 
                     string asignable = sb.ToString().Trim();
                     if (tipo == "int") {
-                        asignable = OperacionDeTipos(asignable, id);
+                        asignable = OperacionDeTipoInt(asignable, id);
+                    }else if (tipo == "double")
+                    {
+                        asignable = OperacionDeTipoDouble(asignable, id);
+                    }else if (tipo == "float")
+                    {
+                        asignable = OperacionDeTipoFloat(asignable, id);
                     }
                     simbolos.Add(new Simbolo(tipo, id, asignable));
                 }
@@ -518,7 +524,7 @@ namespace minij
         }
 
 
-        public string OperacionDeTipos(string asignable, string id) {
+        public string OperacionDeTipoInt(string asignable, string id) {
             string asignableTemp = asignable;
             string[] operacion = null;
             int temp = 0;
@@ -682,6 +688,358 @@ namespace minij
                             }
                         }
                         catch {
+                            listBox1.Items.Add("Error en la conversion de division con la variable " + id);
+                        }
+                    }
+                }
+            }
+
+            return asignable;
+        }
+        public string OperacionDeTipoDouble(string asignable, string id)
+        {
+            string asignableTemp = asignable;
+            string[] operacion = null;
+            double temp = 0;
+            double tempMulti = 0;
+            //En el caso sea una operacion numerica
+            if (asignable.Contains("+"))
+            {
+                operacion = asignable.Split('+');
+                for (int j = 0; j < operacion.Length; j++)
+                {
+                    try
+                    {
+                        temp += double.Parse(operacion[j]);
+                        asignable = temp.ToString();
+                    }
+                    catch
+                    {
+                        try
+                        {
+                            Simbolo simbolo = tabla.BuscarSimbolo(operacion[j].Trim());
+
+                            if (simbolo != null)
+                            {
+                                if (simbolo.Tipo == "double" && simbolo.Valor != null)
+                                {
+                                    temp = temp + double.Parse(simbolo.Valor);
+                                    asignable = temp.ToString();
+                                }
+                                else
+                                {
+                                    asignable = asignableTemp;
+                                    listBox1.Items.Add("Error en la conversion de suma con la variable " + id);
+                                }
+                            }
+                            else
+                            {
+                                listBox1.Items.Add("Error en la conversion de suma con la variable " + id);
+                            }
+                        }
+                        catch
+                        {
+                            listBox1.Items.Add("Error en la conversion de suma con la variable " + id);
+                        }
+                    }
+                }
+            }
+            else if (asignable.Contains("-"))
+            {
+                operacion = asignable.Split('-');
+                for (int j = 0; j < operacion.Length; j++)
+                {
+                    try
+                    {
+                        temp -= double.Parse(operacion[j]);
+                        asignable = temp.ToString();
+                    }
+                    catch
+                    {
+                        try
+                        {
+                            Simbolo simbolo = tabla.BuscarSimbolo(operacion[j].Trim());
+
+                            if (simbolo != null)
+                            {
+                                if (simbolo.Tipo == "double" && simbolo.Valor != null)
+                                {
+                                    temp = temp - double.Parse(simbolo.Valor);
+                                    asignable = temp.ToString();
+                                }
+                                else
+                                {
+                                    asignable = asignableTemp;
+                                    listBox1.Items.Add("Error en la conversion de resta con la variable " + id);
+                                }
+                            }
+                            else
+                            {
+                                listBox1.Items.Add("Error en la conversion de resta con la variable " + id);
+                            }
+                        }
+                        catch
+                        {
+                            listBox1.Items.Add("Error en la conversion de resta con la variable " + id);
+                        }
+                    }
+                }
+            }
+            else if (asignable.Contains("*"))
+            {
+                operacion = asignable.Split('*');
+                for (int j = 0; j < operacion.Length; j++)
+                {
+                    try
+                    {
+                        tempMulti = int.Parse(operacion[j].Trim());
+                        tempMulti = tempMulti * double.Parse(operacion[j].Trim());
+                        asignable = tempMulti.ToString();
+                    }
+                    catch
+                    {
+                        try
+                        {
+                            Simbolo simbolo = tabla.BuscarSimbolo(operacion[j].Trim());
+                            if (simbolo != null)
+                            {
+
+                                if (simbolo.Tipo == "double" && simbolo.Valor != null)
+                                {
+                                    tempMulti = tempMulti * double.Parse(simbolo.Valor);
+                                    asignable = temp.ToString();
+                                }
+                                else
+                                {
+                                    asignable = asignableTemp;
+                                    listBox1.Items.Add("Error en la conversion de multiplicacion con la variable " + id);
+                                }
+                            }
+                            else
+                            {
+                                listBox1.Items.Add("Error en la conversion de multiplicacion con la variable " + id);
+                            }
+                        }
+                        catch
+                        {
+                            listBox1.Items.Add("Error en la conversion de multiplicacion con la variable " + id);
+                        }
+                    }
+                }
+            }
+            else if (asignable.Contains("/"))
+            {
+                operacion = asignable.Split('/');
+                for (int j = 0; j < operacion.Length; j++)
+                {
+                    try
+                    {
+                        tempMulti = double.Parse(operacion[j]);
+                        tempMulti = tempMulti / double.Parse(operacion[j]);
+                        asignable = tempMulti.ToString();
+                    }
+                    catch
+                    {
+                        try
+                        {
+                            Simbolo simbolo = tabla.BuscarSimbolo(operacion[j].Trim());
+                            if (simbolo != null)
+                            {
+
+                                if (simbolo.Tipo == "double" && simbolo.Valor != null)
+                                {
+                                    tempMulti = tempMulti / double.Parse(simbolo.Valor);
+                                    asignable = temp.ToString();
+                                }
+                                else
+                                {
+                                    asignable = asignableTemp;
+                                    listBox1.Items.Add("Error en la conversion de division con la variable " + id);
+                                }
+                            }
+                            else
+                            {
+                                listBox1.Items.Add("Error en la conversion de division con la variable " + id);
+                            }
+                        }
+                        catch
+                        {
+                            listBox1.Items.Add("Error en la conversion de division con la variable " + id);
+                        }
+                    }
+                }
+            }
+
+            return asignable;
+        }
+        public string OperacionDeTipoFloat(string asignable, string id)
+        {
+            string asignableTemp = asignable;
+            string[] operacion = null;
+            float temp = 0;
+            float tempMulti = 0;
+            //En el caso sea una operacion numerica
+            if (asignable.Contains("+"))
+            {
+                operacion = asignable.Split('+');
+                for (int j = 0; j < operacion.Length; j++)
+                {
+                    try
+                    {
+                        temp += float.Parse(operacion[j]);
+                        asignable = temp.ToString();
+                    }
+                    catch
+                    {
+                        try
+                        {
+                            Simbolo simbolo = tabla.BuscarSimbolo(operacion[j].Trim());
+
+                            if (simbolo != null)
+                            {
+                                if (simbolo.Tipo == "double" && simbolo.Valor != null)
+                                {
+                                    temp = temp + float.Parse(simbolo.Valor);
+                                    asignable = temp.ToString();
+                                }
+                                else
+                                {
+                                    asignable = asignableTemp;
+                                    listBox1.Items.Add("Error en la conversion de suma con la variable " + id);
+                                }
+                            }
+                            else
+                            {
+                                listBox1.Items.Add("Error en la conversion de suma con la variable " + id);
+                            }
+                        }
+                        catch
+                        {
+                            listBox1.Items.Add("Error en la conversion de suma con la variable " + id);
+                        }
+                    }
+                }
+            }
+            else if (asignable.Contains("-"))
+            {
+                operacion = asignable.Split('-');
+                for (int j = 0; j < operacion.Length; j++)
+                {
+                    try
+                    {
+                        temp -= float.Parse(operacion[j]);
+                        asignable = temp.ToString();
+                    }
+                    catch
+                    {
+                        try
+                        {
+                            Simbolo simbolo = tabla.BuscarSimbolo(operacion[j].Trim());
+
+                            if (simbolo != null)
+                            {
+                                if (simbolo.Tipo == "float" && simbolo.Valor != null)
+                                {
+                                    temp = temp - float.Parse(simbolo.Valor);
+                                    asignable = temp.ToString();
+                                }
+                                else
+                                {
+                                    asignable = asignableTemp;
+                                    listBox1.Items.Add("Error en la conversion de resta con la variable " + id);
+                                }
+                            }
+                            else
+                            {
+                                listBox1.Items.Add("Error en la conversion de resta con la variable " + id);
+                            }
+                        }
+                        catch
+                        {
+                            listBox1.Items.Add("Error en la conversion de resta con la variable " + id);
+                        }
+                    }
+                }
+            }
+            else if (asignable.Contains("*"))
+            {
+                operacion = asignable.Split('*');
+                for (int j = 0; j < operacion.Length; j++)
+                {
+                    try
+                    {
+                        tempMulti = int.Parse(operacion[j].Trim());
+                        tempMulti = tempMulti * float.Parse(operacion[j].Trim());
+                        asignable = tempMulti.ToString();
+                    }
+                    catch
+                    {
+                        try
+                        {
+                            Simbolo simbolo = tabla.BuscarSimbolo(operacion[j].Trim());
+                            if (simbolo != null)
+                            {
+
+                                if (simbolo.Tipo == "float" && simbolo.Valor != null)
+                                {
+                                    tempMulti = tempMulti * float.Parse(simbolo.Valor);
+                                    asignable = temp.ToString();
+                                }
+                                else
+                                {
+                                    asignable = asignableTemp;
+                                    listBox1.Items.Add("Error en la conversion de multiplicacion con la variable " + id);
+                                }
+                            }
+                            else
+                            {
+                                listBox1.Items.Add("Error en la conversion de multiplicacion con la variable " + id);
+                            }
+                        }
+                        catch
+                        {
+                            listBox1.Items.Add("Error en la conversion de multiplicacion con la variable " + id);
+                        }
+                    }
+                }
+            }
+            else if (asignable.Contains("/"))
+            {
+                operacion = asignable.Split('/');
+                for (int j = 0; j < operacion.Length; j++)
+                {
+                    try
+                    {
+                        tempMulti = float.Parse(operacion[j]);
+                        tempMulti = tempMulti / float.Parse(operacion[j]);
+                        asignable = tempMulti.ToString();
+                    }
+                    catch
+                    {
+                        try
+                        {
+                            Simbolo simbolo = tabla.BuscarSimbolo(operacion[j].Trim());
+                            if (simbolo != null)
+                            {
+
+                                if (simbolo.Tipo == "float" && simbolo.Valor != null)
+                                {
+                                    tempMulti = tempMulti / float.Parse(simbolo.Valor);
+                                    asignable = temp.ToString();
+                                }
+                                else
+                                {
+                                    asignable = asignableTemp;
+                                    listBox1.Items.Add("Error en la conversion de division con la variable " + id);
+                                }
+                            }
+                            else
+                            {
+                                listBox1.Items.Add("Error en la conversion de division con la variable " + id);
+                            }
+                        }
+                        catch
+                        {
                             listBox1.Items.Add("Error en la conversion de division con la variable " + id);
                         }
                     }

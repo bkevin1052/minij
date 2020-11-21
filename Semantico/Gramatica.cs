@@ -16,6 +16,7 @@ namespace frmMain
             public const string Inicio = "<inicio>";
             public const string DeclaracionVariable = "<declaracion-variable>";
             public const string ListaDeclaracionVariable = "<lista-declaracion-variables>";
+            public const string ListaDeclaracionFuncion = "<lista-declaracion-funcion>";
             public const string ListaDeclaracionVariableValores = "<lista-declaracion-variables-valores>";
             public const string ListaDeclaracionVariableDinamica = "<lista-declaracion-variables-dinamica>";
             public const string DeclaracionConstante = "<declaracion-constante>";
@@ -149,6 +150,7 @@ namespace frmMain
             var inicio = new NonTerminal(NoTerminales.Inicio);
             var declaracionVariable = new NonTerminal(NoTerminales.DeclaracionVariable);
             var listaDeclaracionVariable = new NonTerminal(NoTerminales.ListaDeclaracionVariable);
+            var ListaDeclaracionFuncion = new NonTerminal(NoTerminales.ListaDeclaracionFuncion);
             var listaDeclaracionVariableValores = new NonTerminal(NoTerminales.ListaDeclaracionVariableValores);
             var listaParametroImplements = new NonTerminal(NoTerminales.ListaParametroImplements);
             var listaDeclaracionVariableDinamica = new NonTerminal(NoTerminales.ListaDeclaracionVariableDinamica);
@@ -284,17 +286,22 @@ namespace frmMain
 
             inicio.Rule =
                 declaracionFuncion + inicio |
-                declaracionFuncion |
-                declaracionFuncion2 |
-                declaracionFuncion3 |
-                declaracionFuncion4 |
-                declaracionFuncion5 |
-                declaracionFuncion6 |
-                declaracionFuncion7 |
-                declaracionFuncion8;
+                declaracionFuncion|
+                listaSentencia + inicio|
+                listaSentencia;
 
             declaracionFuncion.Rule =
-                ToTerm("public") + ToTerm("class") + id + llavesAbrir_ + ToTerm("public") + ToTerm("static") + ToTerm("void") + ToTerm("main") + parentesisAbrir_ + string_ + ToTerm("[") + ToTerm("]") + ToTerm("args") + parentesisCerrar_ + bloqueFuncion + llavesCerrar_;
+                ToTerm("public") + ToTerm("class") + id + llavesAbrir_ + ToTerm("public") + ToTerm("static") + ToTerm("void") + ToTerm("main") + parentesisAbrir_ + string_ + ToTerm("[") + ToTerm("]") + ToTerm("args") + parentesisCerrar_ + bloqueFuncion + llavesCerrar_ |
+                tipoFuncion + id + parentesisAbrir_ + parentesisCerrar_ + bloqueFuncion |
+                ToTerm("public") + ToTerm("static") + ToTerm("void") + ToTerm("main") + parentesisAbrir_ + string_ + ToTerm("[") + ToTerm("]") + ToTerm("args") + parentesisCerrar_ + bloqueFuncion|
+                tipoFuncion + id + parentesisAbrir_ + listaParametro + parentesisCerrar_ + bloqueFuncion|
+                ToTerm("class") + id + bloqueFuncion|
+                ToTerm("interface") + id + bloqueFuncion|
+                ToTerm("class") + id + ToTerm("extends") + id + ToTerm("implements") + listaParametroImplements + bloqueFuncion|
+                ToTerm("class") + id + ToTerm("extends") + id + bloqueFuncion|
+                ToTerm("class") + id + ToTerm("implements") + listaParametroImplements + bloqueFuncion;
+
+
 
             declaracionFuncion2.Rule =
                 tipoFuncion + id + parentesisAbrir_ + parentesisCerrar_ + bloqueFuncion;

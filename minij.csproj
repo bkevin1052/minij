@@ -65,11 +65,6 @@
       <DependentUpon>Semantico.cs</DependentUpon>
     </Compile>
     <Compile Include="Semantico\Arbol.cs" />
-    <Compile Include="Semantico\ejecucion\ThanosExecutor.cs" />
-    <Compile Include="Semantico\ejecucion\ThanosLexer.cs" />
-    <Compile Include="Semantico\ejecucion\ThanosListaTokens.cs" />
-    <Compile Include="Semantico\ejecucion\ThanosParser.cs" />
-    <Compile Include="Semantico\ejecucion\ThanosToken.cs" />
     <Compile Include="Semantico\Gramatica.cs" />
     <Compile Include="Semantico\Simbolo.cs" />
     <Compile Include="Semantico\TablaSimbolos.cs" />

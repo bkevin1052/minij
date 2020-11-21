@@ -1,6 +1,5 @@
 ﻿using frmMain;
 using frmMain.semantico;
-using frmMain.semantico.ejecucion;
 using Irony.Parsing;
 using System;
 using System.Collections.Generic;
@@ -461,47 +460,6 @@ namespace minij
             }
 
             return true;
-        }
-
-        private void ejecutar()
-        {
-            // analisis lexico
-
-            string codigo = txtTexto.Text;
-            var lexer = new ThanosLexer(codigo);
-
-            while (lexer.HasNext())
-            {
-                Console.WriteLine($"{lexer.CurrentToken} = {lexer.CurrentLexeme}");
-            }
-
-            if (!lexer.IsSuccessful)
-            {
-                MessageBox.Show("Error de analisis lexico");
-                return;
-            }
-
-            // analisis semantico
-
-            var parser = new ThanosParser(lexer.Tokens);
-            string nuevoCodigo = parser.ParseToSourceCode();
-
-            //MessageBox.Show(nuevoCodigo);
-
-            // ejecucion
-
-            if (!ThanosExecutor.Compilar(nuevoCodigo))
-            {
-                for (int i = 0; i < ThanosExecutor.Errores.Count; i++)
-                {
-                    listBox1.Items.Add(ThanosExecutor.Errores[i]);
-                }
-
-                return;
-            }
-
-            // MessageBox.Show("Ejecutando...");
-
         }
 
         private List<Simbolo> CrearSimbolos(Arbol arbol, ParseTreeNode nodo)

@@ -114,7 +114,7 @@
             this.btnSemantico.Name = "btnSemantico";
             this.btnSemantico.Size = new System.Drawing.Size(222, 36);
             this.btnSemantico.TabIndex = 5;
-            this.btnSemantico.Text = "Analizador Semantico";
+            this.btnSemantico.Text = "Analizador Sintactico y Semantico";
             this.btnSemantico.UseVisualStyleBackColor = true;
             this.btnSemantico.Click += new System.EventHandler(this.btnSemantico_Click);
             // 

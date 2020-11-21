@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Semantico));
             this.txtTexto = new System.Windows.Forms.TextBox();
             this.btnCompilar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -88,7 +89,7 @@
             this.listBox1.Location = new System.Drawing.Point(555, 44);
             this.listBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(361, 584);
+            this.listBox1.Size = new System.Drawing.Size(361, 604);
             this.listBox1.TabIndex = 5;
             // 
             // listBox2
@@ -101,7 +102,7 @@
             this.listBox2.Location = new System.Drawing.Point(923, 44);
             this.listBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(391, 584);
+            this.listBox2.Size = new System.Drawing.Size(391, 604);
             this.listBox2.TabIndex = 6;
             // 
             // label3
@@ -126,10 +127,11 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCompilar);
             this.Controls.Add(this.txtTexto);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Semantico";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Semantico";
+            this.Text = "Sintactico y Semantico";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -29,6 +29,7 @@ namespace minij
             InitializeComponent();
 
             txtTexto.Text = Form1.texto;
+            txtTexto.ScrollBars = ScrollBars.Vertical;
 
             using (StreamReader sr = new StreamReader(@"..\..\RegexLexer.cs"))
             {

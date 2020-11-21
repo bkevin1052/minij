@@ -33,13 +33,6 @@ namespace frmMain
             public const string LlamadaFuncion = "<llamada-funcion>";
             public const string IdLlamadaFuncion = "<id-llamada-funcion>";
             public const string DeclaracionFuncion = "<declaracion-funcion>";
-            public const string DeclaracionFuncion2 = "<declaracion-funcion2>";
-            public const string DeclaracionFuncion3 = "<declaracion-funcion3>";
-            public const string DeclaracionFuncion4 = "<declaracion-funcion4>";
-            public const string DeclaracionFuncion5 = "<declaracion-funcion5>";
-            public const string DeclaracionFuncion6 = "<declaracion-funcion6>";
-            public const string DeclaracionFuncion7 = "<declaracion-funcion7>";
-            public const string DeclaracionFuncion8 = "<declaracion-funcion8>";
             public const string TipoFuncion = "<tipo-funcion>";
             public const string BloqueFuncion = "<bloque-funcion>";
             public const string Parametro = "<parametro>";
@@ -171,13 +164,6 @@ namespace frmMain
             var llamadaFuncion = new NonTerminal(NoTerminales.LlamadaFuncion);
             var idLlamadaFuncion = new NonTerminal(NoTerminales.IdLlamadaFuncion);
             var declaracionFuncion = new NonTerminal(NoTerminales.DeclaracionFuncion);
-            var declaracionFuncion2 = new NonTerminal(NoTerminales.DeclaracionFuncion2);
-            var declaracionFuncion3 = new NonTerminal(NoTerminales.DeclaracionFuncion3);
-            var declaracionFuncion4 = new NonTerminal(NoTerminales.DeclaracionFuncion4);
-            var declaracionFuncion5 = new NonTerminal(NoTerminales.DeclaracionFuncion5);
-            var declaracionFuncion6 = new NonTerminal(NoTerminales.DeclaracionFuncion6);
-            var declaracionFuncion7 = new NonTerminal(NoTerminales.DeclaracionFuncion7);
-            var declaracionFuncion8 = new NonTerminal(NoTerminales.DeclaracionFuncion8);
             var tipoFuncion = new NonTerminal(NoTerminales.TipoFuncion);
             var bloqueFuncion = new NonTerminal(NoTerminales.BloqueFuncion);
             var parametro = new NonTerminal(NoTerminales.Parametro);
@@ -299,29 +285,6 @@ namespace frmMain
                 ToTerm("interface") + id + bloqueFuncion|
                 ToTerm("class") + id + ToTerm("extends") + id + ToTerm("implements") + listaParametroImplements + bloqueFuncion|
                 ToTerm("class") + id + ToTerm("extends") + id + bloqueFuncion|
-                ToTerm("class") + id + ToTerm("implements") + listaParametroImplements + bloqueFuncion;
-
-
-
-            declaracionFuncion2.Rule =
-                tipoFuncion + id + parentesisAbrir_ + parentesisCerrar_ + bloqueFuncion;
-
-            declaracionFuncion3.Rule =
-                ToTerm("public") + ToTerm("static") + ToTerm("void") + ToTerm("main") + parentesisAbrir_ + string_ + ToTerm("[") + ToTerm("]") + ToTerm("args") + parentesisCerrar_ + bloqueFuncion;
-
-            declaracionFuncion4.Rule =
-                tipoFuncion + id + parentesisAbrir_ + listaParametro + parentesisCerrar_ + bloqueFuncion;
-
-            declaracionFuncion5.Rule =
-                ToTerm("class") + id + bloqueFuncion;
-
-            declaracionFuncion6.Rule =
-                ToTerm("interface") + id + bloqueFuncion;
-
-            declaracionFuncion7.Rule = ToTerm("class") + id + ToTerm("extends") + id + bloqueFuncion |
-                ToTerm("class") + id + ToTerm("extends") + id + ToTerm("implements") + listaParametroImplements + bloqueFuncion;
-
-            declaracionFuncion8.Rule =
                 ToTerm("class") + id + ToTerm("implements") + listaParametroImplements + bloqueFuncion;
 
             tipoFuncion.Rule =

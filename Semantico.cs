@@ -321,7 +321,6 @@ namespace minij
                         listBox1.Items.Add("Variables duplicadas y declaradas con el mismo nombre " + cont.ToList()[i].Key);
                     }
                 }
-                return;
             }
 
             bool tipos = VerficarTipos(ts);
@@ -329,7 +328,6 @@ namespace minij
             if (tipos == false)
             {
                 listBox1.Items.Add("Error en conversión de tipo");
-                return;
             }
 
             var sb = new StringBuilder();

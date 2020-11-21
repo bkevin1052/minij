@@ -24,6 +24,7 @@ namespace minij
         {
             InitializeComponent();
             open = new OpenFileDialog();
+            btnSemantico.Enabled = false;
         }
 
         private void btnCargarArchivo_Click(object sender, EventArgs e)
@@ -127,6 +128,7 @@ namespace minij
             else
             {
                 MessageBox.Show("Analisis Sintactico - Fallido");
+
                 foreach (var tk in sintactico.tokensErroneos)
                 {
                     ListViewItem lvi = new ListViewItem();
@@ -147,10 +149,12 @@ namespace minij
             if (ascendente.analizar())
             {
                 MessageBox.Show("Analisis Sintactico - Positivo");
+                btnSemantico.Enabled = true;
             }
             else
             {
                 MessageBox.Show("Analisis Sintactico - Fallido");
+                btnSemantico.Enabled = false;
                 foreach (var tk in ascendente.getErrores())
                 {
                     ListViewItem lvi = new ListViewItem();

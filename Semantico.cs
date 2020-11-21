@@ -301,6 +301,7 @@ namespace minij
             if (parseTree.Root == null)
             {
                 listBox1.Items.Add("Error sintactico");
+                txtTexto.ForeColor = Color.Red;
                 return;
             }
 
@@ -339,6 +340,7 @@ namespace minij
 
             if (listBox1.Items.Count == 0) {
                 MessageBox.Show("Analisis Semantico Correcto","Información");
+                txtTexto.ForeColor = Color.Blue;
             }
         }
 
